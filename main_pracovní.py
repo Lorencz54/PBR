@@ -106,7 +106,7 @@ def add_f():
     list_l_a.append(l_factor_a)
 # zařazení rámečku požárního úseku do listu a jeho nastavení jako current frame
     list_f_PU.append(f_PU)
-    current_frame = f_PU
+    current_frame = list_f_PU.index(f_PU)
 # pokud se počítadlo rovná 1, vytvoří se tlačítko na vkládání řádků do rámečku požárního úseku
     if frame_count >= 1:
         b_new_row = ttk.Button(f_PU, text="add new row", command=m_plus)
@@ -148,71 +148,71 @@ def remove_f():
 # funkce na listování mezi rámečky vpřed
 def lift_frame():
     global current_frame
-    bottom_frame = dic_rows[0]
-    dic_rows.pop(0)
-    dic_rows.append(bottom_frame)
-    bottom_frame = list_f_PU[0]
-    bottom_frame.lift()
-    list_f_PU.pop(0)
-    list_f_PU.append(bottom_frame)
-    current_frame = bottom_frame
+    print(len(list_f_PU))
+    current_frame -= 1
+    if current_frame < 0:
+        current_frame = len(list_f_PU) - 1
+        list_f_PU[-1].lift()
+    else:
+        list_f_PU[current_frame].lift()
     return current_frame
 
+
 # funkce na zpětné listování mezi rámečky
-def lower_frame(): # funkce kazí vkládání řádků do jednotlivých rámečků (pravděpodobně je nutné kromě pozic v listu list_f_PU měnit i pozice listů v jenodlivých dictionaries
+def lower_frame():
     global current_frame
-    first_covered_frame = list_f_PU[-2]
-    first_covered_frame.lift()
-    list_f_PU.pop(-1)
-    list_f_PU.insert(0, current_frame)
-    current_frame = first_covered_frame
+    if current_frame == len(list_f_PU)-1:
+        current_frame = 0
+        list_f_PU[current_frame].lift()
+    else:
+        current_frame += 1
+        list_f_PU[current_frame].lift()
     return current_frame
 
 # funkce na vkládání řádků pro nové místnosti do current framu
 def m_plus():
     global current_frame
-    current_frame_index = list_f_PU.index(current_frame)
-    dic_rows[current_frame_index].append(1)
+    dic_rows[current_frame].append(1)
     for i in range(2):
-        e_text = ttk.Entry(current_frame)
-        e_text.grid(row=len(dic_rows[current_frame_index]), column=i)
-        dic_text_entries[current_frame_index].append(e_text)
+        e_text = ttk.Entry(list_f_PU[current_frame])
+        e_text.grid(row=len(dic_rows[current_frame]), column=i)
+        dic_text_entries[current_frame].append(e_text)
         if i % 2 == 0:
             e_text.config(width=5)
         else:
             e_text.config(width=30)
     for i in range(1):
-        e_S = ttk.Entry(current_frame, width=15)
-        e_S.grid(row=len(dic_rows[current_frame_index]), column=2)
-        dic_S_entries[current_frame_index].append(e_S)
+        e_S = ttk.Entry(list_f_PU[current_frame], width=15)
+        e_S.grid(row=len(dic_rows[current_frame]), column=2)
+        dic_S_entries[current_frame].append(e_S)
         e_S.insert(0, "0")
         e_S.bind("<FocusOut>", wrap_an_pn_ps_p_a)
         e_S.bind("<FocusIn>", lambda event: e_S.delete(0, tk.END) if e_S.get() == "0" else None)
     for i in range(1):
-        e_pni = ttk.Entry(current_frame, width=10)
-        e_pni.grid(row=len(dic_rows[current_frame_index]), column=3)
-        dic_pni_entries[current_frame_index].append(e_pni)
+        e_pni = ttk.Entry(list_f_PU[current_frame], width=10)
+        e_pni.grid(row=len(dic_rows[current_frame]), column=3)
+        dic_pni_entries[current_frame].append(e_pni)
         e_pni.insert(0, "0")
         e_pni.bind("<FocusOut>", wrap_pn_a)
         e_pni.bind("<FocusIn>", lambda event: e_pni.delete(0, tk.END) if e_pni.get() == "0" else None)
     for i in range(1):
-        e_ani = ttk.Entry(current_frame, width=10)
-        e_ani.grid(row=len(dic_rows[current_frame_index]), column=4)
-        dic_ani_entries[current_frame_index].append(e_ani)
+        e_ani = ttk.Entry(list_f_PU[current_frame], width=10)
+        e_ani.grid(row=len(dic_rows[current_frame]), column=4)
+        dic_ani_entries[current_frame].append(e_ani)
         e_ani.insert(0, "0")
         e_ani.bind("<FocusOut>", wrap_an_a)
         e_ani.bind("<FocusIn>", lambda event: e_ani.delete(0, tk.END) if e_ani.get() == "0" else None)
     for i in range(3):
-        e_psi = ttk.Entry(current_frame, width=10)
-        e_psi.grid(row=len(dic_rows[current_frame_index]), column=5 + i)
-        dic_ps_entries[current_frame_index].append(e_psi)
+        e_psi = ttk.Entry(list_f_PU[current_frame], width=10)
+        e_psi.grid(row=len(dic_rows[current_frame]), column=5 + i)
+        dic_ps_entries[current_frame].append(e_psi)
         e_psi.insert(0, "0")
         e_psi.bind("<FocusOut>", wrap_ps_a)
         e_psi.bind("<FocusIn>", lambda event, entry=e_psi: entry.delete(0, tk.END) if e_psi.get() == "0" else None)
     for i in range(1):
-        l_ps = ttk.Label(current_frame, text="0.0", width=10, anchor="center") #zkusit upravit výšku těchto labelů - pomocí nich by se mohly srovnat všechny entries
-        l_ps.grid(row=len(dic_rows[current_frame_index]), column=8)
-        dic_ps_labels[current_frame_index].append(l_ps)
+        l_ps = ttk.Label(list_f_PU[current_frame], text="0.0", width=10, anchor="center")
+        l_ps.grid(row=len(dic_rows[current_frame]), column=8)
+        dic_ps_labels[current_frame].append(l_ps)
 
 def m_minus():
     global current_frame
@@ -369,6 +369,5 @@ l_oznaceni.grid(row=0, column=0)
 l_PU.grid(row=0, column=1)
 l_typ.grid(row=0, column=2)
 
-print("hello world")
 # spuštění okna
 window.mainloop()
