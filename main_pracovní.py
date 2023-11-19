@@ -132,15 +132,11 @@ def add_f():
 def remove_f():
     global current_frame, frame_count
     frame_count -= 1
-    first_covered_frame = list_f_PU[-2]
-    first_covered_frame.lift()
-    frame_to_destroy = list_f_PU.pop(-1)
-    frame_to_destroy.destroy()
-    current_frame = first_covered_frame
+    lift_frame()
     list_cisla_pu[-1].destroy()
     list_cisla_pu.pop(-1)
-    list_e_PU[-1].destroy()
-    list_e_PU.pop(-1)
+    list_nazvy_pu[-1].destroy()
+    list_nazvy_pu.pop(-1)
     list_e_typ[-1].destroy()
     list_e_typ.pop(-1)
     return current_frame
@@ -216,43 +212,41 @@ def m_plus():
 
 def m_minus():
     global current_frame
-    current_frame_index = list_f_PU.index(current_frame)
-    dic_rows[current_frame_index].pop(1)
-    for entry in dic_text_entries[current_frame_index][-2:]:
+    dic_rows[current_frame].pop(1)
+    for entry in dic_text_entries[current_frame][-2:]:
         entry.destroy()
-        dic_text_entries[current_frame_index].pop(-1)
-    dic_S_entries[current_frame_index][-1].destroy()
-    dic_S_entries[current_frame_index].pop(-1)
-    dic_ps_labels[current_frame_index][-1].destroy()
-    dic_ps_labels[current_frame_index].pop(-1)
-    dic_pni_entries[current_frame_index][-1].destroy()
-    dic_pni_entries[current_frame_index].pop(-1)
-    dic_ani_entries[current_frame_index][-1].destroy()
-    dic_ani_entries[current_frame_index].pop(-1)
-    for entry in dic_ps_entries[current_frame_index][-3:]:
+        dic_text_entries[current_frame].pop(-1)
+    dic_S_entries[current_frame][-1].destroy()
+    dic_S_entries[current_frame].pop(-1)
+    dic_ps_labels[current_frame][-1].destroy()
+    dic_ps_labels[current_frame].pop(-1)
+    dic_pni_entries[current_frame][-1].destroy()
+    dic_pni_entries[current_frame].pop(-1)
+    dic_ani_entries[current_frame][-1].destroy()
+    dic_ani_entries[current_frame].pop(-1)
+    for entry in dic_ps_entries[current_frame][-3:]:
         entry.destroy()
-        dic_ps_entries[current_frame_index].pop(-1)
+        dic_ps_entries[current_frame].pop(-1)
     wrap_an_pn_ps_p_a(None)
 
 # funkce na výpočet ps v current framu
 def ps(event):
     global current_frame
-    current_frame_index = list_f_PU.index(current_frame)
-    S_values = [float(entry.get()) for entry in dic_S_entries[current_frame_index]]
+    S_values = [float(entry.get()) for entry in dic_S_entries[current_frame]]
     S_suma = np.sum(S_values)
-    psi_values = [float(entry.get()) for entry in dic_ps_entries[current_frame_index]]
+    psi_values = [float(entry.get()) for entry in dic_ps_entries[current_frame]]
     list_ps_arr = np.array(psi_values)
     list_ps_reshape = list_ps_arr.reshape(-1,3)
     ps_sum = np.sum(list_ps_reshape, axis=1)
     ps_sum_list = ps_sum.tolist()
     ps_value = round(np.dot(ps_sum_list, S_values)/S_suma,2)
-    list_l_ps[current_frame_index].config(text="ps celkem: " + str(ps_value))
+    list_l_ps[current_frame].config(text="ps celkem: " + str(ps_value))
     for i in range(len(ps_sum_list)):
         ps_row_sum = ps_sum_list[i]
-        label_ps_sum = dic_ps_labels[current_frame_index][i]
+        label_ps_sum = dic_ps_labels[current_frame][i]
         label_ps_sum.config(text=str(ps_row_sum))
-    if current_frame_index < len(list_ps):
-        list_ps[current_frame_index] = ps_value
+    if current_frame < len(list_ps):
+        list_ps[current_frame] = ps_value
     else:
         list_ps.append(ps_value)
 
@@ -260,37 +254,34 @@ def ps(event):
 # funkce na výpočet pn v current framu
 def pn(event):
     global current_frame
-    current_frame_index = list_f_PU.index(current_frame)
-    S_values = [float(entry.get()) for entry in dic_S_entries[current_frame_index]]
-    pn_values = [float(entry.get()) for entry in dic_pni_entries[current_frame_index]]
+    S_values = [float(entry.get()) for entry in dic_S_entries[current_frame]]
+    pn_values = [float(entry.get()) for entry in dic_pni_entries[current_frame]]
     S_suma = np.sum(S_values)
     pn_value = round(np.dot(pn_values, S_values)/S_suma,2)
-    if current_frame_index < len(list_pn):
-        list_pn[current_frame_index] = pn_value
+    if current_frame < len(list_pn):
+        list_pn[current_frame] = pn_value
     else:
         list_pn.append(pn_value)
-    list_l_pn[current_frame_index].config(text="pn celkem: " + str(pn_value))
+    list_l_pn[current_frame].config(text="pn celkem: " + str(pn_value))
 
 
 # funkce na výpočet an v current framu
 def an(event):
     global current_frame
-    current_frame_index = list_f_PU.index(current_frame)
-    S_values = [float(entry.get()) for entry in dic_S_entries[current_frame_index]]
-    an_values = [float(entry.get()) for entry in dic_ani_entries[current_frame_index]]
+    S_values = [float(entry.get()) for entry in dic_S_entries[current_frame]]
+    an_values = [float(entry.get()) for entry in dic_ani_entries[current_frame]]
     S_suma = np.sum(S_values)
     an_value = round(np.dot(an_values, S_values)/S_suma,2)
-    if current_frame_index < len(list_an):
-        list_an[current_frame_index] = an_value
+    if current_frame < len(list_an):
+        list_an[current_frame] = an_value
     else:
         list_an.append(an_value)
-    list_l_an[current_frame_index].config(text="an celkem: " + str(an_value))
+    list_l_an[current_frame].config(text="an celkem: " + str(an_value))
 
 def p(event):
     global current_frame, as_value
-    current_frame_index = list_f_PU.index(current_frame)
-    p = round(list_pn[current_frame_index]+list_ps[current_frame_index],2)
-    list_l_p[current_frame_index].config(text="p celkem: " + str(p))
+    p = round(list_pn[current_frame]+list_ps[current_frame],2)
+    list_l_p[current_frame].config(text="p celkem: " + str(p))
 
 # soubor funkcí pro navázání na widget
 def wrap_an_pn_ps_p_a(event):
@@ -326,13 +317,12 @@ def pu_rename(event):
 
 def f_a(event):
     global current_frame, as_value
-    current_frame_index = list_f_PU.index(current_frame)
-    factor_a = round((list_pn[current_frame_index]*list_an[current_frame_index]+list_ps[current_frame_index]*as_value)/(list_pn[current_frame_index]+list_ps[current_frame_index]),2)
-    if current_frame_index < len(list_a):
-        list_a[current_frame_index] = factor_a
+    factor_a = round((list_pn[current_frame]*list_an[current_frame]+list_ps[current_frame]*as_value)/(list_pn[current_frame]+list_ps[current_frame]),2)
+    if current_frame < len(list_a):
+        list_a[current_frame] = factor_a
     else:
         list_a.append(factor_a)
-    list_l_a[current_frame_index].config(text="a celkem: " + str(factor_a))
+    list_l_a[current_frame].config(text="a celkem: " + str(factor_a))
 
 # sestavení dvou horních rámečků (hlavní informace o objektu a panel pro tlačítka)
 f_main = ttk.Frame(window, width=100, height=200, relief="ridge")
