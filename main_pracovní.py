@@ -369,6 +369,6 @@ l_oznaceni.grid(row=0, column=0)
 l_PU.grid(row=0, column=1)
 l_typ.grid(row=0, column=2)
 
-print("hello")
+print("hello world")
 # spuštění okna
 window.mainloop()
