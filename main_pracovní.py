@@ -23,7 +23,7 @@ list_ps = []
 list_a = []
 list_m_rows = []
 # dictionaries
-dic_rows = []
+dic_m_rows = []
 dic_S_entries = []
 dic_ps_entries = []
 dic_text_entries = []
@@ -31,16 +31,22 @@ dic_ps_labels = []
 dic_pni_entries = []
 dic_ani_entries = []
 dic_ps_group_sums = []
+dic_hni_entries = []
+dic_o_rows = []
 list_e_PU = []
 list_e_typ = []
+dic_pocet_ot = []
+dic_sirka_ot = []
+dic_vyska_ot = []
 
 frame_count = 0
 window = tk.Tk()
-window.geometry("850x500")
+window.geometry("1500x500")
 def add_f():
     global frame_count, current_frame
 # listy pro nový požární úsek
     m_rows = [1]
+    o_rows = [1]
     m_S_entries = []
     m_ps_entries = []
     m_text_entries = []
@@ -48,16 +54,24 @@ def add_f():
     m_pni_entries = []
     m_ani_entries = []
     m_ps_group_sums = []
-
+    m_hni_entries = []
+    list_pocet_ot = []
+    list_sirka_ot = []
+    list_vyska_ot = []
 # přiřazení nových listů do nadlistů mimo funkci
     dic_S_entries.append(m_S_entries)
     dic_ps_entries.append(m_ps_entries)
     dic_ps_labels.append(m_ps_labels)
     dic_pni_entries.append(m_pni_entries)
     dic_ani_entries.append(m_ani_entries)
-    dic_rows.append(m_rows)
+    dic_m_rows.append(m_rows)
+    dic_o_rows.append(o_rows)
     dic_text_entries.append(m_text_entries)
     dic_ps_group_sums.append(m_ps_group_sums)
+    dic_hni_entries.append(m_hni_entries)
+    dic_pocet_ot.append(list_pocet_ot)
+    dic_sirka_ot.append(list_sirka_ot)
+    dic_vyska_ot.append(list_vyska_ot)
 # počítadlo rámečků
     frame_count += 1
 # tvorba rámečku
@@ -75,44 +89,65 @@ def add_f():
     l_S.grid(row=1, column=2)
     l_pn_m = ttk.Label(f_PU, text="pni", anchor="center", width=11)
     l_pn_m.grid(row=1, column=3)
+    l_hsi_m = ttk.Label(f_PU, text="hni", anchor="center", width=11)
+    l_hsi_m.grid(row=1, column=4)
     l_an_m = ttk.Label(f_PU, text="ani", anchor="center", width=11)
-    l_an_m.grid(row=1, column=4)
+    l_an_m.grid(row=1, column=5)
     l_ps_d = ttk.Label(f_PU, text="psi dveře", anchor="center", width=11)
-    l_ps_d.grid(row=1, column=5)
+    l_ps_d.grid(row=1, column=6)
     l_ps_o = ttk.Label(f_PU, text="psi okna", anchor="center", width=11)
-    l_ps_o.grid(row=1, column=6)
+    l_ps_o.grid(row=1, column=7)
     l_ps_p = ttk.Label(f_PU, text="psi podlahy", anchor="center", width=11)
-    l_ps_p.grid(row=1, column=7)
+    l_ps_p.grid(row=1, column=8)
     l_psi_sum = ttk.Label(f_PU, text="psi celkem", anchor="center", width=11)
-    l_psi_sum.grid(row=1, column=8)
+    l_psi_sum.grid(row=1, column=9)
 # výsledky tabulky
     l_S = ttk.Label(f_PU, text="S celkem: ")
-    l_S.grid(row=4, column=9)
+    l_S.grid(row=4, column=10)
     list_l_S.append(l_S)
     l_an = ttk.Label(f_PU, text="an celkem: ")
-    l_an.grid(row=5, column=9)
+    l_an.grid(row=5, column=10)
     list_l_an.append(l_an)
     l_pn = ttk.Label(f_PU, text="pn celkem: ")
-    l_pn.grid(row=6, column=9)
+    l_pn.grid(row=6, column=10)
     list_l_pn.append(l_pn)
     l_ps = ttk.Label(f_PU, text="ps celkem: ")
-    l_ps.grid(row=7, column=9)
+    l_ps.grid(row=7, column=10)
     list_l_ps.append(l_ps)
     l_p = ttk.Label(f_PU, text="p celkem: ")
-    l_p.grid(row=8, column=9)
+    l_p.grid(row=8, column=10)
     list_l_p.append(l_p)
     l_factor_a = ttk.Label(f_PU, text="součinitel a: ")
-    l_factor_a.grid(row=9, column=9)
+    l_factor_a.grid(row=9, column=10)
     list_l_a.append(l_factor_a)
+    l_hs = ttk.Label(f_PU, text="světlá výška PÚ: ")
+    l_hs.grid(row=4, column=15)
+    l_So = ttk.Label(f_PU, text="celková plocha otvorů PÚ: ")
+    l_So.grid(row=5, column=15)
+    l_ho = ttk.Label(f_PU, text="celková výška otvorů PÚ: ")
+    l_ho.grid(row=6, column=15)
+# nadpisy tabulky otvorů
+    l_typ_ot = ttk.Label(f_PU, text="typ otvoru", anchor="center", width=12)
+    l_typ_ot.grid(row=1, column=11)
+    l_pocet_ot = ttk.Label(f_PU, text="počet otvorů", anchor="center", width=12)
+    l_pocet_ot.grid(row=1, column=12)
+    l_sirka_ot = ttk.Label(f_PU, text="šířka otvoru", anchor="center", width=12)
+    l_sirka_ot.grid(row=1, column=13)
+    l_vyska_ot = ttk.Label(f_PU, text="výška otvoru", anchor="center", width=12)
+    l_vyska_ot.grid(row=1, column=14)
 # zařazení rámečku požárního úseku do listu a jeho nastavení jako current frame
     list_f_PU.append(f_PU)
     current_frame = list_f_PU.index(f_PU)
 # pokud se počítadlo rovná 1, vytvoří se tlačítko na vkládání řádků do rámečku požárního úseku
     if frame_count >= 1:
-        b_new_row = ttk.Button(f_PU, text="add new row", command=m_plus)
-        b_new_row.grid(row=2, column=9)
-        b_remove_row = ttk.Button(f_PU, text="remove row", command=m_minus)
-        b_remove_row.grid(row=3, column=9)
+        b_new_row = ttk.Button(f_PU, text="nová místnost", command=m_plus)
+        b_new_row.grid(row=2, column=10)
+        b_remove_row = ttk.Button(f_PU, text="odebrat místnost", command=m_minus)
+        b_remove_row.grid(row=3, column=10)
+        b_new_hole = ttk.Button(f_PU, text="nový otvor", command=o_plus)
+        b_new_hole.grid(row=2, column=15)
+        b_remove_hole = ttk.Button(f_PU, text="odebrat otvor", command=o_minus)
+        b_remove_hole.grid(row=3, column=15)
 # widgety pro požární úsek v rámečku pro celý objekt
     e_oznaceni = ttk.Entry(f_main)
     e_oznaceni.grid(row=frame_count, column=0)
@@ -144,7 +179,6 @@ def remove_f():
 # funkce na listování mezi rámečky vpřed
 def lift_frame():
     global current_frame
-    print(len(list_f_PU))
     current_frame -= 1
     if current_frame < 0:
         current_frame = len(list_f_PU) - 1
@@ -168,10 +202,10 @@ def lower_frame():
 # funkce na vkládání řádků pro nové místnosti do current framu
 def m_plus():
     global current_frame
-    dic_rows[current_frame].append(1)
+    dic_m_rows[current_frame].append(1)
     for i in range(2):
         e_text = ttk.Entry(list_f_PU[current_frame])
-        e_text.grid(row=len(dic_rows[current_frame]), column=i)
+        e_text.grid(row=len(dic_m_rows[current_frame]), column=i)
         dic_text_entries[current_frame].append(e_text)
         if i % 2 == 0:
             e_text.config(width=5)
@@ -179,40 +213,47 @@ def m_plus():
             e_text.config(width=30)
     for i in range(1):
         e_S = ttk.Entry(list_f_PU[current_frame], width=15)
-        e_S.grid(row=len(dic_rows[current_frame]), column=2)
+        e_S.grid(row=len(dic_m_rows[current_frame]), column=2)
         dic_S_entries[current_frame].append(e_S)
         e_S.insert(0, "0")
         e_S.bind("<FocusOut>", wrap_an_pn_ps_p_a)
         e_S.bind("<FocusIn>", lambda event: e_S.delete(0, tk.END) if e_S.get() == "0" else None)
     for i in range(1):
+        e_hni = ttk.Entry(list_f_PU[current_frame], width=10)
+        e_hni.grid(row=len(dic_m_rows[current_frame]), column=3)
+        dic_hni_entries[current_frame].append(e_hni)
+        e_hni.insert(0, "0")
+        e_hni.bind("<FocusOut>", wrap_pn_a) #doplnit funkci na výpočty spojené s výškou místnosti
+        e_hni.bind("<FocusIn>", lambda event: e_hni.delete(0, tk.END) if e_hni.get() == "0" else None)
+    for i in range(1):
         e_pni = ttk.Entry(list_f_PU[current_frame], width=10)
-        e_pni.grid(row=len(dic_rows[current_frame]), column=3)
+        e_pni.grid(row=len(dic_m_rows[current_frame]), column=4)
         dic_pni_entries[current_frame].append(e_pni)
         e_pni.insert(0, "0")
         e_pni.bind("<FocusOut>", wrap_pn_a)
         e_pni.bind("<FocusIn>", lambda event: e_pni.delete(0, tk.END) if e_pni.get() == "0" else None)
     for i in range(1):
         e_ani = ttk.Entry(list_f_PU[current_frame], width=10)
-        e_ani.grid(row=len(dic_rows[current_frame]), column=4)
+        e_ani.grid(row=len(dic_m_rows[current_frame]), column=5)
         dic_ani_entries[current_frame].append(e_ani)
         e_ani.insert(0, "0")
         e_ani.bind("<FocusOut>", wrap_an_a)
         e_ani.bind("<FocusIn>", lambda event: e_ani.delete(0, tk.END) if e_ani.get() == "0" else None)
     for i in range(3):
         e_psi = ttk.Entry(list_f_PU[current_frame], width=10)
-        e_psi.grid(row=len(dic_rows[current_frame]), column=5 + i)
+        e_psi.grid(row=len(dic_m_rows[current_frame]), column=6 + i)
         dic_ps_entries[current_frame].append(e_psi)
         e_psi.insert(0, "0")
         e_psi.bind("<FocusOut>", wrap_ps_a)
         e_psi.bind("<FocusIn>", lambda event, entry=e_psi: entry.delete(0, tk.END) if e_psi.get() == "0" else None)
     for i in range(1):
         l_ps = ttk.Label(list_f_PU[current_frame], text="0.0", width=10, anchor="center")
-        l_ps.grid(row=len(dic_rows[current_frame]), column=8)
+        l_ps.grid(row=len(dic_m_rows[current_frame]), column=9)
         dic_ps_labels[current_frame].append(l_ps)
 
 def m_minus():
     global current_frame
-    dic_rows[current_frame].pop(1)
+    dic_m_rows[current_frame].pop(1)
     for entry in dic_text_entries[current_frame][-2:]:
         entry.destroy()
         dic_text_entries[current_frame].pop(-1)
@@ -229,6 +270,33 @@ def m_minus():
         dic_ps_entries[current_frame].pop(-1)
     wrap_an_pn_ps_p_a(None)
 
+def o_plus():
+    global current_frame
+    dic_o_rows[current_frame].append(1)
+    for i in range(1):
+        e_pocet_ot = ttk.Entry(list_f_PU[current_frame], width=10)
+        e_pocet_ot.grid(row=len(dic_o_rows[current_frame]), column=12)
+        dic_pocet_ot[current_frame].append(e_pocet_ot)
+        e_pocet_ot.insert(0, "0")
+    for i in range(1):
+        e_sirka_ot = ttk.Entry(list_f_PU[current_frame], width=10)
+        e_sirka_ot.grid(row=len(dic_o_rows[current_frame]), column=13)
+        dic_sirka_ot[current_frame].append(e_sirka_ot)
+        e_sirka_ot.insert(0, "0")
+    for i in range(1):
+        e_vyska_ot = ttk.Entry(list_f_PU[current_frame], width=10)
+        e_vyska_ot.grid(row=len(dic_o_rows[current_frame]), column=14)
+        dic_vyska_ot[current_frame].append(e_vyska_ot)
+        e_vyska_ot.insert(0, "0")
+def o_minus():
+    global current_frame
+    dic_o_rows[current_frame].pop(1)
+    dic_pocet_ot[current_frame][-1].destroy()
+    dic_pocet_ot[current_frame].pop(-1)
+    dic_sirka_ot[current_frame][-1].destroy()
+    dic_sirka_ot[current_frame].pop(-1)
+    dic_vyska_ot[current_frame][-1].destroy()
+    dic_vyska_ot[current_frame].pop(-1)
 # funkce na výpočet ps v current framu
 def ps(event):
     global current_frame
@@ -280,6 +348,7 @@ def an(event):
 
 def p(event):
     global current_frame, as_value
+    print(list_ps)
     p = round(list_pn[current_frame]+list_ps[current_frame],2)
     list_l_p[current_frame].config(text="p celkem: " + str(p))
 
@@ -330,9 +399,9 @@ f_button_panel = ttk.Frame(window, width=100, height=200, relief="ridge")
 
 # definice tlačítek pro panel na tlačítka
 b_add_f = ttk.Button(f_button_panel, text="nový požární úsek", command= add_f)
-b_remove_f = ttk.Button(f_button_panel, text="remove frame", command=remove_f)
-b_lift = ttk.Button(f_button_panel, text="lift frame", command= lift_frame)
-b_lower = ttk.Button(f_button_panel, text="lower frame", command=lower_frame)
+b_remove_f = ttk.Button(f_button_panel, text="přidat požární úsek", command=remove_f)
+b_lift = ttk.Button(f_button_panel, text="lift", command= lift_frame)
+b_lower = ttk.Button(f_button_panel, text="lower", command=lower_frame)
 
 # umístění dvou horních rámečků
 f_main.place(relwidth=0.7, relheight=0.5)
