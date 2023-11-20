@@ -22,6 +22,7 @@ list_pn = []
 list_ps = []
 list_a = []
 list_m_rows = []
+list_so = []
 # dictionaries
 dic_m_rows = []
 dic_S_entries = []
@@ -38,6 +39,7 @@ list_e_typ = []
 dic_pocet_ot = []
 dic_sirka_ot = []
 dic_vyska_ot = []
+dic_so_ot = []
 
 frame_count = 0
 window = tk.Tk()
@@ -58,6 +60,7 @@ def add_f():
     list_pocet_ot = []
     list_sirka_ot = []
     list_vyska_ot = []
+    list_so_ot = []
 # přiřazení nových listů do nadlistů mimo funkci
     dic_S_entries.append(m_S_entries)
     dic_ps_entries.append(m_ps_entries)
@@ -72,6 +75,7 @@ def add_f():
     dic_pocet_ot.append(list_pocet_ot)
     dic_sirka_ot.append(list_sirka_ot)
     dic_vyska_ot.append(list_vyska_ot)
+    dic_so_ot.append(list_so_ot)
 # počítadlo rámečků
     frame_count += 1
 # tvorba rámečku
@@ -124,6 +128,7 @@ def add_f():
     l_hs.grid(row=4, column=15)
     l_So = ttk.Label(f_PU, text="celková plocha otvorů PÚ: ")
     l_So.grid(row=5, column=15)
+    list_so.append(l_So)
     l_ho = ttk.Label(f_PU, text="celková výška otvorů PÚ: ")
     l_ho.grid(row=6, column=15)
 # nadpisy tabulky otvorů
@@ -278,16 +283,22 @@ def o_plus():
         e_pocet_ot.grid(row=len(dic_o_rows[current_frame]), column=12)
         dic_pocet_ot[current_frame].append(e_pocet_ot)
         e_pocet_ot.insert(0, "0")
+        e_pocet_ot.bind("<FocusOut>", so)
+        e_pocet_ot.bind("<FocusIn>", lambda event, entry=e_pocet_ot: entry.delete(0, tk.END) if e_pocet_ot.get() == "0" else None)
     for i in range(1):
         e_sirka_ot = ttk.Entry(list_f_PU[current_frame], width=10)
         e_sirka_ot.grid(row=len(dic_o_rows[current_frame]), column=13)
         dic_sirka_ot[current_frame].append(e_sirka_ot)
         e_sirka_ot.insert(0, "0")
+        e_sirka_ot.bind("<FocusOut>", so)
+        e_sirka_ot.bind("<FocusIn>", lambda event, entry=e_sirka_ot: entry.delete(0, tk.END) if e_sirka_ot.get() == "0" else None)
     for i in range(1):
         e_vyska_ot = ttk.Entry(list_f_PU[current_frame], width=10)
         e_vyska_ot.grid(row=len(dic_o_rows[current_frame]), column=14)
         dic_vyska_ot[current_frame].append(e_vyska_ot)
         e_vyska_ot.insert(0, "0")
+        e_vyska_ot.bind("<FocusOut>", so)
+        e_vyska_ot.bind("<FocusIn>", lambda event, entry=e_vyska_ot: entry.delete(0, tk.END) if e_vyska_ot.get() == "0" else None)
 def o_minus():
     global current_frame
     dic_o_rows[current_frame].pop(1)
@@ -297,6 +308,15 @@ def o_minus():
     dic_sirka_ot[current_frame].pop(-1)
     dic_vyska_ot[current_frame][-1].destroy()
     dic_vyska_ot[current_frame].pop(-1)
+
+def so(event):
+    global current_frame
+    pocet_values = np.array([float(entry.get()) for entry in dic_pocet_ot[current_frame]])
+    sirka_values = np.array([float(entry.get()) for entry in dic_sirka_ot[current_frame]])
+    vyska_values = np.array([float(entry.get()) for entry in dic_vyska_ot[current_frame]])
+    so_value = np.multiply(np.multiply(pocet_values, sirka_values), vyska_values)
+    list_so[current_frame].config(text="Celková plocha otvorů PÚ: " + str(so_value))
+
 # funkce na výpočet ps v current framu
 def ps(event):
     global current_frame
