@@ -14,6 +14,7 @@ list_l_pn = []
 list_l_ps = []
 list_l_p = []
 list_l_a = []
+list_l_hs = []
 list_nazvy_pu_default = []
 list_cisla_pu = []
 list_nazvy_pu = []
@@ -23,6 +24,7 @@ list_ps = []
 list_a = []
 list_m_rows = []
 list_so = []
+
 # dictionaries
 dic_m_rows = []
 dic_S_entries = []
@@ -32,7 +34,7 @@ dic_ps_labels = []
 dic_pni_entries = []
 dic_ani_entries = []
 dic_ps_group_sums = []
-dic_hni_entries = []
+dic_hsi_entries = []
 dic_o_rows = []
 list_e_PU = []
 list_e_typ = []
@@ -56,11 +58,12 @@ def add_f():
     m_pni_entries = []
     m_ani_entries = []
     m_ps_group_sums = []
-    m_hni_entries = []
+    m_hsi_entries = []
     list_pocet_ot = []
     list_sirka_ot = []
     list_vyska_ot = []
     list_so_ot = []
+
 # přiřazení nových listů do nadlistů mimo funkci
     dic_S_entries.append(m_S_entries)
     dic_ps_entries.append(m_ps_entries)
@@ -71,7 +74,7 @@ def add_f():
     dic_o_rows.append(o_rows)
     dic_text_entries.append(m_text_entries)
     dic_ps_group_sums.append(m_ps_group_sums)
-    dic_hni_entries.append(m_hni_entries)
+    dic_hsi_entries.append(m_hsi_entries)
     dic_pocet_ot.append(list_pocet_ot)
     dic_sirka_ot.append(list_sirka_ot)
     dic_vyska_ot.append(list_vyska_ot)
@@ -126,6 +129,7 @@ def add_f():
     list_l_a.append(l_factor_a)
     l_hs = ttk.Label(f_PU, text="světlá výška PÚ: ")
     l_hs.grid(row=4, column=15)
+    list_l_hs.append(l_hs)
     l_So = ttk.Label(f_PU, text="celková plocha otvorů PÚ: ")
     l_So.grid(row=5, column=15)
     list_so.append(l_So)
@@ -224,19 +228,20 @@ def m_plus():
         e_S.bind("<FocusOut>", wrap_an_pn_ps_p_a)
         e_S.bind("<FocusIn>", lambda event: e_S.delete(0, tk.END) if e_S.get() == "0" else None)
     for i in range(1):
-        e_hni = ttk.Entry(list_f_PU[current_frame], width=10)
-        e_hni.grid(row=len(dic_m_rows[current_frame]), column=3)
-        dic_hni_entries[current_frame].append(e_hni)
-        e_hni.insert(0, "0")
-        e_hni.bind("<FocusOut>", wrap_pn_a) #doplnit funkci na výpočty spojené s výškou místnosti
-        e_hni.bind("<FocusIn>", lambda event: e_hni.delete(0, tk.END) if e_hni.get() == "0" else None)
-    for i in range(1):
         e_pni = ttk.Entry(list_f_PU[current_frame], width=10)
-        e_pni.grid(row=len(dic_m_rows[current_frame]), column=4)
+        e_pni.grid(row=len(dic_m_rows[current_frame]), column=3)
         dic_pni_entries[current_frame].append(e_pni)
         e_pni.insert(0, "0")
         e_pni.bind("<FocusOut>", wrap_pn_a)
         e_pni.bind("<FocusIn>", lambda event: e_pni.delete(0, tk.END) if e_pni.get() == "0" else None)
+    for i in range(1):
+        e_hsi = ttk.Entry(list_f_PU[current_frame], width=10)
+        e_hsi.grid(row=len(dic_m_rows[current_frame]), column=4)
+        dic_hsi_entries[current_frame].append(e_hsi)
+        e_hsi.insert(0, "0")
+        e_hsi.bind("<FocusOut>", hs)
+        e_hsi.bind("<FocusIn>", lambda event: e_hsi.delete(0, tk.END) if e_hsi.get() == "0" else None)
+
     for i in range(1):
         e_ani = ttk.Entry(list_f_PU[current_frame], width=10)
         e_ani.grid(row=len(dic_m_rows[current_frame]), column=5)
@@ -314,8 +319,17 @@ def so(event):
     pocet_values = np.array([float(entry.get()) for entry in dic_pocet_ot[current_frame]])
     sirka_values = np.array([float(entry.get()) for entry in dic_sirka_ot[current_frame]])
     vyska_values = np.array([float(entry.get()) for entry in dic_vyska_ot[current_frame]])
-    so_value = np.multiply(np.multiply(pocet_values, sirka_values), vyska_values)
-    list_so[current_frame].config(text="Celková plocha otvorů PÚ: " + str(so_value))
+    so_value = np.sum(np.multiply(np.multiply(pocet_values, sirka_values), vyska_values))
+    list_l_ho[current_frame].config(text="Celková plocha otvorů PÚ: " + str(so_value))
+
+def hs(event):
+    global current_frame
+    print(list_l_hs)
+    S_values = [float(entry.get()) for entry in dic_S_entries[current_frame]]
+    hsi_values = [float(entry.get()) for entry in dic_hsi_entries[current_frame]]
+    S_suma = np.sum(S_values)
+    hs_value = round(np.dot(hsi_values, S_values) / S_suma, 2)
+    list_l_hs[current_frame].config(text="Světlá výška PÚ: " + str(hs_value))
 
 # funkce na výpočet ps v current framu
 def ps(event):
@@ -368,7 +382,6 @@ def an(event):
 
 def p(event):
     global current_frame, as_value
-    print(list_ps)
     p = round(list_pn[current_frame]+list_ps[current_frame],2)
     list_l_p[current_frame].config(text="p celkem: " + str(p))
 
