@@ -24,6 +24,7 @@ list_ps = []
 list_a = []
 list_m_rows = []
 list_l_so = []
+list_l_ho = []
 
 # dictionaries
 dic_m_rows = []
@@ -79,6 +80,7 @@ def add_f():
     dic_sirka_ot.append(list_sirka_ot)
     dic_vyska_ot.append(list_vyska_ot)
     dic_so_ot.append(list_so_ot)
+    dic_vyska_ot.append(list_vyska_ot)
 # počítadlo rámečků
     frame_count += 1
 # tvorba rámečku
@@ -135,6 +137,7 @@ def add_f():
     list_l_so.append(l_So)
     l_ho = ttk.Label(f_PU, text="celková výška otvorů PÚ: ")
     l_ho.grid(row=6, column=15)
+    list_l_ho.append(l_ho)
 # nadpisy tabulky otvorů
     l_typ_ot = ttk.Label(f_PU, text="typ otvoru", anchor="center", width=12)
     l_typ_ot.grid(row=1, column=11)
@@ -302,7 +305,7 @@ def o_plus():
         e_vyska_ot.grid(row=len(dic_o_rows[current_frame]), column=14)
         dic_vyska_ot[current_frame].append(e_vyska_ot)
         e_vyska_ot.insert(0, "0")
-        e_vyska_ot.bind("<FocusOut>", so)
+        e_vyska_ot.bind("<FocusOut>", wrap_ho_so)
         e_vyska_ot.bind("<FocusIn>", lambda event, entry=e_vyska_ot: entry.delete(0, tk.END) if e_vyska_ot.get() == "0" else None)
 def o_minus():
     global current_frame
@@ -324,12 +327,26 @@ def so(event):
 
 def hs(event):
     global current_frame
-    print(list_l_hs)
     S_values = [float(entry.get()) for entry in dic_S_entries[current_frame]]
     hsi_values = [float(entry.get()) for entry in dic_hsi_entries[current_frame]]
     S_suma = np.sum(S_values)
     hs_value = round(np.dot(hsi_values, S_values) / S_suma, 2)
     list_l_hs[current_frame].config(text="Světlá výška PÚ: " + str(hs_value))
+
+def ho(event):
+    global current_frame
+    pocet_values = [float(entry.get()) for entry in dic_pocet_ot[current_frame]]
+    sirka_values = [float(entry.get()) for entry in dic_sirka_ot[current_frame]]
+    vyska_values = [float(entry.get()) for entry in dic_vyska_ot[current_frame]]
+    so_values = np.multiply(np.multiply(pocet_values, sirka_values), vyska_values)
+    hoi_values = [float(entry.get()) for entry in dic_vyska_ot[current_frame]]
+    so_suma = np.sum(so_values)
+    ho_value = round(np.dot(hoi_values, so_values) / so_suma, 2)
+    list_l_ho[current_frame].config(text="Celková výška otvorů PÚ: " + str(ho_value))
+
+def wrap_ho_so(event):
+    so(event)
+    ho(event)
 
 # funkce na výpočet ps v current framu
 def ps(event):
@@ -432,7 +449,7 @@ f_button_panel = ttk.Frame(window, width=100, height=200, relief="ridge")
 
 # definice tlačítek pro panel na tlačítka
 b_add_f = ttk.Button(f_button_panel, text="nový požární úsek", command= add_f)
-b_remove_f = ttk.Button(f_button_panel, text="přidat požární úsek", command=remove_f)
+b_remove_f = ttk.Button(f_button_panel, text="odebrat požární úsek", command=remove_f)
 b_lift = ttk.Button(f_button_panel, text="lift", command= lift_frame)
 b_lower = ttk.Button(f_button_panel, text="lower", command=lower_frame)
 
