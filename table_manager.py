@@ -132,10 +132,10 @@ def add_f(window, list_nazvy_pu_default,list_f_PU,list_l_S, list_l_an, list_l_pn
     e_typ = ttk.Entry(f_main)
     e_typ.grid(row=frame_count, column=2)
     list_e_typ.append(e_typ)
-    print(current_frame)
 
 
-def remove_f(list_cisla_pu, list_nazvy_pu, list_e_typ):
+
+def remove_f(list_cisla_pu, list_nazvy_pu, list_e_typ, current_frame):
     frame_count[0] -= 1
     list_cisla_pu[-1].destroy()
     list_cisla_pu.pop(-1)
@@ -145,6 +145,8 @@ def remove_f(list_cisla_pu, list_nazvy_pu, list_e_typ):
     list_e_typ.pop(-1)
     list_f_PU[-1].destroy()
     list_f_PU.pop(-1)
+    dic_m_rows.pop(current_frame)
+    dic_o_rows.pop(current_frame)
 
 # funkce na vkládání řádků pro nové místnosti do current framu
 def m_plus(current_frame):
@@ -164,6 +166,7 @@ def m_plus(current_frame):
         e_S.insert(0, "0")
         e_S.bind("<FocusOut>", lambda event: wrap_p(current_frame))
         e_S.bind("<FocusIn>", lambda event: e_S.delete(0, tk.END) if e_S.get() == "0" else None)
+        e_S.bind("<FocusOut>", lambda event: e_S.insert(0, "0") if e_S.get() == "" else None)
     for i in range(1):
         e_pni = ttk.Entry(list_f_PU[current_frame], width=10)
         e_pni.grid(row=len(dic_m_rows[current_frame]), column=3)
@@ -171,6 +174,7 @@ def m_plus(current_frame):
         e_pni.insert(0, "0")
         e_pni.bind("<FocusOut>", lambda event: wrap_p(current_frame))
         e_pni.bind("<FocusIn>", lambda event: e_pni.delete(0, tk.END) if e_pni.get() == "0" else None)
+        e_pni.bind("<FocusOut>", lambda event: e_pni.insert(0, "0") if e_pni.get() == "" else None)
     for i in range(1):
         e_hsi = ttk.Entry(list_f_PU[current_frame], width=10)
         e_hsi.grid(row=len(dic_m_rows[current_frame]), column=4)
@@ -178,7 +182,7 @@ def m_plus(current_frame):
         e_hsi.insert(0, "0")
         e_hsi.bind("<FocusOut>", lambda event: wrap_p(current_frame))
         e_hsi.bind("<FocusIn>", lambda event: e_hsi.delete(0, tk.END) if e_hsi.get() == "0" else None)
-
+        e_hsi.bind("<FocusOut>", lambda event: e_hsi.insert(0, "0") if e_hsi.get() == "" else None)
     for i in range(1):
         e_ani = ttk.Entry(list_f_PU[current_frame], width=10)
         e_ani.grid(row=len(dic_m_rows[current_frame]), column=5)
@@ -186,6 +190,7 @@ def m_plus(current_frame):
         e_ani.insert(0, "0")
         e_ani.bind("<FocusOut>", lambda event: wrap_p(current_frame))
         e_ani.bind("<FocusIn>", lambda event: e_ani.delete(0, tk.END) if e_ani.get() == "0" else None)
+        e_ani.bind("<FocusOut>", lambda event: e_ani.insert(0, "0") if e_ani.get() == "" else None)
     for i in range(3):
         e_psi = ttk.Entry(list_f_PU[current_frame], width=10)
         e_psi.grid(row=len(dic_m_rows[current_frame]), column=6 + i)
@@ -193,6 +198,7 @@ def m_plus(current_frame):
         e_psi.insert(0, "0")
         e_psi.bind("<FocusOut>", lambda event: wrap_p(current_frame))
         e_psi.bind("<FocusIn>", lambda event, entry=e_psi: entry.delete(0, tk.END) if e_psi.get() == "0" else None)
+        e_psi.bind("<FocusOut>", lambda event, entry=e_psi: entry.insert(0, "0") if entry.get() == "" else None)
     for i in range(1):
         l_ps = ttk.Label(list_f_PU[current_frame], text="0.0", width=10, anchor="center")
         l_ps.grid(row=len(dic_m_rows[current_frame]), column=9)
@@ -229,6 +235,7 @@ def o_plus(current_frame):
         e_pocet_ot.insert(0, "0")
         e_pocet_ot.bind("<FocusOut>", lambda event: wrap_otvory(current_frame))
         e_pocet_ot.bind("<FocusIn>", lambda event, entry=e_pocet_ot: entry.delete(0, tk.END) if e_pocet_ot.get() == "0" else None)
+        e_pocet_ot.bind("<FocusOut>", lambda event: e_pocet_ot.insert(0, "0") if e_pocet_ot.get() == "" else None)
     for i in range(1):
         e_sirka_ot = ttk.Entry(list_f_PU[current_frame], width=10)
         e_sirka_ot.grid(row=len(dic_o_rows[current_frame]), column=13)
@@ -236,6 +243,7 @@ def o_plus(current_frame):
         e_sirka_ot.insert(0, "0")
         e_sirka_ot.bind("<FocusOut>", lambda event: wrap_otvory(current_frame))
         e_sirka_ot.bind("<FocusIn>", lambda event, entry=e_sirka_ot: entry.delete(0, tk.END) if e_sirka_ot.get() == "0" else None)
+        e_sirka_ot.bind("<FocusOut>", lambda event: e_sirka_ot.insert(0, "0") if e_sirka_ot.get() == "" else None)
     for i in range(1):
         e_vyska_ot = ttk.Entry(list_f_PU[current_frame], width=10)
         e_vyska_ot.grid(row=len(dic_o_rows[current_frame]), column=14)
@@ -243,6 +251,7 @@ def o_plus(current_frame):
         e_vyska_ot.insert(0, "0")
         e_vyska_ot.bind("<FocusOut>", lambda event: wrap_otvory(current_frame))
         e_vyska_ot.bind("<FocusIn>", lambda event, entry=e_vyska_ot: entry.delete(0, tk.END) if e_vyska_ot.get() == "0" else None)
+        e_vyska_ot.bind("<FocusOut>", lambda event: e_vyska_ot.insert(0, "0") if e_vyska_ot.get() == "" else None)
 
 # funkce na odebírání řádků pro otvory do current framu
 def o_minus(current_frame):

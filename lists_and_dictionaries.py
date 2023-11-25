@@ -1,8 +1,11 @@
 #globals
 frame_count = [0]
 
-#lists
+#list of frames and rows
 list_f_PU = []
+list_m_rows = []
+
+#lists of labels
 list_l_S = []
 list_l_an = []
 list_l_pn = []
@@ -11,15 +14,26 @@ list_l_p = []
 list_l_a = []
 list_l_hs = []
 list_nazvy_pu_default = []
-list_cisla_pu = []
-list_nazvy_pu = []
-list_an = []
-list_pn = []
-list_ps = []
-list_a = []
-list_m_rows = []
 list_l_so = []
 list_l_ho = []
+
+#lists of entries
+list_cisla_pu = []
+list_nazvy_pu = []
+
+#list of output variables PU
+list_S = []
+list_pn = []
+list_hs = []
+list_an = []
+list_ps = []
+list_a = []
+list_ho = []
+list_so = []
+list_n = []
+list_k = []
+
+
 # dictionaries
 dic_m_rows = []
 dic_S_entries = []
