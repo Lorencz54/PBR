@@ -16,6 +16,8 @@ list_l_hs = []
 list_nazvy_pu_default = []
 list_l_so = []
 list_l_ho = []
+list_l_vysledky_pv = []
+list_l_b = []
 
 #lists of entries
 list_cisla_pu = []
@@ -32,7 +34,9 @@ list_ho = []
 list_so = []
 list_n = []
 list_k = []
-
+list_b = []
+list_p = []
+list_pv = []
 
 # dictionaries
 dic_m_rows = []
