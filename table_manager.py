@@ -1,9 +1,11 @@
 import tkinter as tk
-from tkinter import ttk
+import ttkbootstrap as ttk
 from counter import *
 
 def add_f(window, list_nazvy_pu_default,list_f_PU,list_l_S, list_l_an, list_l_pn,list_l_ps, list_l_p, list_l_a,
-          list_l_hs, list_l_so, list_l_ho, frame_count, current_frame, f_main):
+          list_l_hs, list_l_so, list_l_ho, frame_count, current_frame, f_main, n_PU):
+# vytvoří číslo rámečku PÚ
+    frame_count[0] += 1
 # listy pro nový požární úsek
     m_rows = [1]
     o_rows = [1]
@@ -37,19 +39,15 @@ def add_f(window, list_nazvy_pu_default,list_f_PU,list_l_S, list_l_an, list_l_pn
     dic_so_ot.append(list_so_ot)
 
 # tvorba rámečku
-    f_PU = ttk.Frame(window, width=500, height=500, relief="ridge")
-    f_PU.place(rely=0.5, relwidth=1, relheight=0.5)
-
+    f_PU = ttk.Frame(n_PU, width=500, height=500)
+    f_PU.pack(fill="both", expand=1)
+    n_PU.add(f_PU, text="požární úsek č." + str(frame_count[0]))
+    list_PU_tabs.append(n_PU)
 # zařazení rámečku požárního úseku do listu a jeho nastavení jako current frame
     list_f_PU.append(f_PU)
     current_frame = list_f_PU.index(f_PU)
 
-# vytvoří číslo rámečku PÚ
-    frame_count[0] += 1
-
 #nadpis rámečku požárního úseku a sloupců v rámečku
-    l_nadpis_pu = ttk.Label(f_PU, anchor="center", background="red", text="požární úsek č." + str(frame_count[0]))
-    l_nadpis_pu.grid(row=0, column=0, columnspan=9)
     l_cm = ttk.Label(f_PU, text="č. m.", anchor="center", width=6)
     l_cm.grid(row=1, column=0)
     l_nazev_m = ttk.Label(f_PU, text="název místnosti", anchor="center", width=31)
@@ -70,7 +68,6 @@ def add_f(window, list_nazvy_pu_default,list_f_PU,list_l_S, list_l_an, list_l_pn
     l_ps_p.grid(row=1, column=8)
     l_psi_sum = ttk.Label(f_PU, text="psi celkem", anchor="center", width=11)
     l_psi_sum.grid(row=1, column=9)
-    list_nazvy_pu_default.append(l_nadpis_pu)
 
 # výsledky tabulky
     l_S = ttk.Label(f_PU, text="S celkem: ")
@@ -140,9 +137,6 @@ def add_f(window, list_nazvy_pu_default,list_f_PU,list_l_S, list_l_an, list_l_pn
     l_vysledne_pv.grid(row=frame_count, column=3)
     list_l_vysledky_pv.append(l_vysledne_pv)
 
-
-
-
 def remove_f(list_cisla_pu, list_nazvy_pu, list_e_typ, current_frame):
     frame_count[0] -= 1
     list_cisla_pu[-1].destroy()
@@ -157,20 +151,32 @@ def remove_f(list_cisla_pu, list_nazvy_pu, list_e_typ, current_frame):
     dic_o_rows.pop(current_frame)
     list_l_vysledky_pv[-1].destroy()
     list_l_vysledky_pv.pop(-1)
-    list_S.pop(-1)
-    list_pn.pop(-1)
-    list_hs.pop(-1)
-    list_an.pop(-1)
-    list_ps.pop(-1)
-    list_a.pop(-1)
-    list_ho.pop(-1)
-    list_so.pop(-1)
-    list_n.pop(-1)
-    list_k.pop(-1)
-    list_b.pop(-1)
-    list_p.pop(-1)
-    list_pv.pop(-1)
-
+    if 0 <= current_frame < len(list_S):
+        list_S.pop(current_frame)
+    if 0 <= current_frame < len(list_pn):
+        list_pn.pop(current_frame)
+    if 0 <= current_frame < len(list_hs):
+        list_hs.pop(current_frame)
+    if 0 <= current_frame < len(list_an):
+        list_an.pop(current_frame)
+    if 0 <= current_frame < len(list_ps):
+        list_ps.pop(current_frame)
+    if 0 <= current_frame < len(list_a):
+        list_a.pop(current_frame)
+    if 0 <= current_frame < len(list_ho):
+        list_ho.pop(current_frame)
+    if 0 <= current_frame < len(list_so):
+        list_so.pop(current_frame)
+    if 0 <= current_frame < len(list_n):
+        list_n.pop(current_frame)
+    if 0 <= current_frame < len(list_k):
+        list_k.pop(current_frame)
+    if 0 <= current_frame < len(list_b):
+        list_b.pop(current_frame)
+    if 0 <= current_frame < len(list_p):
+        list_p.pop(current_frame)
+    if 0 <= current_frame < len(list_pv):
+        list_pv.pop(current_frame)
 
 # funkce na vkládání řádků pro nové místnosti do current framu
 def m_plus(current_frame):
@@ -310,4 +316,4 @@ def pu_rename(event):
     for i in range(len(list_cisla_pu)):
         cislo_pu = list_cisla_pu[i].get()
         nazev_pu = list_nazvy_pu[i].get()
-        list_nazvy_pu_default[i].config(text=cislo_pu + " - " + nazev_pu)
+        list_PU_tabs[i].config(text=cislo_pu + " - " + nazev_pu)

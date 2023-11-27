@@ -23,6 +23,9 @@ list_l_b = []
 list_cisla_pu = []
 list_nazvy_pu = []
 
+# list of notebooks
+list_PU_tabs = []
+
 #list of output variables PU
 list_S = []
 list_pn = []
