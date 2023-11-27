@@ -13,7 +13,7 @@ list_l_ps = []
 list_l_p = []
 list_l_a = []
 list_l_hs = []
-list_nazvy_pu_default = []
+list_nazvy_default = []
 list_l_so = []
 list_l_ho = []
 list_l_vysledky_pv = []
@@ -22,9 +22,6 @@ list_l_b = []
 #lists of entries
 list_cisla_pu = []
 list_nazvy_pu = []
-
-# list of notebooks
-list_PU_tabs = []
 
 #list of output variables PU
 list_S = []

@@ -24,7 +24,7 @@ def wrap_otvory(current_frame):
 def plocha_PU(current_frame):
     S_values = [float(entry.get()) for entry in dic_S_entries[current_frame]]
     S_suma = np.sum(S_values)
-    list_l_S[current_frame].config(text="S celkem: " + str(S_suma))
+    list_l_S[current_frame].configure(text="S celkem: " + str(S_suma))
     if current_frame < len(list_S):
         list_S[current_frame] = S_suma
     else:
@@ -41,14 +41,14 @@ def ps(current_frame):
     ps_sum_list = ps_sum.tolist()
     if np.dot(ps_sum_list, S_values) == 0 or S_suma == 0:
         ps_value = 0
-        list_l_ps[current_frame].config(text="ps celkem: " + str(ps_value))
+        list_l_ps[current_frame].configure(text="ps celkem: " + str(ps_value))
     else:
         ps_value = round(np.dot(ps_sum_list, S_values)/S_suma,2)
-        list_l_ps[current_frame].config(text="ps celkem: " + str(ps_value))
+        list_l_ps[current_frame].configure(text="ps celkem: " + str(ps_value))
     for i in range(len(ps_sum_list)):
         ps_row_sum = ps_sum_list[i]
         label_ps_sum = dic_ps_labels[current_frame][i]
-        label_ps_sum.config(text=str(ps_row_sum))
+        label_ps_sum.configure(text=str(ps_row_sum))
     if current_frame < len(list_ps):
         list_ps[current_frame] = ps_value
     else:
@@ -67,7 +67,7 @@ def pn(current_frame):
         list_pn[current_frame] = pn_value
     else:
         list_pn.append(pn_value)
-    list_l_pn[current_frame].config(text="pn celkem: " + str(pn_value))
+    list_l_pn[current_frame].configure(text="pn celkem: " + str(pn_value))
 
 # funkce na výpočet an v current framu
 def an(current_frame):
@@ -82,7 +82,7 @@ def an(current_frame):
         list_an[current_frame] = an_value
     else:
         list_an.append(an_value)
-    list_l_an[current_frame].config(text="an celkem: " + str(an_value))
+    list_l_an[current_frame].configure(text="an celkem: " + str(an_value))
 
 def f_a(current_frame):
     if (list_pn[current_frame]*list_an[current_frame]+list_ps[current_frame]*0.9) == 0 or (list_pn[current_frame]+list_ps[current_frame]) == 0:
@@ -101,7 +101,7 @@ def p(current_frame):
         list_p[current_frame] = p_value
     else:
         list_p.append(p_value)
-    list_l_p[current_frame].config(text="p celkem: " + str(p_value))
+    list_l_p[current_frame].configure(text="p celkem: " + str(p_value))
 
 def hs(current_frame):
     S_values = [float(entry.get()) for entry in dic_S_entries[current_frame]]
@@ -111,7 +111,7 @@ def hs(current_frame):
         hs_value = 0
     else:
         hs_value = round(np.dot(hsi_values, S_values) / S_suma, 2)
-    list_l_hs[current_frame].config(text="Světlá výška PÚ: " + str(hs_value))
+    list_l_hs[current_frame].configure(text="Světlá výška PÚ: " + str(hs_value))
     if current_frame < len(list_hs):
         list_hs[current_frame] = hs_value
     else:
@@ -166,14 +166,14 @@ def soucinitel_b(current_frame):
         list_b[current_frame] = b_value
     else:
         list_b.append(b_value)
-    list_l_b[current_frame].config(text="b celkem: " + str(b_value))
+    list_l_b[current_frame].configure(text="b celkem: " + str(b_value))
 
 def so(current_frame):
     pocet_values = [float(entry.get()) for entry in dic_pocet_ot[current_frame]]
     sirka_values = [float(entry.get()) for entry in dic_sirka_ot[current_frame]]
     vyska_values = [float(entry.get()) for entry in dic_vyska_ot[current_frame]]
     so_value = np.sum(np.multiply(np.multiply(pocet_values, sirka_values), vyska_values))
-    list_l_so[current_frame].config(text="Celková plocha otvorů PÚ: " + str(so_value))
+    list_l_so[current_frame].configure(text="Celková plocha otvorů PÚ: " + str(so_value))
     if current_frame < len(list_so):
         list_so[current_frame] = so_value
     else:
@@ -190,7 +190,7 @@ def ho(current_frame):
         ho_value = 0
     else:
         ho_value = round(np.dot(hoi_values, so_values) / so_suma, 2)
-    list_l_ho[current_frame].config(text="Celková výška otvorů PÚ: " + str(ho_value))
+    list_l_ho[current_frame].configure(text="Celková výška otvorů PÚ: " + str(ho_value))
     if current_frame < len(list_ho):
         list_ho[current_frame] = ho_value
     else:
@@ -203,4 +203,4 @@ def pv(current_frame):
             list_pv[current_frame] = pv_value
         else:
             list_pv.append(pv_value)
-        list_l_vysledky_pv[current_frame].config(text="pv = " + str(pv_value))
+        list_l_vysledky_pv[current_frame].configure(text="pv = " + str(pv_value))
