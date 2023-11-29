@@ -93,7 +93,7 @@ def f_a(current_frame):
         list_a[current_frame] = factor_a
     else:
         list_a.append(factor_a)
-    list_l_a[current_frame].config(text="a celkem: " + str(factor_a))
+    list_l_a[current_frame].configure(text="a celkem: " + str(factor_a))
 
 def p(current_frame):
     p_value = round(list_pn[current_frame] + list_ps[current_frame], 2)

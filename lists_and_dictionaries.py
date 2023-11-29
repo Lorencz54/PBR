@@ -1,5 +1,3 @@
-#globals
-frame_count = [0]
 
 #list of frames and rows
 list_f_PU = []

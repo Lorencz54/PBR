@@ -10,5 +10,5 @@ S = 7.5
 n = 0.0075
 df.loc[n, S] = np.nan
 df = df.interpolate(method="spline", order=3).interpolate(method="spline", order=3, axis=1).round(3)
-print(df.loc[n, S])
+
 
