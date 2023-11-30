@@ -20,6 +20,10 @@ list_l_b = []
 #lists of entries
 list_cisla_pu = []
 list_nazvy_pu = []
+list_pocty_podlazi_pu = []
+list_sirky_pu = []
+list_delky_pu = []
+list_vyskove_polohy_pu = []
 
 #list of output variables PU
 list_S = []
@@ -35,6 +39,9 @@ list_k = []
 list_b = []
 list_p = []
 list_pv = []
+list_mezni_pocty_podlazi = []
+list_mezni_delky = []
+list_mezni_sirky = []
 
 # dictionaries
 dic_m_rows = []

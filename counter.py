@@ -1,17 +1,18 @@
 from lists_and_dictionaries import *
 from data import *
 import statistics
+import math
 
-def wrap_p(current_frame):
+def wrap_p(current_frame, om_konstrukcni_system, list_mezni_pocty_podlazi):
     plocha_PU(current_frame)
     pn(current_frame)
     an(current_frame)
     ps(current_frame)
     p(current_frame)
     f_a(current_frame)
-    pv(current_frame)
+    pv(current_frame, om_konstrukcni_system, list_mezni_pocty_podlazi)
 
-def wrap_otvory(current_frame):
+def wrap_otvory(current_frame, om_konstrukcni_system, list_mezni_pocty_podlazi):
     plocha_PU(current_frame)
     hs(current_frame)
     so(current_frame)
@@ -19,7 +20,7 @@ def wrap_otvory(current_frame):
     n(current_frame)
     soucinitel_k(current_frame)
     soucinitel_b(current_frame)
-    pv(current_frame)
+    pv(current_frame, om_konstrukcni_system, list_mezni_pocty_podlazi)
 
 def plocha_PU(current_frame):
     S_values = [float(entry.get()) for entry in dic_S_entries[current_frame]]
@@ -157,7 +158,7 @@ def soucinitel_b(current_frame):
     if list_so[current_frame] == 0:
         b_value = list_k[current_frame]/(0.005*(list_hs[current_frame]**0.5))
     else:
-        b_value = (list_S[current_frame]*list_k[current_frame])/(list_so[current_frame]*(list_ho[current_frame]**0.5))
+        b_value = round((list_S[current_frame]*list_k[current_frame])/(list_so[current_frame]*(list_ho[current_frame]**0.5)),2)
     if b_value < 0.5:
         b_value = 0.5
     elif b_value > 1.7:
@@ -196,11 +197,21 @@ def ho(current_frame):
     else:
         list_ho.append(ho_value)
 
-def pv(current_frame):
+def pv(current_frame, om_konstrukcni_system, list_mezni_pocty_podlazi):
     if current_frame < len(list_p) and current_frame < len(list_a) and current_frame < len(list_b):
-        pv_value = round(list_p[current_frame]*list_a[current_frame]*list_b[current_frame]*1,2)
+        pv_value = list_p[current_frame]*list_a[current_frame]*list_b[current_frame]*1
         if current_frame < len(list_pv):
             list_pv[current_frame] = pv_value
         else:
             list_pv.append(pv_value)
         list_l_vysledky_pv[current_frame].configure(text="pv = " + str(pv_value))
+        if pv_value > 0:
+            if om_konstrukcni_system.get() == "nehořlavý":
+                pocet_podlazi_value = math.floor(180/pv_value)
+                list_mezni_pocty_podlazi[current_frame].configure(text="mezní počet podlaží " + str(pocet_podlazi_value))
+            elif om_konstrukcni_system.get() == "smíšený":
+                pocet_podlazi_value = math.floor(140/pv_value)
+                list_mezni_pocty_podlazi[current_frame].configure(text="mezní počet podlaží " + str(pocet_podlazi_value))
+            else:
+                pocet_podlazi_value = math.floor(100/pv_value)
+            list_mezni_pocty_podlazi[current_frame].configure(text="mezní počet podlaží " + str(pocet_podlazi_value))

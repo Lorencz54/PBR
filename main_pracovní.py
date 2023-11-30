@@ -13,11 +13,12 @@ f_seznam_PU = ctk.CTkFrame(window)
 f_main = ctk.CTkFrame(window)
 
 # definice widgetů pro panel na tlačítka
-b_add_f = ctk.CTkButton(f_main, text="nový požární úsek", command=lambda: add_f(window, list_nazvy_pu, list_f_PU, list_l_S, list_l_an, list_l_pn, list_l_ps, list_l_p, list_l_a, list_l_hs, list_l_so, list_l_ho, f_seznam_PU))
+b_add_f = ctk.CTkButton(f_main, text="nový požární úsek", command=lambda: add_f(window, list_f_PU,list_l_S, list_l_an, list_l_pn,list_l_ps, list_l_p, list_l_a, list_l_hs, list_l_so, list_l_ho, f_seznam_PU, om_konstrukcni_system, list_mezni_pocty_podlazi))
 b_remove_f = ctk.CTkButton(f_main, text="odebrat požární úsek", command=lambda: remove_f(list_cisla_pu, list_nazvy_pu, list_e_typ))
 b_lift = ctk.CTkButton(f_main, text="předchozí PÚ", command=lift_frame)
 b_lower = ctk.CTkButton(f_main, text="další PÚ", command=lower_frame)
 om_konstrukcni_system = ctk.CTkOptionMenu(f_main, values=["nehořlavý", "smíšený", "hořlavý"])
+om_konstrukcni_system.bind("<ButtonRelease>", lambda event: pv(current_frame, om_konstrukcni_system, list_mezni_pocty_podlazi))
 e_pozarni_vyska = ctk.CTkEntry(f_main)
 l_konstrukcni_system = ctk.CTkLabel(f_main, text="konstrukční systém")
 l_pozarni_vyska = ctk.CTkLabel(f_main, text="požární výška")

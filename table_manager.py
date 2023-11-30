@@ -3,8 +3,8 @@ from tkinter import ttk
 import customtkinter as ctk
 from counter import *
 
-def add_f(window, list_nazvy_pu_default,list_f_PU,list_l_S, list_l_an, list_l_pn,list_l_ps, list_l_p, list_l_a,
-          list_l_hs, list_l_so, list_l_ho, f_main):
+def add_f(window, list_f_PU,list_l_S, list_l_an, list_l_pn,list_l_ps, list_l_p, list_l_a,
+          list_l_hs, list_l_so, list_l_ho, f_seznam_PU, om_konstrukcni_system, list_mezni_pocty_podlazi):
     global current_frame
 # listy pro nový požární úsek
     m_rows = [1]
@@ -42,17 +42,64 @@ def add_f(window, list_nazvy_pu_default,list_f_PU,list_l_S, list_l_an, list_l_pn
     f_PU = ctk.CTkFrame(window, width=500, height=500)
     f_PU.place(rely= 0.5, relheight=0.5, relwidth= 1)
 
-
 # zařazení rámečku požárního úseku do listu a jeho nastavení jako current frame
     list_f_PU.append(f_PU)
     current_frame = list_f_PU.index(f_PU)
 
-#nadpis rámečku požárního úseku a sloupců v rámečku
-    l_nazev_pu_default = ctk.CTkLabel(f_PU, text="Požární úsek č. ", anchor="center", width=6)
+#nadpis požárního úseku a obecné informace o něm
+    f_parametry_pu = ctk.CTkFrame(f_PU)
+    f_parametry_pu.grid(row=0, column=0, columnspan=3)
+    l_nazev_pu_default = ctk.CTkLabel(f_parametry_pu, text="Požární úsek č. ", anchor="center", width=6)
     l_nazev_pu_default.grid(row=0, column=0, columnspan=15)
     list_nazvy_default.append(l_nazev_pu_default)
+    l_vyska_pu = ctk.CTkLabel(f_parametry_pu, text="výšková poloha PÚ")
+    l_vyska_pu.grid(row=1, column=0)
+    l_pocet_podlazi_pu = ctk.CTkLabel(f_parametry_pu, text="počet podlaží PÚ")
+    l_pocet_podlazi_pu.grid(row=2, column=0)
+    l_sirka_pu = ctk.CTkLabel(f_parametry_pu, text="max. skutečná šířka")
+    l_sirka_pu.grid(row=3, column=0)
+    l_delka_pu = ctk.CTkLabel(f_parametry_pu, text="max. skutečná délka")
+    l_delka_pu.grid(row=4, column=0)
     list_nazvy_default[current_frame].configure(text="požární úsek č. " + str(current_frame+1))
+    l_mezni_pocet_podlazi = ctk.CTkLabel(f_parametry_pu, text="mezní počet podlaží")
+    l_mezni_delka = ctk.CTkLabel(f_parametry_pu, text="mezní délka PÚ")
+    l_mezni_sirka = ctk.CTkLabel(f_parametry_pu, text="mezní šířka PÚ")
+    l_mezni_pocet_podlazi.grid(row=2, column=2)
+    l_mezni_delka.grid(row=3, column=2)
+    l_mezni_sirka.grid(row=4, column=2)
+    list_mezni_pocty_podlazi.append(l_mezni_pocet_podlazi)
+    list_mezni_sirky.append(l_mezni_sirka)
+    list_mezni_delky.append(l_mezni_delka)
+    e_vyskova_poloha_pu = ctk.CTkEntry(f_parametry_pu, width=80)
+    list_vyskove_polohy_pu.append(e_vyskova_poloha_pu)
+    e_vyskova_poloha_pu.grid(row=1, column=1)
+    e_vyskova_poloha_pu.insert(0, "0")
+    e_vyskova_poloha_pu.bind("<FocusIn>", lambda event: e_vyskova_poloha_pu.delete(0, tk.END) if e_vyskova_poloha_pu.get() == "0" else None)
+    e_vyskova_poloha_pu.bind("<FocusOut>", lambda event: e_vyskova_poloha_pu.insert(0, "0") if e_vyskova_poloha_pu.get() == "" else None)
+    e_vyskova_poloha_pu.bind("<FocusOut>", lambda event: wrap_p(current_frame, om_konstrukcni_system, list_mezni_pocty_podlazi, om_konstrukcni_system), add="+")
+    e_pocet_podlazi_pu = ctk.CTkEntry(f_parametry_pu, width=80)
+    list_pocty_podlazi_pu.append(e_pocet_podlazi_pu)
+    e_pocet_podlazi_pu.grid(row=2, column=1)
+    e_pocet_podlazi_pu.insert(0, "0")
+    e_pocet_podlazi_pu.bind("<FocusIn>", lambda event: e_pocet_podlazi_pu.delete(0, tk.END) if e_pocet_podlazi_pu.get() == "0" else None)
+    e_pocet_podlazi_pu.bind("<FocusOut>", lambda event: e_pocet_podlazi_pu.insert(0, "0") if e_pocet_podlazi_pu.get() == "" else None)
+    e_pocet_podlazi_pu.bind("<FocusOut>", lambda event: wrap_p(current_frame, om_konstrukcni_system, list_mezni_pocty_podlazi, om_konstrukcni_system), add="+")
+    e_sirka_pu = ctk.CTkEntry(f_parametry_pu, width=80)
+    list_sirky_pu.append(e_sirka_pu)
+    e_sirka_pu.grid(row=3, column=1)
+    e_sirka_pu.insert(0, "0")
+    e_sirka_pu.bind("<FocusIn>", lambda event: e_sirka_pu.delete(0, tk.END) if e_sirka_pu.get() == "0" else None)
+    e_sirka_pu.bind("<FocusOut>", lambda event: e_sirka_pu.insert(0, "0") if e_sirka_pu.get() == "" else None)
+    e_sirka_pu.bind("<FocusOut>", lambda event: wrap_p(current_frame, om_konstrukcni_system, list_mezni_pocty_podlazi, om_konstrukcni_system), add="+")
+    e_delka_pu = ctk.CTkEntry(f_parametry_pu, width=80)
+    list_delky_pu.append(e_delka_pu)
+    e_delka_pu.grid(row=4, column=1)
+    e_delka_pu.insert(0, "0")
+    e_delka_pu.bind("<FocusIn>", lambda event: e_delka_pu.delete(0, tk.END) if e_delka_pu.get() == "0" else None)
+    e_delka_pu.bind("<FocusOut>", lambda event: e_delka_pu.insert(0, "0") if e_delka_pu.get() == "" else None)
+    e_delka_pu.bind("<FocusOut>", lambda event: wrap_p(current_frame, om_konstrukcni_system, list_mezni_pocty_podlazi, om_konstrukcni_system), add="+")
 
+#nadpis sloupců v rámečku
     l_cm = ctk.CTkLabel(f_PU, text="č. m.", anchor="center", width=40)
     l_cm.grid(row=1, column=0)
     l_nazev_m = ctk.CTkLabel(f_PU, text="název místnosti", anchor="center", width=200)
@@ -73,7 +120,6 @@ def add_f(window, list_nazvy_pu_default,list_f_PU,list_l_S, list_l_an, list_l_pn
     l_ps_p.grid(row=1, column=8)
     l_psi_sum = ctk.CTkLabel(f_PU, text="psi celkem", anchor="center", width=80, wraplength=60)
     l_psi_sum.grid(row=1, column=9)
-
 
 # výsledky tabulky
     l_S = ctk.CTkLabel(f_PU, text="S celkem: ")
@@ -118,31 +164,30 @@ def add_f(window, list_nazvy_pu_default,list_f_PU,list_l_S, list_l_an, list_l_pn
     l_vyska_ot.grid(row=1, column=14)
 
     if len(list_f_PU) >= 1:
-        b_new_row = ctk.CTkButton(f_PU, text="nová místnost", command=lambda:m_plus(current_frame))
+        b_new_row = ctk.CTkButton(f_PU, text="nová místnost", command=lambda:m_plus(current_frame, om_konstrukcni_system, list_mezni_pocty_podlazi))
         b_new_row.grid(row=2, column=10)
         b_remove_row = ctk.CTkButton(f_PU, text="odebrat místnost", command=lambda:m_minus(current_frame))
         b_remove_row.grid(row=3, column=10)
-        b_new_hole = ctk.CTkButton(f_PU, text="nový otvor", command=lambda:o_plus(current_frame))
+        b_new_hole = ctk.CTkButton(f_PU, text="nový otvor", command=lambda:o_plus(current_frame, om_konstrukcni_system, list_mezni_pocty_podlazi))
         b_new_hole.grid(row=2, column=15)
         b_remove_hole = ctk.CTkButton(f_PU, text="odebrat otvor", command=lambda:o_minus(current_frame))
         b_remove_hole.grid(row=3, column=15)
 
 # widgety pro požární úsek v rámečku pro celý objekt
-    e_oznaceni = ctk.CTkEntry(f_main)
+    e_oznaceni = ctk.CTkEntry(f_seznam_PU)
     e_oznaceni.grid(row=len(list_f_PU), column=0)
     e_oznaceni.bind("<FocusOut>", pu_rename)
     list_cisla_pu.append(e_oznaceni)
-    e_PU = ctk.CTkEntry(f_main)
+    e_PU = ctk.CTkEntry(f_seznam_PU)
     e_PU.grid(row=len(list_f_PU), column=1)
     e_PU.bind("<FocusOut>", pu_rename)
     list_nazvy_pu.append(e_PU)
-    e_typ = ctk.CTkEntry(f_main)
+    e_typ = ctk.CTkEntry(f_seznam_PU)
     e_typ.grid(row=len(list_f_PU), column=2)
     list_e_typ.append(e_typ)
-    l_vysledne_pv = ctk.CTkLabel(f_main, text = "pv = ")
+    l_vysledne_pv = ctk.CTkLabel(f_seznam_PU, text = "pv = ")
     l_vysledne_pv.grid(row=len(list_f_PU), column=3)
     list_l_vysledky_pv.append(l_vysledne_pv)
-    print(current_frame)
     return current_frame
 
 def remove_f(list_cisla_pu, list_nazvy_pu, list_e_typ):
@@ -198,7 +243,6 @@ def lift_frame():
         list_f_PU[-1].lift()
     else:
         list_f_PU[current_frame].lift()
-    print(current_frame)
     return current_frame
 
 # funkce na zpětné listování mezi rámečky
@@ -210,11 +254,10 @@ def lower_frame():
     else:
         current_frame += 1
         list_f_PU[current_frame].lift()
-    print(current_frame)
     return current_frame
 
 # funkce na vkládání řádků pro nové místnosti do current framu
-def m_plus(current_frame):
+def m_plus(current_frame, om_konstrukcni_system, list_mezni_pocty_podlazi):
     dic_m_rows[current_frame].append(1)
     for i in range(2):
         e_text = ctk.CTkEntry(list_f_PU[current_frame])
@@ -231,7 +274,7 @@ def m_plus(current_frame):
         e_S.insert(0, "0")
         e_S.bind("<FocusIn>", lambda event: e_S.delete(0, tk.END) if e_S.get() == "0" else None)
         e_S.bind("<FocusOut>", lambda event: e_S.insert(0, "0") if e_S.get() == "" else None)
-        e_S.bind("<FocusOut>", lambda event: wrap_p(current_frame), add="+")
+        e_S.bind("<FocusOut>", lambda event: wrap_p(current_frame, om_konstrukcni_system, list_mezni_pocty_podlazi), add="+")
     for i in range(1):
         e_pni = ctk.CTkEntry(list_f_PU[current_frame], width=80)
         e_pni.grid(row=len(dic_m_rows[current_frame]), column=3)
@@ -239,7 +282,7 @@ def m_plus(current_frame):
         e_pni.insert(0, "0")
         e_pni.bind("<FocusIn>", lambda event: e_pni.delete(0, tk.END) if e_pni.get() == "0" else None)
         e_pni.bind("<FocusOut>", lambda event: e_pni.insert(0, "0") if e_pni.get() == "" else None)
-        e_pni.bind("<FocusOut>", lambda event: wrap_p(current_frame), add="+")
+        e_pni.bind("<FocusOut>", lambda event: wrap_p(current_frame, om_konstrukcni_system, list_mezni_pocty_podlazi), add="+")
     for i in range(1):
         e_hsi = ctk.CTkEntry(list_f_PU[current_frame], width=80)
         e_hsi.grid(row=len(dic_m_rows[current_frame]), column=4)
@@ -247,7 +290,7 @@ def m_plus(current_frame):
         e_hsi.insert(0, "0")
         e_hsi.bind("<FocusIn>", lambda event: e_hsi.delete(0, tk.END) if e_hsi.get() == "0" else None)
         e_hsi.bind("<FocusOut>", lambda event: e_hsi.insert(0, "0") if e_hsi.get() == "" else None)
-        e_hsi.bind("<FocusOut>", lambda event: wrap_otvory(current_frame), add="+")
+        e_hsi.bind("<FocusOut>", lambda event: wrap_otvory(current_frame, om_konstrukcni_system, list_mezni_pocty_podlazi), add="+")
     for i in range(1):
         e_ani = ctk.CTkEntry(list_f_PU[current_frame], width=80)
         e_ani.grid(row=len(dic_m_rows[current_frame]), column=5)
@@ -255,7 +298,7 @@ def m_plus(current_frame):
         e_ani.insert(0, "0")
         e_ani.bind("<FocusIn>", lambda event: e_ani.delete(0, tk.END) if e_ani.get() == "0" else None)
         e_ani.bind("<FocusOut>", lambda event: e_ani.insert(0, "0") if e_ani.get() == "" else None)
-        e_ani.bind("<FocusOut>", lambda event: wrap_p(current_frame), add="+")
+        e_ani.bind("<FocusOut>", lambda event: wrap_p(current_frame, om_konstrukcni_system, list_mezni_pocty_podlazi), add="+")
     for i in range(3):
         e_psi = ctk.CTkEntry(list_f_PU[current_frame], width=80)
         e_psi.grid(row=len(dic_m_rows[current_frame]), column=6 + i)
@@ -263,7 +306,7 @@ def m_plus(current_frame):
         e_psi.insert(0, "0")
         e_psi.bind("<FocusIn>", lambda event, entry=e_psi: entry.delete(0, tk.END) if e_psi.get() == "0" else None)
         e_psi.bind("<FocusOut>", lambda event, entry=e_psi: entry.insert(0, "0") if entry.get() == "" else None)
-        e_psi.bind("<FocusOut>", lambda event: wrap_p(current_frame), add="+")
+        e_psi.bind("<FocusOut>", lambda event: wrap_p(current_frame, om_konstrukcni_system, list_mezni_pocty_podlazi), add="+")
     for i in range(1):
         l_ps = ctk.CTkLabel(list_f_PU[current_frame], text="0.0", width=80, anchor="center")
         l_ps.grid(row=len(dic_m_rows[current_frame]), column=9)
@@ -292,34 +335,27 @@ def m_minus(current_frame):
 
 
 # funkce na vkládání nových řádků pro otvory do current framu
-def o_plus(current_frame):
+def o_plus(current_frame, om_konstrukcni_system, list_mezni_pocty_podlazi):
     dic_o_rows[current_frame].append(1)
     o_typ_otvoru = ctk.CTkOptionMenu(list_f_PU[current_frame], values=["okno", "dveře", "vrata", "světlík", "jiný"], width=80)
     o_typ_otvoru.grid(row=len(dic_o_rows[current_frame]), column=11)
-    for i in range(1):
-        e_pocet_ot = ctk.CTkEntry(list_f_PU[current_frame],  width=80)
-        e_pocet_ot.grid(row=len(dic_o_rows[current_frame]), column=12)
-        dic_pocet_ot[current_frame].append(e_pocet_ot)
-        e_pocet_ot.insert(0, "0")
-        e_pocet_ot.bind("<FocusIn>", lambda event, entry=e_pocet_ot: entry.delete(0, tk.END) if e_pocet_ot.get() == "0" else None)
-        e_pocet_ot.bind("<FocusOut>", lambda event: e_pocet_ot.insert(0, "0") if e_pocet_ot.get() == "" else None)
-        e_pocet_ot.bind("<FocusOut>", lambda event: wrap_otvory(current_frame), add="+")
-    for i in range(1):
-        e_sirka_ot = ctk.CTkEntry(list_f_PU[current_frame], width=80)
-        e_sirka_ot.grid(row=len(dic_o_rows[current_frame]), column=13)
-        dic_sirka_ot[current_frame].append(e_sirka_ot)
-        e_sirka_ot.insert(0, "0")
-        e_sirka_ot.bind("<FocusIn>", lambda event, entry=e_sirka_ot: entry.delete(0, tk.END) if e_sirka_ot.get() == "0" else None)
-        e_sirka_ot.bind("<FocusOut>", lambda event: e_sirka_ot.insert(0, "0") if e_sirka_ot.get() == "" else None)
-        e_sirka_ot.bind("<FocusOut>", lambda event: wrap_otvory(current_frame), add="+")
-    for i in range(1):
-        e_vyska_ot = ctk.CTkEntry(list_f_PU[current_frame], width=80)
-        e_vyska_ot.grid(row=len(dic_o_rows[current_frame]), column=14)
-        dic_vyska_ot[current_frame].append(e_vyska_ot)
-        e_vyska_ot.insert(0, "0")
-        e_vyska_ot.bind("<FocusIn>", lambda event, entry=e_vyska_ot: entry.delete(0, tk.END) if e_vyska_ot.get() == "0" else None)
-        e_vyska_ot.bind("<FocusOut>", lambda event: e_vyska_ot.insert(0, "0") if e_vyska_ot.get() == "" else None)
-        e_vyska_ot.bind("<FocusOut>", lambda event: wrap_otvory(current_frame), add="+")
+
+    for i in range (3):
+        e_parametr_otvoru = ctk.CTkEntry(list_f_PU[current_frame], width=80)
+        e_parametr_otvoru.insert(0, "0")
+        e_parametr_otvoru.bind("<FocusIn>",lambda event, entry=e_parametr_otvoru: entry.delete(0, tk.END) if e_parametr_otvoru.get() == "0" else None)
+        e_parametr_otvoru.bind("<FocusOut>", lambda event: e_parametr_otvoru.insert(0, "0") if e_parametr_otvoru.get() == "" else None)
+        e_parametr_otvoru.bind("<FocusOut>", lambda event: wrap_otvory(current_frame, om_konstrukcni_system, list_mezni_pocty_podlazi), add="+")
+        if i == 0:
+            e_parametr_otvoru.grid(row=len(dic_o_rows[current_frame]), column=12)
+            dic_pocet_ot[current_frame].append(e_parametr_otvoru)
+        elif i == 1:
+            e_parametr_otvoru.grid(row=len(dic_o_rows[current_frame]), column=13)
+            dic_sirka_ot[current_frame].append(e_parametr_otvoru)
+        else:
+            e_parametr_otvoru.grid(row=len(dic_o_rows[current_frame]), column=14)
+            dic_vyska_ot[current_frame].append(e_parametr_otvoru)
+
 
 
 # funkce na odebírání řádků pro otvory do current framu
