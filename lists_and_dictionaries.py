@@ -3,7 +3,6 @@
 list_f_PU = []
 list_m_rows = []
 
-
 #lists of labels
 list_l_S = []
 list_l_an = []
@@ -15,8 +14,11 @@ list_l_hs = []
 list_nazvy_default = []
 list_l_so = []
 list_l_ho = []
-list_l_vysledky_pv = []
 list_l_b = []
+list_l_n = []
+list_l_k = []
+list_l_pv = []
+list_var_om_konstrukcni_system = []
 
 #lists of entries
 list_cisla_pu = []
@@ -35,7 +37,6 @@ list_ps = []
 list_a = []
 list_ho = []
 list_so = []
-list_n = []
 list_k = []
 list_b = []
 list_p = []
