@@ -21,18 +21,39 @@ def add_f(window, list_f_PU,list_l_S, list_l_an, list_l_pn,list_l_ps, list_l_p, 
     list_sirka_ot = []
     list_vyska_ot = []
     list_so_ot = []
+    m_S_var_entries = []
+    m_ps_var_entries = []
+    m_pni_var_entries = []
+    m_ani_var_entries = []
+    m_hsi_var_entries = []
+    o_pocet_var_entries = []
+    o_sirka_var_entries = []
+    o_vyska_var_entries = []
 
 # přiřazení nových listů do nadlistů mimo funkci
+    dic_S_var_entries.append(m_S_var_entries)
+    dic_ps_var_entries.append(m_ps_var_entries)
+    dic_ps_labels.append(m_ps_labels)
+    dic_pni_var_entries.append(m_pni_var_entries)
+    dic_ani_var_entries.append(m_ani_var_entries)
+    dic_hsi_var_entries.append(m_hsi_var_entries)
+
     dic_S_entries.append(m_S_entries)
     dic_ps_entries.append(m_ps_entries)
-    dic_ps_labels.append(m_ps_labels)
     dic_pni_entries.append(m_pni_entries)
     dic_ani_entries.append(m_ani_entries)
+    dic_hsi_entries.append(m_hsi_entries)
+
     dic_m_rows.append(m_rows)
     dic_o_rows.append(o_rows)
     dic_text_entries.append(m_text_entries)
     dic_ps_group_sums.append(m_ps_group_sums)
-    dic_hsi_entries.append(m_hsi_entries)
+
+    dic_var_pocet_ot.append(o_pocet_var_entries)
+    dic_var_sirka_ot.append(o_sirka_var_entries)
+    dic_var_vyska_ot.append(o_vyska_var_entries)
+    dic_so_ot.append(list_so_ot)
+
     dic_pocet_ot.append(list_pocet_ot)
     dic_sirka_ot.append(list_sirka_ot)
     dic_vyska_ot.append(list_vyska_ot)
@@ -122,33 +143,40 @@ def add_f(window, list_f_PU,list_l_S, list_l_an, list_l_pn,list_l_ps, list_l_p, 
     l_psi_sum.grid(row=1, column=9)
 
 # výsledky tabulky
-    l_S = ctk.CTkLabel(f_PU, text="S celkem: ")
+    var_l_S = tk.IntVar()
+    l_S = ctk.CTkLabel(f_PU, text="S celkem: ", textvariable=var_l_S)
     l_S.grid(row=4, column=10)
-    list_l_S.append(l_S)
-    l_an = ctk.CTkLabel(f_PU, text="an celkem: ")
-    l_an.grid(row=5, column=10)
-    list_l_an.append(l_an)
-    l_pn = ctk.CTkLabel(f_PU, text="pn celkem: ")
-    l_pn.grid(row=6, column=10)
-    list_l_pn.append(l_pn)
-    l_ps = ctk.CTkLabel(f_PU, text="ps celkem: ")
+    list_l_S.append(var_l_S)
+    var_l_pn = tk.IntVar()
+    l_pn = ctk.CTkLabel(f_PU, text="pn celkem: ", textvariable=var_l_pn)
+    l_pn.grid(row=5, column=10)
+    list_l_pn.append(var_l_pn)
+    var_l_an = tk.IntVar()
+    l_an = ctk.CTkLabel(f_PU, text="an celkem: ", textvariable=var_l_an)
+    l_an.grid(row=6, column=10)
+    list_l_an.append(var_l_an)
+    var_l_ps = tk.IntVar()
+    l_ps = ctk.CTkLabel(f_PU, text="ps celkem: ", textvariable=var_l_ps)
     l_ps.grid(row=7, column=10)
-    list_l_ps.append(l_ps)
+    list_l_ps.append(var_l_ps)
     l_p = ctk.CTkLabel(f_PU, text="p celkem: ")
     l_p.grid(row=8, column=10)
     list_l_p.append(l_p)
     l_factor_a = ctk.CTkLabel(f_PU, text="součinitel a: ")
     l_factor_a.grid(row=9, column=10)
     list_l_a.append(l_factor_a)
-    l_hs = ctk.CTkLabel(f_PU, text="světlá výška PÚ: ")
+    var_l_hs = tk.IntVar()
+    l_hs = ctk.CTkLabel(f_PU, text="světlá výška PÚ: ", textvariable=var_l_hs)
     l_hs.grid(row=4, column=15)
-    list_l_hs.append(l_hs)
-    l_So = ctk.CTkLabel(f_PU, text="celková plocha otvorů PÚ: ")
+    list_l_hs.append(var_l_hs)
+    var_l_so = tk.IntVar()
+    l_So = ctk.CTkLabel(f_PU, text="celková plocha otvorů PÚ: ", textvariable=var_l_so)
     l_So.grid(row=5, column=15)
-    list_l_so.append(l_So)
-    l_ho = ctk.CTkLabel(f_PU, text="celková výška otvorů PÚ: ")
+    list_l_so.append(var_l_so)
+    var_l_ho = tk.IntVar()
+    l_ho = ctk.CTkLabel(f_PU, text="celková výška otvorů PÚ: ", textvariable=var_l_ho)
     l_ho.grid(row=6, column=15)
-    list_l_ho.append(l_ho)
+    list_l_ho.append(var_l_ho)
     l_b = ctk.CTkLabel(f_PU, text="b celkem: ")
     l_b.grid(row=10, column=10)
     list_l_b.append(l_b)
@@ -164,7 +192,7 @@ def add_f(window, list_f_PU,list_l_S, list_l_an, list_l_pn,list_l_ps, list_l_p, 
     l_vyska_ot.grid(row=1, column=14)
 
     if len(list_f_PU) >= 1:
-        b_new_row = ctk.CTkButton(f_PU, text="nová místnost", command=lambda:m_plus(current_frame, om_konstrukcni_system, list_mezni_pocty_podlazi))
+        b_new_row = ctk.CTkButton(f_PU, text="nová místnost", command=lambda:m_plus(current_frame))
         b_new_row.grid(row=2, column=10)
         b_remove_row = ctk.CTkButton(f_PU, text="odebrat místnost", command=lambda:m_minus(current_frame))
         b_remove_row.grid(row=3, column=10)
@@ -257,7 +285,7 @@ def lower_frame():
     return current_frame
 
 # funkce na vkládání řádků pro nové místnosti do current framu
-def m_plus(current_frame, om_konstrukcni_system, list_mezni_pocty_podlazi):
+def m_plus(current_frame):
     dic_m_rows[current_frame].append(1)
     for i in range(2):
         e_text = ctk.CTkEntry(list_f_PU[current_frame])
@@ -268,49 +296,64 @@ def m_plus(current_frame, om_konstrukcni_system, list_mezni_pocty_podlazi):
         else:
             e_text.configure(width=200)
     for i in range(1):
-        e_S = ctk.CTkEntry(list_f_PU[current_frame], width=80)
+        var_e_S = tk.StringVar()
+        e_S = ctk.CTkEntry(list_f_PU[current_frame], width=80, textvariable=var_e_S)
         e_S.grid(row=len(dic_m_rows[current_frame]), column=2)
+        dic_S_var_entries[current_frame].append(var_e_S)
         dic_S_entries[current_frame].append(e_S)
         e_S.insert(0, "0")
         e_S.bind("<FocusIn>", lambda event: e_S.delete(0, tk.END) if e_S.get() == "0" else None)
         e_S.bind("<FocusOut>", lambda event: e_S.insert(0, "0") if e_S.get() == "" else None)
-        e_S.bind("<FocusOut>", lambda event: wrap_p(current_frame, om_konstrukcni_system, list_mezni_pocty_podlazi), add="+")
+        var_e_S.trace_add("write", lambda name, index, mode, sv=var_e_S: plocha_PU(current_frame, list_l_S, dic_S_var_entries))
     for i in range(1):
-        e_pni = ctk.CTkEntry(list_f_PU[current_frame], width=80)
+        var_e_pn = tk.StringVar()
+        e_pni = ctk.CTkEntry(list_f_PU[current_frame], width=80, textvariable=var_e_pn)
         e_pni.grid(row=len(dic_m_rows[current_frame]), column=3)
+        dic_pni_var_entries[current_frame].append(var_e_pn)
         dic_pni_entries[current_frame].append(e_pni)
         e_pni.insert(0, "0")
         e_pni.bind("<FocusIn>", lambda event: e_pni.delete(0, tk.END) if e_pni.get() == "0" else None)
         e_pni.bind("<FocusOut>", lambda event: e_pni.insert(0, "0") if e_pni.get() == "" else None)
-        e_pni.bind("<FocusOut>", lambda event: wrap_p(current_frame, om_konstrukcni_system, list_mezni_pocty_podlazi), add="+")
+        var_e_pn.trace_add("write", lambda name, index, mode, sv=var_e_pn: pn(current_frame, list_l_pn, dic_pni_var_entries, dic_S_var_entries))
+        var_e_S.trace_add("write", lambda name, index, mode, sv=var_e_S: pn(current_frame, list_l_pn, dic_pni_var_entries, dic_S_var_entries))
     for i in range(1):
-        e_hsi = ctk.CTkEntry(list_f_PU[current_frame], width=80)
+        var_e_hs = tk.StringVar()
+        e_hsi = ctk.CTkEntry(list_f_PU[current_frame], width=80, textvariable=var_e_hs)
         e_hsi.grid(row=len(dic_m_rows[current_frame]), column=4)
+        dic_hsi_var_entries[current_frame].append(var_e_hs)
         dic_hsi_entries[current_frame].append(e_hsi)
         e_hsi.insert(0, "0")
         e_hsi.bind("<FocusIn>", lambda event: e_hsi.delete(0, tk.END) if e_hsi.get() == "0" else None)
         e_hsi.bind("<FocusOut>", lambda event: e_hsi.insert(0, "0") if e_hsi.get() == "" else None)
-        e_hsi.bind("<FocusOut>", lambda event: wrap_otvory(current_frame, om_konstrukcni_system, list_mezni_pocty_podlazi), add="+")
+        var_e_hs.trace_add("write", lambda name, index, mode, sv=var_e_hs: hs(current_frame, list_l_hs, dic_hsi_var_entries, dic_S_var_entries))
+        var_e_S.trace_add("write", lambda name, index, mode, sv=var_e_hs: hs(current_frame, list_l_hs, dic_hsi_var_entries, dic_S_var_entries))
     for i in range(1):
-        e_ani = ctk.CTkEntry(list_f_PU[current_frame], width=80)
+        var_e_ani = tk.StringVar()
+        e_ani = ctk.CTkEntry(list_f_PU[current_frame], width=80, textvariable=var_e_ani)
         e_ani.grid(row=len(dic_m_rows[current_frame]), column=5)
+        dic_ani_var_entries[current_frame].append(var_e_ani)
         dic_ani_entries[current_frame].append(e_ani)
         e_ani.insert(0, "0")
         e_ani.bind("<FocusIn>", lambda event: e_ani.delete(0, tk.END) if e_ani.get() == "0" else None)
         e_ani.bind("<FocusOut>", lambda event: e_ani.insert(0, "0") if e_ani.get() == "" else None)
-        e_ani.bind("<FocusOut>", lambda event: wrap_p(current_frame, om_konstrukcni_system, list_mezni_pocty_podlazi), add="+")
+        var_e_ani.trace_add("write", lambda name, index, mode, sv=var_e_ani: an(current_frame, list_l_an, dic_ani_var_entries, dic_S_var_entries))
+        var_e_S.trace_add("write", lambda name, index, mode, sv=var_e_S: an(current_frame, list_l_an, dic_ani_var_entries, dic_S_var_entries))
     for i in range(3):
-        e_psi = ctk.CTkEntry(list_f_PU[current_frame], width=80)
+        var_e_psi = tk.StringVar()
+        e_psi = ctk.CTkEntry(list_f_PU[current_frame], width=80, textvariable=var_e_psi)
         e_psi.grid(row=len(dic_m_rows[current_frame]), column=6 + i)
+        dic_ps_var_entries[current_frame].append(var_e_psi)
         dic_ps_entries[current_frame].append(e_psi)
         e_psi.insert(0, "0")
         e_psi.bind("<FocusIn>", lambda event, entry=e_psi: entry.delete(0, tk.END) if e_psi.get() == "0" else None)
         e_psi.bind("<FocusOut>", lambda event, entry=e_psi: entry.insert(0, "0") if entry.get() == "" else None)
-        e_psi.bind("<FocusOut>", lambda event: wrap_p(current_frame, om_konstrukcni_system, list_mezni_pocty_podlazi), add="+")
+        var_e_psi.trace_add("write", lambda name, index, mode, sv=var_e_psi: ps(current_frame, list_l_ps, dic_ps_var_entries, dic_S_var_entries))
+        var_e_S.trace_add("write", lambda name, index, mode, sv=var_e_psi: ps(current_frame, list_l_ps, dic_ps_var_entries, dic_S_var_entries))
     for i in range(1):
-        l_ps = ctk.CTkLabel(list_f_PU[current_frame], text="0.0", width=80, anchor="center")
+        var_l_ps = tk.IntVar()
+        l_ps = ctk.CTkLabel(list_f_PU[current_frame], text="0.0", width=80, anchor="center", textvariable=var_l_ps)
         l_ps.grid(row=len(dic_m_rows[current_frame]), column=9)
-        dic_ps_labels[current_frame].append(l_ps)
+        dic_ps_labels[current_frame].append(var_l_ps)
 
 
 # funkce na odebírání řádků pro místnosti do current framu
@@ -320,18 +363,18 @@ def m_minus(current_frame):
         entry.destroy()
         dic_text_entries[current_frame].pop(-1)
     dic_S_entries[current_frame][-1].destroy()
-    dic_S_entries[current_frame].pop(-1)
+    dic_S_var_entries[current_frame].pop(-1)
     dic_ps_labels[current_frame][-1].destroy()
     dic_ps_labels[current_frame].pop(-1)
     dic_pni_entries[current_frame][-1].destroy()
-    dic_pni_entries[current_frame].pop(-1)
+    dic_pni_var_entries[current_frame].pop(-1)
     dic_ani_entries[current_frame][-1].destroy()
-    dic_ani_entries[current_frame].pop(-1)
+    dic_ani_var_entries[current_frame].pop(-1)
     for entry in dic_ps_entries[current_frame][-3:]:
         entry.destroy()
-        dic_ps_entries[current_frame].pop(-1)
+        dic_ps_var_entries[current_frame].pop(-1)
     dic_hsi_entries[current_frame][-1].destroy()
-    dic_hsi_entries[current_frame].pop(-1)
+    dic_hsi_var_entries[current_frame].pop(-1)
 
 
 # funkce na vkládání nových řádků pro otvory do current framu
@@ -341,20 +384,25 @@ def o_plus(current_frame, om_konstrukcni_system, list_mezni_pocty_podlazi):
     o_typ_otvoru.grid(row=len(dic_o_rows[current_frame]), column=11)
 
     for i in range (3):
-        e_parametr_otvoru = ctk.CTkEntry(list_f_PU[current_frame], width=80)
+        var_e_rozmer_otvoru = tk.StringVar()
+        e_parametr_otvoru = ctk.CTkEntry(list_f_PU[current_frame], width=80, textvariable=var_e_rozmer_otvoru)
         e_parametr_otvoru.insert(0, "0")
         e_parametr_otvoru.bind("<FocusIn>",lambda event, entry=e_parametr_otvoru: entry.delete(0, tk.END) if e_parametr_otvoru.get() == "0" else None)
         e_parametr_otvoru.bind("<FocusOut>", lambda event: e_parametr_otvoru.insert(0, "0") if e_parametr_otvoru.get() == "" else None)
-        e_parametr_otvoru.bind("<FocusOut>", lambda event: wrap_otvory(current_frame, om_konstrukcni_system, list_mezni_pocty_podlazi), add="+")
+        var_e_rozmer_otvoru.trace_add("write", lambda name, index, mode, sv=var_e_rozmer_otvoru: so(current_frame))
+        var_e_rozmer_otvoru.trace_add("write", lambda name, index, mode, sv=var_e_rozmer_otvoru: ho(current_frame))
         if i == 0:
             e_parametr_otvoru.grid(row=len(dic_o_rows[current_frame]), column=12)
             dic_pocet_ot[current_frame].append(e_parametr_otvoru)
+            dic_var_pocet_ot[current_frame].append(var_e_rozmer_otvoru)
         elif i == 1:
             e_parametr_otvoru.grid(row=len(dic_o_rows[current_frame]), column=13)
             dic_sirka_ot[current_frame].append(e_parametr_otvoru)
+            dic_var_sirka_ot[current_frame].append(var_e_rozmer_otvoru)
         else:
             e_parametr_otvoru.grid(row=len(dic_o_rows[current_frame]), column=14)
             dic_vyska_ot[current_frame].append(e_parametr_otvoru)
+            dic_var_vyska_ot[current_frame].append(var_e_rozmer_otvoru)
 
 
 

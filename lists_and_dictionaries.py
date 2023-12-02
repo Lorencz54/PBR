@@ -3,6 +3,7 @@
 list_f_PU = []
 list_m_rows = []
 
+
 #lists of labels
 list_l_S = []
 list_l_an = []
@@ -45,14 +46,9 @@ list_mezni_sirky = []
 
 # dictionaries
 dic_m_rows = []
-dic_S_entries = []
-dic_ps_entries = []
 dic_text_entries = []
 dic_ps_labels = []
-dic_pni_entries = []
-dic_ani_entries = []
 dic_ps_group_sums = []
-dic_hsi_entries = []
 dic_o_rows = []
 list_e_PU = []
 list_e_typ = []
@@ -60,3 +56,20 @@ dic_pocet_ot = []
 dic_sirka_ot = []
 dic_vyska_ot = []
 dic_so_ot = []
+
+# row widget dictionaries
+dic_hsi_entries = []
+dic_pni_entries = []
+dic_ani_entries = []
+dic_ps_entries = []
+dic_S_entries = []
+
+# var dictionaries
+dic_hsi_var_entries = []
+dic_pni_var_entries = []
+dic_ani_var_entries = []
+dic_ps_var_entries = []
+dic_S_var_entries = []
+dic_var_pocet_ot = []
+dic_var_sirka_ot = []
+dic_var_vyska_ot = []
