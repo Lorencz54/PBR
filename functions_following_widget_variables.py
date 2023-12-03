@@ -2,6 +2,7 @@ from lists_and_dictionaries import *
 from data import *
 import statistics
 import math
+from scipy.interpolate import interp1d
 
 def calculate_pv_value(current_frame):
     # p_value
@@ -50,4 +51,10 @@ def calculate_pv_value(current_frame):
                 list_mezni_pocty_podlazi[current_frame].set(math.floor(140/list_l_pv[current_frame].get()))
             else:
                 list_mezni_pocty_podlazi[current_frame].set(math.floor(100/list_l_pv[current_frame].get()))
+        mezni_sirka_pu = interp1d(data_nehorlavy_a_values_mr_pu, data_nehorlavy_1_np_mezni_sirky_pu, kind='linear', fill_value='extrapolate')
+        mezni_sirka_interpolated = mezni_sirka_pu(np.array(list_l_a[current_frame].get()))
+        list_mezni_sirky[current_frame].set(mezni_sirka_interpolated)
+        mezni_delka_pu = interp1d(data_nehorlavy_a_values_mr_pu, data_nehorlavy_1_np_mezni_delky_pu, kind='linear', fill_value='extrapolate')
+        mezni_delka_interpolated = mezni_delka_pu(np.array(list_l_a[current_frame].get()))
+        list_mezni_delky[current_frame].set(mezni_delka_interpolated)
 

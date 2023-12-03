@@ -1,4 +1,4 @@
-from table_manager import *
+from add_frame_nevyrobni import *
 from lists_and_dictionaries import *
 
 
@@ -21,9 +21,13 @@ var_om_konstrukcni_system = tk.StringVar()
 om_konstrukcni_system = ctk.CTkOptionMenu(f_main, values=["nehořlavý", "smíšený", "hořlavý"], variable=var_om_konstrukcni_system)
 list_var_om_konstrukcni_system.append(var_om_konstrukcni_system)
 var_om_konstrukcni_system.trace_add("write", lambda name, index, mode, sv=list_var_om_konstrukcni_system: calculate_pv_value(current_frame))
+
 e_pozarni_vyska = ctk.CTkEntry(f_main)
+
 l_konstrukcni_system = ctk.CTkLabel(f_main, text="konstrukční systém")
+
 l_pozarni_vyska = ctk.CTkLabel(f_main, text="požární výška")
+
 
 # umístění dvou horních rámečků
 f_main.place(relwidth=0.3, relheight=0.5)
