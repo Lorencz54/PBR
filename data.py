@@ -1,7 +1,8 @@
 import pandas as pd
 import numpy as np
 from scipy.interpolate import interp1d
-data_path = r'C:\Users\kevin\PycharmProjects\pythonProject\data.xlsx'
+
+data_path = r'C:\Users\Lenovo\PycharmProjects\PBR\data.xlsx'
 
 
 # sheets

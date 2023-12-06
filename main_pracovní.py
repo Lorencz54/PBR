@@ -1,36 +1,55 @@
 from add_frame_nevyrobni import *
 from lists_and_dictionaries import *
 
+as_value = 0.9
+# funkce na listování mezi rámečky vpřed
+def lift_frame():
+    current_frame[0] -= 1
+    if current_frame[0] < 0:
+        current_frame[0] = len(list_f_PU) - 1
+        list_f_PU[-1].lift()
+        list_f_info_PU[-1].lift()
+    else:
+        list_f_PU[current_frame[0]].lift()
+        list_f_info_PU[current_frame[0]].lift()
+
+# funkce na zpětné listování mezi rámečky
+def lower_frame():
+    if current_frame[0] == len(list_f_PU)-1:
+        current_frame[0] = 0
+        list_f_PU[current_frame[0]].lift()
+        list_f_info_PU[current_frame[0]].lift()
+    else:
+        current_frame[0] += 1
+        list_f_PU[current_frame[0]].lift()
+        list_f_info_PU[current_frame[0]].lift()
 
 window = ctk.CTk()
-window.geometry("1600x1000")
-
-current_frame = 0
-as_value = 0.9
+window.geometry(f"{sirka_okna[0]}x{vyska_okna[0]}")
 
 # sestavení dvou horních rámečků (hlavní informace o objektu a panel pro tlačítka)
 f_seznam_PU = ctk.CTkFrame(window)
-f_main = ctk.CTkFrame(window)
+f_info_objekt = ctk.CTkFrame(window)
 
 # definice widgetů pro panel na tlačítka
-b_add_f = ctk.CTkButton(f_main, text="nový požární úsek", command=lambda: add_f(window, list_f_PU,list_l_S, list_l_an, list_l_pn,list_l_ps, list_l_p, list_l_a, list_l_hs, list_l_so, list_l_ho, f_seznam_PU, list_mezni_pocty_podlazi))
-b_remove_f = ctk.CTkButton(f_main, text="odebrat požární úsek", command=lambda: remove_f(list_cisla_pu, list_nazvy_pu, list_e_typ))
-b_lift = ctk.CTkButton(f_main, text="předchozí PÚ", command=lift_frame)
-b_lower = ctk.CTkButton(f_main, text="další PÚ", command=lower_frame)
+b_add_f = ctk.CTkButton(f_info_objekt, text="nový požární úsek", command=lambda: add_f(current_frame, window, list_f_PU, list_l_S, list_l_an, list_l_pn, list_l_ps, list_l_p, list_l_a, list_l_hs, list_l_so, list_l_ho, f_seznam_PU, list_mezni_pocty_podlazi))
+b_remove_f = ctk.CTkButton(f_info_objekt, text="odebrat požární úsek", command=lambda: remove_f(current_frame, list_cisla_pu, list_nazvy_pu, list_e_typ))
+b_lift = ctk.CTkButton(f_info_objekt, text="předchozí PÚ", command=lift_frame)
+b_lower = ctk.CTkButton(f_info_objekt, text="další PÚ", command=lower_frame)
 var_om_konstrukcni_system = tk.StringVar()
-om_konstrukcni_system = ctk.CTkOptionMenu(f_main, values=["nehořlavý", "smíšený", "hořlavý"], variable=var_om_konstrukcni_system)
+om_konstrukcni_system = ctk.CTkOptionMenu(f_info_objekt, values=["nehořlavý", "smíšený", "hořlavý"], variable=var_om_konstrukcni_system)
 list_var_om_konstrukcni_system.append(var_om_konstrukcni_system)
 var_om_konstrukcni_system.trace_add("write", lambda name, index, mode, sv=list_var_om_konstrukcni_system: calculate_pv_value(current_frame))
 
-e_pozarni_vyska = ctk.CTkEntry(f_main)
+e_pozarni_vyska = ctk.CTkEntry(f_info_objekt)
 
-l_konstrukcni_system = ctk.CTkLabel(f_main, text="konstrukční systém")
+l_konstrukcni_system = ctk.CTkLabel(f_info_objekt, text="konstrukční systém")
 
-l_pozarni_vyska = ctk.CTkLabel(f_main, text="požární výška")
+l_pozarni_vyska = ctk.CTkLabel(f_info_objekt, text="požární výška")
 
 
 # umístění dvou horních rámečků
-f_main.place(relwidth=0.3, relheight=0.5)
+f_info_objekt.place(relwidth=0.3, relheight=0.5)
 f_seznam_PU.place(relx= 0.3, relwidth=0.8, relheight=0.5)
 
 # umístění tlačítek do panelu pro tlačítka

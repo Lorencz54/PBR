@@ -1,7 +1,12 @@
 
+sirka_okna = [1600]
+vyska_okna = [1000]
+m_current_value = []
 #list of frames and rows
 list_f_PU = []
+list_f_info_PU = []
 list_m_rows = []
+current_frame = [0]
 
 #lists of labels
 list_l_S = []
@@ -18,6 +23,7 @@ list_l_b = []
 list_l_n = []
 list_l_k = []
 list_l_pv = []
+list_var_l_pv = []
 list_var_om_konstrukcni_system = []
 
 #lists of entries
@@ -48,11 +54,12 @@ list_mezni_sirky = []
 # dictionaries
 dic_m_rows = []
 dic_text_entries = []
-dic_ps_labels = []
+dic_var_ps_labels = []
 dic_ps_group_sums = []
 dic_o_rows = []
 list_e_PU = []
 list_e_typ = []
+dic_typy_ot = []
 dic_pocet_ot = []
 dic_sirka_ot = []
 dic_vyska_ot = []
@@ -64,7 +71,7 @@ dic_pni_entries = []
 dic_ani_entries = []
 dic_ps_entries = []
 dic_S_entries = []
-
+dic_ps_labels = []
 # var dictionaries
 dic_hsi_var_entries = []
 dic_pni_var_entries = []
