@@ -72,7 +72,6 @@ def m_plus(current_frame):
             l_ps.grid(row=len(dic_m_rows[current_frame[0]]), column=9)
             dic_var_ps_labels[current_frame[0]].append(var_l_psi)
             dic_ps_labels[current_frame[0]].append(l_ps)
-            print(current_frame)
 
 # funkce na odebírání řádků pro místnosti do current framu
 def m_minus(current_frame):

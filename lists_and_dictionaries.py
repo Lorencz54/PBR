@@ -25,6 +25,7 @@ list_l_k = []
 list_l_pv = []
 list_var_l_pv = []
 list_var_om_konstrukcni_system = []
+list_var_e_pozarni_vyska = []
 
 #lists of entries
 list_cisla_pu = []

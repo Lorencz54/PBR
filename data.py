@@ -19,6 +19,23 @@ hodnoty_k = [[0.005, 0.007, 0.009, 0.011, 0.013, 0.015, 0.016, 0.02], [0.013, 0.
 data_nehorlavy_a_values_mr_pu = df_mezni_rozmery_pu.iloc[:, 0].values
 data_nehorlavy_1_np_mezni_delky_pu = df_mezni_rozmery_pu.iloc[:, 2].values
 data_nehorlavy_1_np_mezni_sirky_pu = df_mezni_rozmery_pu.iloc[:, 3].values
+data_nehorlavy_22_mezni_delky_pu = df_mezni_rozmery_pu.iloc[:, 4].values
+data_nehorlavy_22_mezni_sirky_pu = df_mezni_rozmery_pu.iloc[:, 5].values
+data_nehorlavy_45_mezni_delky_pu = df_mezni_rozmery_pu.iloc[:, 6].values
+data_nehorlavy_45_mezni_sirky_pu = df_mezni_rozmery_pu.iloc[:, 7].values
+data_nehorlavy_vetsi_45_mezni_delky_pu = df_mezni_rozmery_pu.iloc[:, 8].values
+data_nehorlavy_vetsi_45_mezni_sirky_pu = df_mezni_rozmery_pu.iloc[:, 9].values
+
+data_smiseny_1_np_mezni_delky_pu = df_mezni_rozmery_pu.iloc[:, 13].values
+data_smiseny_1_np_mezni_sirky_pu = df_mezni_rozmery_pu.iloc[:, 15].values
+data_smiseny_vice_np_mezni_delky_pu = df_mezni_rozmery_pu.iloc[:, 17].values
+data_smiseny_vice_np_mezni_sirky_pu = df_mezni_rozmery_pu.iloc[:, 19].values
+
+data_horlavy_1_np_mezni_delky_pu = df_mezni_rozmery_pu.iloc[:, 24].values
+data_horlavy_1_np_mezni_sirky_pu = df_mezni_rozmery_pu.iloc[:, 26].values
+data_horlavy_vice_np_mezni_delky_pu = df_mezni_rozmery_pu.iloc[:, 28].values
+data_horlavy_vice_np_mezni_sirky_pu = df_mezni_rozmery_pu.iloc[:, 30].values
+
 
 # funkce
 interpolation_function = interp1d(data_nehorlavy_a_values_mr_pu, data_nehorlavy_1_np_mezni_delky_pu, kind='linear', fill_value='extrapolate')

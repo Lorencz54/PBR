@@ -39,9 +39,12 @@ b_lower = ctk.CTkButton(f_info_objekt, text="další PÚ", command=lower_frame)
 var_om_konstrukcni_system = tk.StringVar()
 om_konstrukcni_system = ctk.CTkOptionMenu(f_info_objekt, values=["nehořlavý", "smíšený", "hořlavý"], variable=var_om_konstrukcni_system)
 list_var_om_konstrukcni_system.append(var_om_konstrukcni_system)
-var_om_konstrukcni_system.trace_add("write", lambda name, index, mode, sv=list_var_om_konstrukcni_system: calculate_pv_value(current_frame))
+var_om_konstrukcni_system.trace_add("write", lambda name, index, mode, sv=list_var_om_konstrukcni_system: calculate_max_dimensions(current_frame))
 
-e_pozarni_vyska = ctk.CTkEntry(f_info_objekt)
+var_e_pozarni_vyska = tk.DoubleVar()
+e_pozarni_vyska = ctk.CTkEntry(f_info_objekt, textvariable=var_e_pozarni_vyska)
+list_var_e_pozarni_vyska.append(var_e_pozarni_vyska)
+var_e_pozarni_vyska.trace_add("write", lambda name, index, mode, sv=list_var_e_pozarni_vyska: calculate_max_dimensions(current_frame))
 
 l_konstrukcni_system = ctk.CTkLabel(f_info_objekt, text="konstrukční systém")
 

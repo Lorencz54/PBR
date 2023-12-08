@@ -1,5 +1,5 @@
-from functions_following_widget_variables import *
-
+from pv_and_max_floor_counter import *
+from max_dimension_counter import *
 def plocha_PU(current_frame,list_l_S):
     list_l_S[int(current_frame[0])].set(np.sum((float(entry.get()) for entry in dic_S_var_entries[int(current_frame[0])])))
 
@@ -13,6 +13,7 @@ def pn(current_frame, list_l_pn, dic_pni_entries, dic_S_entries):
     else:
         list_l_pn[int(current_frame[0])].set(round(np.dot(pn_values, S_values)/S_suma,2))
     calculate_pv_value(current_frame)
+    calculate_max_dimensions(current_frame)
 
 # funkce na výpočet an v current framu
 def an(current_frame, list_l_an, dic_ani_entries, dic_S_entries):
@@ -24,6 +25,7 @@ def an(current_frame, list_l_an, dic_ani_entries, dic_S_entries):
     else:
         list_l_an[int(current_frame[0])].set(round(np.dot(an_values, S_values)/S_suma,2))
     calculate_pv_value(current_frame)
+    calculate_max_dimensions(current_frame)
 
 #funkce na výpočet ps v current framu
 def ps(current_frame, list_l_ps, dic_ps_entries, dic_S_entries):
@@ -43,6 +45,7 @@ def ps(current_frame, list_l_ps, dic_ps_entries, dic_S_entries):
         label_ps_sum = dic_var_ps_labels[int(current_frame[0])][i]
         label_ps_sum.set(ps_row_sum)
     calculate_pv_value(current_frame)
+    calculate_max_dimensions(current_frame)
 
 # funkce na výpočet výšky prostoru v požárním úseku
 def hs_so(current_frame):
