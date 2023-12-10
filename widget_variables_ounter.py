@@ -42,16 +42,15 @@ def ps(current_frame, list_l_ps, dic_ps_entries, dic_S_entries):
         list_l_ps[int(current_frame[0])].set(round(np.dot(ps_sum_list, S_values)/S_suma,2))
     for i in range(len(ps_sum_list)):
         ps_row_sum = ps_sum_list[i]
-        label_ps_sum = dic_var_ps_labels[int(current_frame[0])][i]
-        label_ps_sum.set(ps_row_sum)
+        dic_var_ps_labels[int(current_frame[0])][i].set(ps_row_sum)
     calculate_pv_value(current_frame)
     calculate_max_dimensions(current_frame)
 
 # funkce na výpočet výšky prostoru v požárním úseku
 def hs_so(current_frame):
-    pocet_values = [float(entry.get()) if entry.get() != "" else 0.0 for entry in dic_pocet_ot[int(current_frame[0])]]
-    sirka_values = [float(entry.get()) if entry.get() != "" else 0.0 for entry in dic_sirka_ot[int(current_frame[0])]]
-    vyska_values = [float(entry.get()) if entry.get() != "" else 0.0 for entry in dic_vyska_ot[int(current_frame[0])]]
+    pocet_values = [float(entry.get()) if entry.get() != "" else 0.0 for entry in dic_pocet_ot_entries[int(current_frame[0])]]
+    sirka_values = [float(entry.get()) if entry.get() != "" else 0.0 for entry in dic_sirka_ot_entries[int(current_frame[0])]]
+    vyska_values = [float(entry.get()) if entry.get() != "" else 0.0 for entry in dic_vyska_ot_entries[int(current_frame[0])]]
     so_values = np.multiply(np.multiply(pocet_values, sirka_values), vyska_values)
     so_value = np.sum(so_values)
     list_l_so[int(current_frame[0])].set(round(so_value, 2))

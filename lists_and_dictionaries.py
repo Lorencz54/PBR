@@ -15,6 +15,8 @@ list_var_om_konstrukcni_system = []
 
 
 #lists of global PU variables
+
+#labels
 list_l_S = []
 list_l_an = []
 list_l_pn = []
@@ -22,15 +24,15 @@ list_l_ps = []
 list_l_p = []
 list_l_a = []
 list_l_hs = []
-list_nazvy_default = []
 list_l_so = []
 list_l_ho = []
 list_l_b = []
 list_l_n = []
 list_l_k = []
 list_l_pv = []
-list_var_l_pv = []
 
+list_var_l_pv = []
+list_nazvy_pu_default = []
 
 #lists of entries
 list_cisla_pu = []
@@ -60,25 +62,30 @@ list_mezni_sirky = []
 # dictionaries
 dic_m_rows = []
 dic_text_entries = []
-dic_var_ps_labels = []
 dic_ps_group_sums = []
 dic_o_rows = []
 list_e_PU = []
 list_e_typ = []
-dic_typy_ot = []
-dic_pocet_ot = []
-dic_sirka_ot = []
-dic_vyska_ot = []
+
+
 dic_so_ot = []
 
-# row widget dictionaries
+# row entry widget dictionaries
 dic_hsi_entries = []
 dic_pni_entries = []
 dic_ani_entries = []
-dic_ps_entries = []
+dic_psi_entries = []
 dic_S_entries = []
-dic_ps_labels = []
-# var dictionaries
+
+dic_pocet_ot_entries = []
+dic_sirka_ot_entries = []
+dic_vyska_ot_entries = []
+dic_typy_ot_option_menues = []
+
+# ps row sum labels
+dic_ps_row_sum_labels = []
+
+# listy pro vars, které spouští navazující funkce entry widgetů
 dic_hsi_var_entries = []
 dic_pni_var_entries = []
 dic_ani_var_entries = []
@@ -87,3 +94,6 @@ dic_S_var_entries = []
 dic_var_pocet_ot = []
 dic_var_sirka_ot = []
 dic_var_vyska_ot = []
+
+# dictionary pro listy s vars, které automaticky updatují součty ps v každém řádku místností PÚ
+dic_var_ps_labels = []

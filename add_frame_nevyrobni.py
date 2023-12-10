@@ -5,6 +5,7 @@ from o_plus_and_minus import *
 def add_f(current_frame, window, list_f_PU,list_l_S, list_l_an, list_l_pn,list_l_ps, list_l_p, list_l_a,
           list_l_hs, list_l_so, list_l_ho, f_seznam_PU, list_mezni_pocty_podlazi):
     global om_konstrukcni_system
+
 # listy pro nový požární úsek
     m_rows = [1]
     o_rows = [1]
@@ -31,7 +32,7 @@ def add_f(current_frame, window, list_f_PU,list_l_S, list_l_an, list_l_pn,list_l
     o_vyska_var_entries = []
     o_typ_option_menues = []
 
-# přiřazení nových listů do nadlistů mimo funkci
+# přiřazení nových listů do nadlistů umístěných mimo funkci
     dic_S_var_entries.append(m_S_var_entries)
     dic_ps_var_entries.append(m_ps_var_entries)
     dic_var_ps_labels.append(m_ps_var_labels)
@@ -40,11 +41,11 @@ def add_f(current_frame, window, list_f_PU,list_l_S, list_l_an, list_l_pn,list_l
     dic_hsi_var_entries.append(m_hsi_var_entries)
 
     dic_S_entries.append(m_S_entries)
-    dic_ps_entries.append(m_ps_entries)
+    dic_psi_entries.append(m_ps_entries)
     dic_pni_entries.append(m_pni_entries)
     dic_ani_entries.append(m_ani_entries)
     dic_hsi_entries.append(m_hsi_entries)
-    dic_ps_labels.append(m_ps_labels)
+    dic_ps_row_sum_labels.append(m_ps_labels)
     dic_m_rows.append(m_rows)
     dic_o_rows.append(o_rows)
     dic_text_entries.append(m_text_entries)
@@ -53,14 +54,14 @@ def add_f(current_frame, window, list_f_PU,list_l_S, list_l_an, list_l_pn,list_l
     dic_var_pocet_ot.append(o_pocet_var_entries)
     dic_var_sirka_ot.append(o_sirka_var_entries)
     dic_var_vyska_ot.append(o_vyska_var_entries)
-    dic_so_ot.append(list_so_ot)
 
-    dic_typy_ot.append(o_typ_option_menues)
-    dic_pocet_ot.append(list_pocet_ot)
-    dic_sirka_ot.append(list_sirka_ot)
-    dic_vyska_ot.append(list_vyska_ot)
-    dic_so_ot.append(list_so_ot)
+    dic_typy_ot_option_menues.append(o_typ_option_menues)
+    dic_pocet_ot_entries.append(list_pocet_ot)
+    dic_sirka_ot_entries.append(list_sirka_ot)
+    dic_vyska_ot_entries.append(list_vyska_ot)
 
+# vytvoření míst v listech pro jednotlivé parametry PÚ
+    list_pv.append(0)
 # tvorba rámečků
     f_PU = ctk.CTkFrame(window)
     f_PU.place(rely= 0.7, relheight=0.3, relwidth= 1)
@@ -77,8 +78,8 @@ def add_f(current_frame, window, list_f_PU,list_l_S, list_l_an, list_l_pn,list_l
 
     l_nazev_pu_default = ctk.CTkLabel(f_info_PU, text="Požární úsek č. ", anchor="center")
     l_nazev_pu_default.grid(row=0, column=0, columnspan=12)
-    list_nazvy_default.append(l_nazev_pu_default)
-    list_nazvy_default[current_frame[0]].configure(text="požární úsek č. " + str(current_frame[0]+1))
+    list_nazvy_pu_default.append(l_nazev_pu_default)
+    list_nazvy_pu_default[current_frame[0]].configure(text="požární úsek č. " + str(current_frame[0] + 1))
 
     l_vyska_pu = ctk.CTkLabel(f_info_PU, text="výšková poloha PÚ")
     l_vyska_pu.grid(row=1, column=0)

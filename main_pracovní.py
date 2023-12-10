@@ -6,25 +6,27 @@ import customtkinter as ctk
 as_value = 0.9
 # funkce na listování mezi rámečky vpřed
 def lift_frame():
-    current_frame[0] -= 1
-    if current_frame[0] < 0:
-        current_frame[0] = len(list_f_PU) - 1
-        list_f_PU[-1].lift()
-        list_f_info_PU[-1].lift()
-    else:
-        list_f_PU[current_frame[0]].lift()
-        list_f_info_PU[current_frame[0]].lift()
+    if len(list_f_PU) != 0:
+        current_frame[0] -= 1
+        if current_frame[0] < 0:
+            current_frame[0] = len(list_f_PU) - 1
+            list_f_PU[-1].lift()
+            list_f_info_PU[-1].lift()
+        else:
+            list_f_PU[current_frame[0]].lift()
+            list_f_info_PU[current_frame[0]].lift()
 
 # funkce na zpětné listování mezi rámečky
 def lower_frame():
-    if current_frame[0] == len(list_f_PU)-1:
-        current_frame[0] = 0
-        list_f_PU[current_frame[0]].lift()
-        list_f_info_PU[current_frame[0]].lift()
-    else:
-        current_frame[0] += 1
-        list_f_PU[current_frame[0]].lift()
-        list_f_info_PU[current_frame[0]].lift()
+    if len(list_f_PU) != 0:
+        if current_frame[0] == len(list_f_PU)-1:
+            current_frame[0] = 0
+            list_f_PU[current_frame[0]].lift()
+            list_f_info_PU[current_frame[0]].lift()
+        else:
+            current_frame[0] += 1
+            list_f_PU[current_frame[0]].lift()
+            list_f_info_PU[current_frame[0]].lift()
 
 window = ctk.CTk()
 window.geometry(f"{sirka_okna[0]}x{vyska_okna[0]}")
