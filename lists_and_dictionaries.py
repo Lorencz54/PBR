@@ -6,9 +6,15 @@ m_current_value = []
 list_f_PU = []
 list_f_info_PU = []
 list_m_rows = []
-current_frame = [0]
 
-#lists of labels
+# lists of global variables
+current_frame = [0]
+list_e_pozarni_vyska = []
+list_var_e_pozarni_vyska = []
+list_var_om_konstrukcni_system = []
+
+
+#lists of global PU variables
 list_l_S = []
 list_l_an = []
 list_l_pn = []
@@ -24,8 +30,7 @@ list_l_n = []
 list_l_k = []
 list_l_pv = []
 list_var_l_pv = []
-list_var_om_konstrukcni_system = []
-list_var_e_pozarni_vyska = []
+
 
 #lists of entries
 list_cisla_pu = []

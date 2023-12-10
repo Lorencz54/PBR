@@ -1,26 +1,6 @@
-import tkinter as tk
 from Classes import *
 from widget_variables_ounter import *
-
-class EntryWithLimit(CTkEntry):
-    def __init__(self, master, **kw):
-        super().__init__(master, **kw)
-
-
-        float_checker = master.register(self.is_valid_input)
-        self.configure(validate="key", validatecommand=(float_checker, "%P"))
-
-    def is_valid_input(self, text):
-        # Allow backspace
-        if text == "" or text == '\b':
-            return True
-
-        try:
-            float(text)
-            return True
-        except ValueError:
-            return False
-
+import customtkinter as ctk
 
 # funkce na vkládání řádků pro nové místnosti do current framu
 def m_plus(current_frame):
@@ -36,7 +16,7 @@ def m_plus(current_frame):
             else:
                 e_text.configure(width=200)
         elif i <=8:
-            var_e = tk.DoubleVar()
+            var_e = tk.StringVar()
             e_pu_parametr = EntryWithLimit(list_f_PU[current_frame[0]], width=80, textvariable=var_e)
             e_pu_parametr.grid(row=len(dic_m_rows[current_frame[0]]), column=i)
             e_pu_parametr.bind("<FocusIn>", lambda event, entry=e_pu_parametr: entry.delete(0, tk.END) if e_pu_parametr.get() == "0.0" else None)

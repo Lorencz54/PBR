@@ -1,5 +1,6 @@
 from lists_and_dictionaries import *
 from data import *
+from determine_SPB import *
 import statistics
 import math
 
@@ -21,7 +22,7 @@ def calculate_pv_value(current_frame):
         # k factor
         df = pd.DataFrame(hodnoty_k, index=sloupec_hodnot_n, columns=radek_hodnot_S)
         n = list_l_n[int(current_frame[0])].get()
-        S = statistics.mean(float(entry.get()) for entry in dic_S_var_entries[int(current_frame[0])])
+        S = statistics.mean(float(entry.get()) if entry.get() != "" else 0.0 for entry in dic_S_entries[int(current_frame[0])])
         if S > 500:
             S = 500
         elif S < 5:
@@ -50,4 +51,4 @@ def calculate_pv_value(current_frame):
                 list_mezni_pocty_podlazi[int(current_frame[0])].set(math.floor(140 / list_var_l_pv[int(current_frame[0])].get()))
             else:
                 list_mezni_pocty_podlazi[int(current_frame[0])].set(math.floor(100 / list_var_l_pv[int(current_frame[0])].get()))
-
+    determine_SPB(current_frame)

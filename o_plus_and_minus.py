@@ -1,6 +1,6 @@
-import tkinter as tk
 from widget_variables_ounter import *
 from Classes import *
+import customtkinter as ctk
 
 # funkce na vkládání nových řádků pro otvory do current framu
 def o_plus(current_frame):
@@ -10,7 +10,7 @@ def o_plus(current_frame):
     dic_typy_ot[int(current_frame[0])].append(o_typ_otvoru)
 
     for i in range(3):
-        var_e_rozmer_otvoru = tk.DoubleVar()
+        var_e_rozmer_otvoru = tk.StringVar()
         e_parametr_otvoru = EntryWithLimit(list_f_PU[current_frame[0]], width=80, textvariable=var_e_rozmer_otvoru)
         e_parametr_otvoru.grid(row=len(dic_o_rows[current_frame[0]]), column=12+i)
         if i == 0:

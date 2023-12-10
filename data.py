@@ -2,13 +2,15 @@ import pandas as pd
 import numpy as np
 from scipy.interpolate import interp1d
 
-data_path = r'C:\Users\Lenovo\PycharmProjects\PBR\data.xlsx'
+data_path = r'C:\Users\kevin\PycharmProjects\pythonProject\data.xlsx'
 
 
 # sheets
 sh_mezni_rozmery_pu = "limit_dimension_pu"
 df_mezni_rozmery_pu = pd.read_excel(data_path, sheet_name=sh_mezni_rozmery_pu, header=6)
 
+sh_SPB = "SPB"
+df_SPB = pd.read_excel(data_path, sheet_name=sh_SPB, header=0)
 # extracted data
 # hodnoty k pro požární úsek do 500 m2
 radek_hodnot_S = [5, 10, 20, 30, 50, 100, 250, 500]
