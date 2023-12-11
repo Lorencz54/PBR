@@ -46,7 +46,6 @@ def calculate_pv_value(current_frame):
         pv_value = round(list_l_a[int(current_frame[0])].get() * list_l_b[int(current_frame[0])].get() * 1 * list_l_p[int(current_frame[0])].get(), 2)
         list_pv[current_frame[0]] = pv_value
         list_var_l_pv[int(current_frame[0])].set(pv_value)
-        print(list_pv)
         if list_pv[int(current_frame[0])] > 0:
             if list_var_om_konstrukcni_system[0].get() == "nehořlavý":
                 list_mezni_pocty_podlazi[int(current_frame[0])].set(math.floor(180 / list_var_l_pv[int(current_frame[0])].get()))

@@ -58,16 +58,14 @@ list_pv = []
 list_mezni_pocty_podlazi = []
 list_mezni_delky = []
 list_mezni_sirky = []
+list_var_l_SPB = []
 
 # dictionaries
 dic_m_rows = []
-dic_text_entries = []
 dic_ps_group_sums = []
 dic_o_rows = []
 list_e_PU = []
 list_e_typ = []
-
-
 dic_so_ot = []
 
 # row entry widget dictionaries
@@ -76,14 +74,16 @@ dic_pni_entries = []
 dic_ani_entries = []
 dic_psi_entries = []
 dic_S_entries = []
+dic_CSNi_entries = []
+dic_mc_text_entries = []
+dic_nazvy_m_text_entries = []
+dic_ps_row_sum_labels = []
 
 dic_pocet_ot_entries = []
 dic_sirka_ot_entries = []
 dic_vyska_ot_entries = []
 dic_typy_ot_option_menues = []
 
-# ps row sum labels
-dic_ps_row_sum_labels = []
 
 # listy pro vars, které spouští navazující funkce entry widgetů
 dic_hsi_var_entries = []

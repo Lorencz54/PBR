@@ -76,20 +76,18 @@ b_lift.grid(row=7, column=1)
 b_lower.grid(row=7, column=3)
 
 # f_seznamPU widgets
-l_oznaceni = ctk.CTkLabel(f_seznam_PU, text="Označení PÚ")
-l_PU = ctk.CTkLabel(f_seznam_PU, text="Název PÚ")
-l_typ = ctk.CTkLabel(f_seznam_PU, text="typ objektu")
-l_pn = ctk.CTkLabel(f_seznam_PU, text ="pn celkem: ")
-l_an = ctk.CTkLabel(f_seznam_PU, text="an celkem: ")
-l_p = ctk.CTkLabel(f_seznam_PU, text="p celkem: ")
-l_ps = ctk.CTkLabel(f_seznam_PU, text="ps celkem: ")
-l_S = ctk.CTkLabel(f_seznam_PU, text="Suma S: ")
+l_oznaceni = ctk.CTkLabel(f_seznam_PU, text="Označení PÚ", width=140)
+l_PU = ctk.CTkLabel(f_seznam_PU, text="Název PÚ", width=140)
+l_typ = ctk.CTkLabel(f_seznam_PU, text="typ objektu", width=140)
+l_pv = ctk.CTkLabel(f_seznam_PU, text="pv", width=140)
+l_SPB = ctk.CTkLabel(f_seznam_PU, text="SPB", width=140)
 
 # f_seznamPU layout
 l_oznaceni.grid(row=0, column=0)
 l_PU.grid(row=0, column=1)
 l_typ.grid(row=0, column=2)
-
+l_pv.grid(row=0, column=3)
+l_SPB.grid(row=0, column=4)
 
 # spuštění okna
 window.mainloop()

@@ -6,13 +6,13 @@ import customtkinter as ctk
 def o_plus(current_frame):
     dic_o_rows[int(current_frame[0])].append(1)
     o_typ_otvoru = ctk.CTkOptionMenu(list_f_PU[int(current_frame[0])], values=["okno", "dveře", "vrata", "světlík", "jiný"], width=80)
-    o_typ_otvoru.grid(row=len(dic_o_rows[int(current_frame[0])]), column=11)
+    o_typ_otvoru.grid(row=len(dic_o_rows[int(current_frame[0])]), column=12)
     dic_typy_ot_option_menues[int(current_frame[0])].append(o_typ_otvoru)
 
     for i in range(3):
         var_e_rozmer_otvoru = tk.StringVar()
         e_parametr_otvoru = EntryWithLimit(list_f_PU[current_frame[0]], width=80, textvariable=var_e_rozmer_otvoru)
-        e_parametr_otvoru.grid(row=len(dic_o_rows[current_frame[0]]), column=12+i)
+        e_parametr_otvoru.grid(row=len(dic_o_rows[current_frame[0]]), column=13+i)
         if i == 0:
             dic_pocet_ot_entries[int(current_frame[0])].append(e_parametr_otvoru)
             dic_var_pocet_ot[int(current_frame[0])].append(var_e_rozmer_otvoru)

@@ -10,8 +10,10 @@ def add_f(current_frame, window, list_f_PU,list_l_S, list_l_an, list_l_pn,list_l
     m_rows = [1]
     o_rows = [1]
     m_S_entries = []
+    m_CSNi_entries = []
     m_ps_entries = []
-    m_text_entries = []
+    m_mc_text_entries = []
+    m_nazvy_m_text_entries = []
     m_ps_labels = []
     m_pni_entries = []
     m_ani_entries = []
@@ -41,6 +43,7 @@ def add_f(current_frame, window, list_f_PU,list_l_S, list_l_an, list_l_pn,list_l
     dic_hsi_var_entries.append(m_hsi_var_entries)
 
     dic_S_entries.append(m_S_entries)
+    dic_CSNi_entries.append(m_CSNi_entries)
     dic_psi_entries.append(m_ps_entries)
     dic_pni_entries.append(m_pni_entries)
     dic_ani_entries.append(m_ani_entries)
@@ -48,7 +51,8 @@ def add_f(current_frame, window, list_f_PU,list_l_S, list_l_an, list_l_pn,list_l
     dic_ps_row_sum_labels.append(m_ps_labels)
     dic_m_rows.append(m_rows)
     dic_o_rows.append(o_rows)
-    dic_text_entries.append(m_text_entries)
+    dic_mc_text_entries.append(m_mc_text_entries)
+    dic_nazvy_m_text_entries.append(m_nazvy_m_text_entries)
     dic_ps_group_sums.append(m_ps_group_sums)
 
     dic_var_pocet_ot.append(o_pocet_var_entries)
@@ -62,6 +66,7 @@ def add_f(current_frame, window, list_f_PU,list_l_S, list_l_an, list_l_pn,list_l
 
 # vytvoření míst v listech pro jednotlivé parametry PÚ
     list_pv.append(0)
+
 # tvorba rámečků
     f_PU = ctk.CTkFrame(window)
     f_PU.place(rely= 0.7, relheight=0.3, relwidth= 1)
@@ -126,18 +131,20 @@ def add_f(current_frame, window, list_f_PU,list_l_S, list_l_an, list_l_pn,list_l
         l_mezera = ctk.CTkLabel(f_info_PU, text="", width=50)
         l_mezera.grid(row=1+i, column=2)
 
+    l_nadpis_mazni_parametry_pu = ctk.CTkLabel(f_info_PU, text="Mezní parametry")
+    l_nadpis_mazni_parametry_pu.grid(row=1, column=3)
     var_l_mezni_pocet_podlazi = tk.DoubleVar()
-    l_mezni_pocet_podlazi = ctk.CTkLabel(f_info_PU, text="mezní počet podlaží", textvariable = var_l_mezni_pocet_podlazi)
+    l_mezni_pocet_podlazi = ctk.CTkLabel(f_info_PU, textvariable = var_l_mezni_pocet_podlazi)
     l_mezni_pocet_podlazi.grid(row=2, column=3)
     list_mezni_pocty_podlazi.append(var_l_mezni_pocet_podlazi)
 
-    var_l_mezni_sirka = tk.StringVar()
-    l_mezni_sirka = ctk.CTkLabel(f_info_PU, text="mezní šířka PÚ", textvariable = var_l_mezni_sirka)
+    var_l_mezni_sirka = tk.DoubleVar()
+    l_mezni_sirka = ctk.CTkLabel(f_info_PU, textvariable = var_l_mezni_sirka)
     l_mezni_sirka.grid(row=4, column=3)
     list_mezni_sirky.append(var_l_mezni_sirka)
 
-    var_l_mezni_delka = tk.StringVar()
-    l_mezni_delka = ctk.CTkLabel(f_info_PU, text="mezní délka PÚ", textvariable = var_l_mezni_delka)
+    var_l_mezni_delka = tk.DoubleVar()
+    l_mezni_delka = ctk.CTkLabel(f_info_PU, textvariable = var_l_mezni_delka)
     l_mezni_delka.grid(row=3, column=3)
     list_mezni_delky.append(var_l_mezni_delka)
 
@@ -238,41 +245,43 @@ def add_f(current_frame, window, list_f_PU,list_l_S, list_l_an, list_l_pn,list_l
     l_nazev_m.grid(row=1, column=1)
     l_S = ctk.CTkLabel(f_PU, text="plocha místnosti", anchor="center", width=80, wraplength=60)
     l_S.grid(row=1, column=2)
-    l_pn_m = ctk.CTkLabel(f_PU, text="pni", anchor="center", width=80)
-    l_pn_m.grid(row=1, column=3)
     l_hsi_m = ctk.CTkLabel(f_PU, text="hsi", anchor="center", width=80)
-    l_hsi_m.grid(row=1, column=4)
+    l_hsi_m.grid(row=1, column=3)
+    l_polozka_CSN_m = ctk.CTkLabel(f_PU, text="CSN", anchor="center", width=80)
+    l_polozka_CSN_m.grid(row=1, column=4)
+    l_pn_m = ctk.CTkLabel(f_PU, text="pni", anchor="center", width=80)
+    l_pn_m.grid(row=1, column=5)
     l_an_m = ctk.CTkLabel(f_PU, text="ani", anchor="center", width=80)
-    l_an_m.grid(row=1, column=5)
+    l_an_m.grid(row=1, column=6)
     l_ps_d = ctk.CTkLabel(f_PU, text="psi dveře", anchor="center", width=80, wraplength=50)
-    l_ps_d.grid(row=1, column=6)
+    l_ps_d.grid(row=1, column=7)
     l_ps_o = ctk.CTkLabel(f_PU, text="psi okna", anchor="center", width=80, wraplength=40)
-    l_ps_o.grid(row=1, column=7)
+    l_ps_o.grid(row=1, column=8)
     l_ps_p = ctk.CTkLabel(f_PU, text="psi podlahy", anchor="center", width=80, wraplength=50)
-    l_ps_p.grid(row=1, column=8)
+    l_ps_p.grid(row=1, column=9)
     l_psi_sum = ctk.CTkLabel(f_PU, text="psi celkem", anchor="center", width=80, wraplength=60)
-    l_psi_sum.grid(row=1, column=9)
+    l_psi_sum.grid(row=1, column=10)
 
 
 # nadpisy tabulky otvorů
     l_typ_ot = ctk.CTkLabel(f_PU, text="typ otvoru", anchor="center",  width=80, wraplength=50)
-    l_typ_ot.grid(row=1, column=11)
+    l_typ_ot.grid(row=1, column=12)
     l_pocet_ot = ctk.CTkLabel(f_PU, text="počet otvorů", anchor="center",  width=80, wraplength=50)
-    l_pocet_ot.grid(row=1, column=12)
+    l_pocet_ot.grid(row=1, column=13)
     l_sirka_ot = ctk.CTkLabel(f_PU, text="šířka otvoru", anchor="center",  width=80, wraplength=50)
-    l_sirka_ot.grid(row=1, column=13)
+    l_sirka_ot.grid(row=1, column=14)
     l_vyska_ot = ctk.CTkLabel(f_PU, text="výška otvoru", anchor="center",  width=80, wraplength=50)
-    l_vyska_ot.grid(row=1, column=14)
+    l_vyska_ot.grid(row=1, column=15)
 
     if len(list_f_PU) >= 1:
-        b_new_row = ctk.CTkButton(f_PU, text="nová místnost", command=lambda:m_plus(current_frame))
-        b_new_row.grid(row=2, column=10)
-        b_remove_row = ctk.CTkButton(f_PU, text="odebrat místnost", command=lambda:m_minus(current_frame))
-        b_remove_row.grid(row=3, column=10)
-        b_new_hole = ctk.CTkButton(f_PU, text="nový otvor", command=lambda:o_plus(current_frame))
-        b_new_hole.grid(row=2, column=15)
-        b_remove_hole = ctk.CTkButton(f_PU, text="odebrat otvor", command=lambda:o_minus(current_frame))
-        b_remove_hole.grid(row=3, column=15)
+        b_new_row = ctk.CTkButton(f_PU, text="+", command=lambda:m_plus(current_frame), width=25, height=25)
+        b_new_row.grid(row=2, column=11)
+        b_remove_row = ctk.CTkButton(f_PU, text="-", command=lambda:m_minus(current_frame), width=25, height=25)
+        b_remove_row.grid(row=3, column=11)
+        b_new_hole = ctk.CTkButton(f_PU, text="+", command=lambda:o_plus(current_frame), width=25, height=25)
+        b_new_hole.grid(row=2, column=16)
+        b_remove_hole = ctk.CTkButton(f_PU, text="-", command=lambda:o_minus(current_frame), width=25, height=25)
+        b_remove_hole.grid(row=3, column=16)
 
 # widgety pro požární úsek v rámečku pro celý objekt
     e_oznaceni = ctk.CTkEntry(f_seznam_PU)
@@ -286,8 +295,15 @@ def add_f(current_frame, window, list_f_PU,list_l_S, list_l_an, list_l_pn,list_l
     e_typ = ctk.CTkEntry(f_seznam_PU)
     e_typ.grid(row=len(list_f_PU), column=2)
     list_e_typ.append(e_typ)
+
     var_l_pv = tk.IntVar()
-    l_pv = ctk.CTkLabel(f_seznam_PU, text ="pv = ", textvariable=var_l_pv)
+    l_pv = ctk.CTkLabel(f_seznam_PU, textvariable=var_l_pv)
     l_pv.grid(row=len(list_f_PU), column=3)
     list_l_pv.append(l_pv)
     list_var_l_pv.append(var_l_pv)
+
+    var_l_SPB = tk.StringVar()
+    l_SPB = ctk.CTkLabel(f_seznam_PU, textvariable=var_l_SPB)
+    l_SPB.grid(row=len(list_f_PU), column=4)
+    list_var_l_SPB.append(var_l_SPB)
+

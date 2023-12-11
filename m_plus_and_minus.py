@@ -5,17 +5,18 @@ import customtkinter as ctk
 # funkce na vkládání řádků pro nové místnosti do current framu
 def m_plus(current_frame):
     dic_m_rows[current_frame[0]].append(1)
-    for i in range(10):
+    for i in range(11):
         if i <= 1:
-            for i in range(2):
-                e_text = ctk.CTkEntry(list_f_PU[current_frame[0]])
-                e_text.grid(row=len(dic_m_rows[current_frame[0]]), column=i)
-                dic_text_entries[current_frame[0]].append(e_text)
-            if i % 2 == 0:
+            e_text = ctk.CTkEntry(list_f_PU[current_frame[0]])
+            e_text.grid(row=len(dic_m_rows[current_frame[0]]), column=i)
+            if i == 0:
                 e_text.configure(width=40)
+                dic_mc_text_entries[current_frame[0]].append(e_text)
             else:
                 e_text.configure(width=200)
-        elif i <=8:
+                dic_nazvy_m_text_entries[current_frame[0]].append(e_text)
+        elif i <= 9:
+            print(i)
             var_e = tk.StringVar()
             e_pu_parametr = EntryWithLimit(list_f_PU[current_frame[0]], width=80, textvariable=var_e)
             e_pu_parametr.grid(row=len(dic_m_rows[current_frame[0]]), column=i)
@@ -30,25 +31,27 @@ def m_plus(current_frame):
                 var_e.trace_add("write", lambda name, index, mode, sv=var_e: an(current_frame, list_l_an, dic_ani_var_entries, dic_S_var_entries))
                 var_e.trace_add("write", lambda name, index, mode, sv=var_e: ps(current_frame, list_l_ps, dic_ps_var_entries, dic_S_var_entries))
             elif i == 3:
-                dic_pni_var_entries[current_frame[0]].append(var_e)
-                dic_pni_entries[current_frame[0]].append(e_pu_parametr)
-                var_e.trace_add("write", lambda name, index, mode, sv=var_e: pn(current_frame, list_l_pn, dic_pni_var_entries, dic_S_var_entries))
-            elif i == 4:
                 dic_hsi_var_entries[current_frame[0]].append(var_e)
                 dic_hsi_entries[current_frame[0]].append(e_pu_parametr)
                 var_e.trace_add("write", lambda name, index, mode, sv=var_e: hs(current_frame))
+            elif i == 4:
+                dic_CSNi_entries[current_frame[0]].append(e_pu_parametr)
             elif i == 5:
+                dic_pni_var_entries[current_frame[0]].append(var_e)
+                dic_pni_entries[current_frame[0]].append(e_pu_parametr)
+                var_e.trace_add("write", lambda name, index, mode, sv=var_e: pn(current_frame, list_l_pn, dic_pni_var_entries, dic_S_var_entries))
+            elif i == 6:
                 dic_ani_var_entries[current_frame[0]].append(var_e)
                 dic_ani_entries[current_frame[0]].append(e_pu_parametr)
                 var_e.trace_add("write", lambda name, index, mode, sv=var_e: an(current_frame, list_l_an, dic_ani_var_entries, dic_S_var_entries))
-            elif i <=8:
+            elif i <=9:
                 dic_ps_var_entries[current_frame[0]].append(var_e)
                 dic_psi_entries[current_frame[0]].append(e_pu_parametr)
                 var_e.trace_add("write", lambda name, index, mode, sv=var_e: ps(current_frame, list_l_ps, dic_ps_var_entries, dic_S_var_entries))
         else:
             var_l_psi = tk.DoubleVar()
             l_ps = ctk.CTkLabel(list_f_PU[current_frame[0]], text="0.0", width=80, anchor="center", textvariable=var_l_psi)
-            l_ps.grid(row=len(dic_m_rows[current_frame[0]]), column=9)
+            l_ps.grid(row=len(dic_m_rows[current_frame[0]]), column=i)
             dic_var_ps_labels[current_frame[0]].append(var_l_psi)
             dic_ps_row_sum_labels[current_frame[0]].append(l_ps)
 
@@ -56,9 +59,10 @@ def m_plus(current_frame):
 def m_minus(current_frame):
     if len(dic_m_rows[current_frame[0]]) != 1:
         dic_m_rows[current_frame[0]].pop(1)
-        for entry in dic_text_entries[current_frame[0]][-2:]:
-            entry.destroy()
-            dic_text_entries[current_frame[0]].pop(-1)
+        dic_mc_text_entries[current_frame[0]][-1].destroy()
+        dic_mc_text_entries[current_frame[0]].pop(-1)
+        dic_nazvy_m_text_entries[current_frame[0]][-1].destroy()
+        dic_nazvy_m_text_entries[current_frame[0]].pop(-1)
         dic_S_entries[current_frame[0]][-1].destroy()
         dic_S_entries[current_frame[0]].pop(-1)
         dic_ps_row_sum_labels[current_frame[0]][-1].destroy()
