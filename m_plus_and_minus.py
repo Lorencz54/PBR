@@ -16,7 +16,6 @@ def m_plus(current_frame):
                 e_text.configure(width=200)
                 dic_nazvy_m_text_entries[current_frame[0]].append(e_text)
         elif i <= 9:
-            print(i)
             var_e = tk.StringVar()
             e_pu_parametr = EntryWithLimit(list_f_PU[current_frame[0]], width=80, textvariable=var_e)
             e_pu_parametr.grid(row=len(dic_m_rows[current_frame[0]]), column=i)
@@ -64,7 +63,9 @@ def m_minus(current_frame):
         dic_nazvy_m_text_entries[current_frame[0]][-1].destroy()
         dic_nazvy_m_text_entries[current_frame[0]].pop(-1)
         dic_S_entries[current_frame[0]][-1].destroy()
+        dic_CSNi_entries[current_frame[0]][-1].destroy()
         dic_S_entries[current_frame[0]].pop(-1)
+        dic_CSNi_entries[current_frame[0]].pop(-1)
         dic_ps_row_sum_labels[current_frame[0]][-1].destroy()
         dic_ps_row_sum_labels[current_frame[0]].pop(-1)
         dic_pni_entries[current_frame[0]][-1].destroy()

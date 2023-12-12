@@ -1,18 +1,20 @@
 from widget_variables_ounter import *
 
-def remove_f(current_frame, list_cisla_pu, list_nazvy_pu, list_e_typ):
+def remove_f(current_frame, list_cisla_pu, list_nazvy_pu):
     if len(list_f_PU) != 0:
         list_f_PU[current_frame[0]].destroy()
         list_f_PU.pop(current_frame[0])
         list_f_info_PU[current_frame[0]].destroy()
         list_f_info_PU.pop(current_frame[0])
+        list_om_typ_pu[current_frame[0]].destroy()
+        list_om_typ_pu.pop(current_frame[0])
+        list_om_konstrukcni_system_pu[current_frame[0]].destroy()
+        list_om_konstrukcni_system_pu.pop(current_frame[0])
         list_nazvy_pu_default.pop(current_frame[0])
         list_cisla_pu[current_frame[0]].destroy()
         list_cisla_pu.pop(current_frame[0])
         list_nazvy_pu[current_frame[0]].destroy()
         list_nazvy_pu.pop(current_frame[0])
-        list_e_typ[current_frame[0]].destroy()
-        list_e_typ.pop(current_frame[0])
         dic_m_rows.pop(current_frame[0])
         dic_o_rows.pop(current_frame[0])
         list_l_pv[current_frame[0]].destroy()

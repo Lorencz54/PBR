@@ -14,7 +14,13 @@ list_var_e_pozarni_vyska = []
 list_var_om_konstrukcni_system = []
 
 
-#lists of global PU variables
+#lists of pu entries
+list_om_typ_pu = []
+list_om_konstrukcni_system_pu = []
+list_var_l_pv = []
+list_nazvy_pu_default = []
+list_cisla_pu = []
+list_nazvy_pu = []
 
 #labels
 list_l_S = []
@@ -31,12 +37,7 @@ list_l_n = []
 list_l_k = []
 list_l_pv = []
 
-list_var_l_pv = []
-list_nazvy_pu_default = []
-
-#lists of entries
-list_cisla_pu = []
-list_nazvy_pu = []
+#lists of entries from individual pu
 list_pocty_podlazi_pu = []
 list_sirky_pu = []
 list_delky_pu = []
@@ -65,7 +66,6 @@ dic_m_rows = []
 dic_ps_group_sums = []
 dic_o_rows = []
 list_e_PU = []
-list_e_typ = []
 dic_so_ot = []
 
 # row entry widget dictionaries

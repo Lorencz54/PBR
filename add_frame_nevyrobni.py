@@ -1,6 +1,37 @@
-from table_manager import *
+from remove_and_rename_frame import *
 from m_plus_and_minus import *
 from o_plus_and_minus import *
+
+def add_new_pu(f_seznam_PU):
+    # widgety pro požární úsek v rámečku pro celý objekt
+    om_typ_pu = ctk.CTkOptionMenu(f_seznam_PU, values=["nevýrobní", "výrobní", "OB1", "OB2", "garáž", "sklad"])
+    om_typ_pu.grid(row=len(list_f_PU), column=0)
+    list_om_typ_pu.append(om_typ_pu)
+
+    om_konstrukcni_system_pu = ctk.CTkOptionMenu(f_seznam_PU, values=["nehořlavý", "smíšený", "hořlavý"])
+    om_konstrukcni_system_pu.grid(row=len(list_f_PU), column=1)
+    list_om_konstrukcni_system_pu.append(om_konstrukcni_system_pu)
+
+    e_oznaceni_pu = ctk.CTkEntry(f_seznam_PU)
+    e_oznaceni_pu.grid(row=len(list_f_PU), column=2)
+    e_oznaceni_pu.bind("<FocusOut>", pu_rename)
+    list_cisla_pu.append(e_oznaceni_pu)
+
+    e_nazev_pu = ctk.CTkEntry(f_seznam_PU)
+    e_nazev_pu.grid(row=len(list_f_PU), column=3)
+    e_nazev_pu.bind("<FocusOut>", pu_rename)
+    list_nazvy_pu.append(e_nazev_pu)
+
+    var_l_pv = tk.IntVar()
+    l_pv = ctk.CTkLabel(f_seznam_PU, textvariable=var_l_pv)
+    l_pv.grid(row=len(list_f_PU), column=4)
+    list_l_pv.append(l_pv)
+    list_var_l_pv.append(var_l_pv)
+
+    var_l_SPB = tk.StringVar()
+    l_SPB = ctk.CTkLabel(f_seznam_PU, textvariable=var_l_SPB)
+    l_SPB.grid(row=len(list_f_PU), column=5)
+    list_var_l_SPB.append(var_l_SPB)
 
 def add_f(current_frame, window, list_f_PU,list_l_S, list_l_an, list_l_pn,list_l_ps, list_l_p, list_l_a,
           list_l_hs, list_l_so, list_l_ho, f_seznam_PU, list_mezni_pocty_podlazi):
@@ -284,26 +315,32 @@ def add_f(current_frame, window, list_f_PU,list_l_S, list_l_an, list_l_pn,list_l
         b_remove_hole.grid(row=3, column=16)
 
 # widgety pro požární úsek v rámečku pro celý objekt
-    e_oznaceni = ctk.CTkEntry(f_seznam_PU)
-    e_oznaceni.grid(row=len(list_f_PU), column=0)
-    e_oznaceni.bind("<FocusOut>", pu_rename)
-    list_cisla_pu.append(e_oznaceni)
-    e_PU = ctk.CTkEntry(f_seznam_PU)
-    e_PU.grid(row=len(list_f_PU), column=1)
-    e_PU.bind("<FocusOut>", pu_rename)
-    list_nazvy_pu.append(e_PU)
-    e_typ = ctk.CTkEntry(f_seznam_PU)
-    e_typ.grid(row=len(list_f_PU), column=2)
-    list_e_typ.append(e_typ)
+    om_typ_pu = ctk.CTkOptionMenu(f_seznam_PU, values=["nevýrobní", "výrobní", "OB1", "OB2", "garáž", "sklad"])
+    om_typ_pu.grid(row=len(list_f_PU), column=0)
+    list_om_typ_pu.append(om_typ_pu)
+
+    om_konstrukcni_system_pu = ctk.CTkOptionMenu(f_seznam_PU, values=["nehořlavý", "smíšený", "hořlavý"])
+    om_konstrukcni_system_pu.grid(row=len(list_f_PU), column=1)
+    list_om_konstrukcni_system_pu.append(om_konstrukcni_system_pu)
+
+    e_oznaceni_pu = ctk.CTkEntry(f_seznam_PU)
+    e_oznaceni_pu.grid(row=len(list_f_PU), column=2)
+    e_oznaceni_pu.bind("<FocusOut>", pu_rename)
+    list_cisla_pu.append(e_oznaceni_pu)
+
+    e_nazev_pu = ctk.CTkEntry(f_seznam_PU)
+    e_nazev_pu.grid(row=len(list_f_PU), column=3)
+    e_nazev_pu.bind("<FocusOut>", pu_rename)
+    list_nazvy_pu.append(e_nazev_pu)
 
     var_l_pv = tk.IntVar()
     l_pv = ctk.CTkLabel(f_seznam_PU, textvariable=var_l_pv)
-    l_pv.grid(row=len(list_f_PU), column=3)
+    l_pv.grid(row=len(list_f_PU), column=4)
     list_l_pv.append(l_pv)
     list_var_l_pv.append(var_l_pv)
 
     var_l_SPB = tk.StringVar()
     l_SPB = ctk.CTkLabel(f_seznam_PU, textvariable=var_l_SPB)
-    l_SPB.grid(row=len(list_f_PU), column=4)
+    l_SPB.grid(row=len(list_f_PU), column=5)
     list_var_l_SPB.append(var_l_SPB)
 

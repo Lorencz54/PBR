@@ -37,7 +37,7 @@ f_info_objekt = ctk.CTkFrame(window)
 
 # definice widgetů pro panel na tlačítka
 b_add_f = ctk.CTkButton(f_info_objekt, text="nový požární úsek", command=lambda: add_f(current_frame, window, list_f_PU, list_l_S, list_l_an, list_l_pn, list_l_ps, list_l_p, list_l_a, list_l_hs, list_l_so, list_l_ho, f_seznam_PU, list_mezni_pocty_podlazi))
-b_remove_f = ctk.CTkButton(f_info_objekt, text="odebrat požární úsek", command=lambda: remove_f(current_frame, list_cisla_pu, list_nazvy_pu, list_e_typ))
+b_remove_f = ctk.CTkButton(f_info_objekt, text="odebrat požární úsek", command=lambda: remove_f(current_frame, list_cisla_pu, list_nazvy_pu))
 b_lift = ctk.CTkButton(f_info_objekt, text="předchozí PÚ", command=lift_frame)
 b_lower = ctk.CTkButton(f_info_objekt, text="další PÚ", command=lower_frame)
 
@@ -76,18 +76,20 @@ b_lift.grid(row=7, column=1)
 b_lower.grid(row=7, column=3)
 
 # f_seznamPU widgets
-l_oznaceni = ctk.CTkLabel(f_seznam_PU, text="Označení PÚ", width=140)
-l_PU = ctk.CTkLabel(f_seznam_PU, text="Název PÚ", width=140)
-l_typ = ctk.CTkLabel(f_seznam_PU, text="typ objektu", width=140)
+l_typ_pu = ctk.CTkLabel(f_seznam_PU, text="typ objektu", width=140)
+l_konstrukcni_system_pu = ctk.CTkLabel(f_seznam_PU, text="konstrukční systém", width=140)
+l_oznaceni_pu = ctk.CTkLabel(f_seznam_PU, text="Označení PÚ", width=140)
+l_nazev_pu = ctk.CTkLabel(f_seznam_PU, text="Název PÚ", width=140)
 l_pv = ctk.CTkLabel(f_seznam_PU, text="pv", width=140)
 l_SPB = ctk.CTkLabel(f_seznam_PU, text="SPB", width=140)
 
 # f_seznamPU layout
-l_oznaceni.grid(row=0, column=0)
-l_PU.grid(row=0, column=1)
-l_typ.grid(row=0, column=2)
-l_pv.grid(row=0, column=3)
-l_SPB.grid(row=0, column=4)
+l_typ_pu.grid(row=0, column=0)
+l_konstrukcni_system_pu.grid(row=0, column=1)
+l_oznaceni_pu.grid(row=0, column=2)
+l_nazev_pu.grid(row=0, column=3)
+l_pv.grid(row=0, column=4)
+l_SPB.grid(row=0, column=5)
 
 # spuštění okna
 window.mainloop()
