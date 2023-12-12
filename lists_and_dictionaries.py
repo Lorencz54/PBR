@@ -6,13 +6,13 @@ m_current_value = []
 list_f_PU = []
 list_f_info_PU = []
 list_m_rows = []
-
+list_pu_number = []
 # lists of global variables
 current_frame = [0]
 list_e_pozarni_vyska = []
 list_var_e_pozarni_vyska = []
 list_var_om_konstrukcni_system = []
-
+list_var_om_typ_pu = []
 
 #lists of pu entries
 list_om_typ_pu = []

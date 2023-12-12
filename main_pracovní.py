@@ -36,7 +36,7 @@ f_seznam_PU = ctk.CTkFrame(window)
 f_info_objekt = ctk.CTkFrame(window)
 
 # definice widgetů pro panel na tlačítka
-b_add_f = ctk.CTkButton(f_info_objekt, text="nový požární úsek", command=lambda: add_f(current_frame, window, list_f_PU, list_l_S, list_l_an, list_l_pn, list_l_ps, list_l_p, list_l_a, list_l_hs, list_l_so, list_l_ho, f_seznam_PU, list_mezni_pocty_podlazi))
+b_add_f = ctk.CTkButton(f_info_objekt, text="nový požární úsek", command=lambda: add_new_pu(f_seznam_PU, window))
 b_remove_f = ctk.CTkButton(f_info_objekt, text="odebrat požární úsek", command=lambda: remove_f(current_frame, list_cisla_pu, list_nazvy_pu))
 b_lift = ctk.CTkButton(f_info_objekt, text="předchozí PÚ", command=lift_frame)
 b_lower = ctk.CTkButton(f_info_objekt, text="další PÚ", command=lower_frame)
