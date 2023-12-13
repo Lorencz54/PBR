@@ -1,7 +1,4 @@
-from add_frame_nevyrobni import *
-from lists_and_dictionaries import *
-from Classes import *
-import customtkinter as ctk
+from pu_rows_manager import *
 
 as_value = 0.9
 # funkce na listování mezi rámečky vpřed

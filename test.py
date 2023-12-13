@@ -1,15 +1,22 @@
 import tkinter as tk
+from tkinter import messagebox
 
-# Create the main window
-window = tk.Tk()
-window.title("Tkinter Entry List Example")
-def function():
-    entry.grid(row=2, column=1)
-label = tk.Label(window, text="text")
-label.grid(row=1, column=1)
-entry = tk.Entry(window)
-entry.grid(row=0, column=1)
-button = tk.Button(window, command=function)
-button.grid(row=3, column=1)
-# Start the Tkinter event loop
-window.mainloop()
+def show_warning_window():
+    result = messagebox.askquestion("Warning", "Are you sure you want to proceed?")
+    if result == 'yes':
+        # Perform the action when 'Yes' is clicked
+        print("Proceeding...")
+    else:
+        # Perform the action when 'No' is clicked or the window is closed
+        print("Cancelled")
+
+# Create the main Tkinter window
+root = tk.Tk()
+root.title("Tkinter Warning Window Example")
+
+# Create a button that will trigger the warning window
+warning_button = tk.Button(root, text="Show Warning", command=show_warning_window)
+warning_button.pack(pady=20)
+
+# Run the Tkinter event loop
+root.mainloop()

@@ -7,6 +7,7 @@ list_f_PU = []
 list_f_info_PU = []
 list_m_rows = []
 list_pu_number = []
+
 # lists of global variables
 current_frame = [0]
 list_e_pozarni_vyska = []

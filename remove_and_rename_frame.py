@@ -8,6 +8,7 @@ def remove_f(current_frame, list_cisla_pu, list_nazvy_pu):
         list_om_konstrukcni_system_pu.pop(current_frame[0])
         list_cisla_pu[current_frame[0]].destroy()
         list_cisla_pu.pop(current_frame[0])
+        list_var_om_typ_pu.pop(current_frame[0])
         list_nazvy_pu[current_frame[0]].destroy()
         list_nazvy_pu.pop(current_frame[0])
         list_l_pv[current_frame[0]].destroy()
@@ -16,6 +17,18 @@ def remove_f(current_frame, list_cisla_pu, list_nazvy_pu):
         for i in range(len(list_om_typ_pu)):
             element = list_om_typ_pu[i]
             element.grid(row=list_om_typ_pu.index(element)+1, column=0)
+        for i in range(len(list_om_konstrukcni_system_pu)):
+            element = list_om_konstrukcni_system_pu[i]
+            element.grid(row=list_om_konstrukcni_system_pu.index(element)+1, column=1)
+        for i in range(len(list_cisla_pu)):
+            element = list_cisla_pu[i]
+            element.grid(row=list_cisla_pu.index(element)+1, column=2)
+        for i in range(len(list_nazvy_pu)):
+            element = list_nazvy_pu[i]
+            element.grid(row=list_nazvy_pu.index(element)+1, column=3)
+        for i in range(len(list_l_pv)):
+            element = list_l_pv[i]
+            element.grid(row=list_l_pv.index(element)+1, column=4)
         if len(list_f_PU) != 0:
             list_f_info_PU[current_frame[0]].destroy()
             list_f_info_PU.pop(current_frame[0])
@@ -51,7 +64,6 @@ def remove_f(current_frame, list_cisla_pu, list_nazvy_pu):
             if 0<= current_frame[0] < len(list_pv):
                 list_pv.pop(current_frame[0])
             current_frame[0] -= 1
-
 
 
 def pu_rename(event):
