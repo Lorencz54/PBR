@@ -62,13 +62,20 @@ def add_pu_f_nevyrobni(index, current_frame,list_l_S, list_l_an, list_l_pn,list_
     dic_sirka_ot_entries.append(list_sirka_ot)
     dic_vyska_ot_entries.append(list_vyska_ot)
 
+    list_a.append(0)
+    list_k.append(0)
+    list_b.append(0)
+    list_p.append(0)
+
 # vytvoření míst v listech pro jednotlivé parametry PÚ
     list_pv.append(0)
 
 # nadpis požárního úseku a obecné informace o něm
+    print(list_nazvy_pu_default)
+    print(index)
     l_nazev_pu_default = ctk.CTkLabel(list_f_info_PU[index], text="Požární úsek č. ", anchor="center")
     l_nazev_pu_default.grid(row=0, column=0, columnspan=12)
-    list_nazvy_pu_default.append(l_nazev_pu_default)
+    list_nazvy_pu_default[current_frame[0]] = l_nazev_pu_default
     list_nazvy_pu_default[current_frame[0]].configure(text="požární úsek č. " + str(current_frame[0] + 1))
 
     l_vyska_pu = ctk.CTkLabel(list_f_info_PU[index], text="výšková poloha PÚ")

@@ -7,6 +7,7 @@ list_f_PU = []
 list_f_info_PU = []
 list_m_rows = []
 list_pu_number = []
+list_PBR_frames = []
 
 # lists of global variables
 current_frame = [0]
@@ -37,7 +38,7 @@ list_l_b = []
 list_l_n = []
 list_l_k = []
 list_l_pv = []
-
+list_l_SPB = []
 #lists of entries from individual pu
 list_pocty_podlazi_pu = []
 list_sirky_pu = []

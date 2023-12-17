@@ -1,5 +1,5 @@
 from Classes import *
-from widget_variables_ounter import *
+from widget_variables_counter import *
 import customtkinter as ctk
 
 # funkce na vkládání řádků pro nové místnosti do current framu

@@ -1,4 +1,4 @@
-from widget_variables_ounter import *
+from widget_variables_counter import *
 from Classes import *
 import customtkinter as ctk
 
