@@ -29,20 +29,13 @@ def lower_frame():
 window = ctk.CTk()
 window.geometry(f"{sirka_okna[0]}x{vyska_okna[0]}")
 
-# sestavení dvou horních rámečků (hlavní informace o objektu a panel pro tlačítka)
-f_room_list = ctk.CTkFrame(window)
-f_seznam_PU = ctk.CTkFrame(window)
 f_info_objekt = ctk.CTkFrame(window)
 
-
-# vložení PBR framů do listu (seznam požárních úseků a seznam místností)
-list_PBR_frames.append(f_seznam_PU)
-list_PBR_frames.append(f_room_list)
-
-
+create_seznam_PU(window)
+create_room_list(window)
 
 # definice widgetů pro panel na tlačítka
-b_add_f = ctk.CTkButton(f_info_objekt, text="nový požární úsek", command=lambda: add_new_pu(f_seznam_PU, window))
+b_add_f = ctk.CTkButton(f_info_objekt, text="nový požární úsek", command=lambda: add_new_pu(window))
 b_remove_f = ctk.CTkButton(f_info_objekt, text="odebrat požární úsek", command=lambda: remove_f(current_frame, list_cisla_pu, list_nazvy_pu))
 b_lift = ctk.CTkButton(f_info_objekt, text="předchozí PÚ", command=lift_frame)
 b_lower = ctk.CTkButton(f_info_objekt, text="další PÚ", command=lower_frame)
@@ -65,15 +58,10 @@ l_konstrukcni_system = ctk.CTkLabel(f_info_objekt, text="konstrukční systém")
 l_pozarni_vyska = ctk.CTkLabel(f_info_objekt, text="požární výška")
 
 b_list_pu = ctk.CTkButton(f_info_objekt, text="požární úseky", command=lift_seznam_PU)
-b_room_list = ctk.CTkButton(f_info_objekt, text="seznam místností", command=create_or_lift_room_list)
+b_room_list = ctk.CTkButton(f_info_objekt, text="seznam místností", command=lift_room_list)
 
 # umístění dvou horních rámečků
 f_info_objekt.place(relwidth=0.3, relheight=0.5)
-f_room_list.place(relx=0.3, relwidth=0.7, relheight=0.5)
-f_seznam_PU.place(relx= 0.3, relwidth=0.7, relheight=0.5)
-
-label = ctk.CTkLabel(f_room_list, text="ddd")
-label.pack()
 
 # umístění tlačítek do panelu pro tlačítka
 om_konstrukcni_system.grid(row=1, column=2)
@@ -90,21 +78,7 @@ b_lower.grid(row=7, column=2)
 b_list_pu.grid(row=3, column=3)
 b_room_list.grid(row=4, column=3)
 
-# f_seznamPU widgets
-l_typ_pu = ctk.CTkLabel(f_seznam_PU, text="typ objektu", width=140)
-l_konstrukcni_system_pu = ctk.CTkLabel(f_seznam_PU, text="konstrukční systém", width=140)
-l_oznaceni_pu = ctk.CTkLabel(f_seznam_PU, text="Označení PÚ", width=140)
-l_nazev_pu = ctk.CTkLabel(f_seznam_PU, text="Název PÚ", width=140)
-l_pv = ctk.CTkLabel(f_seznam_PU, text="pv", width=140)
-l_SPB = ctk.CTkLabel(f_seznam_PU, text="SPB", width=140)
 
-# f_seznamPU layout
-l_typ_pu.grid(row=0, column=0)
-l_konstrukcni_system_pu.grid(row=0, column=1)
-l_oznaceni_pu.grid(row=0, column=2)
-l_nazev_pu.grid(row=0, column=3)
-l_pv.grid(row=0, column=4)
-l_SPB.grid(row=0, column=5)
 
 
 # spuštění okna

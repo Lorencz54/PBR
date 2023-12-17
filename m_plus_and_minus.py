@@ -3,7 +3,7 @@ from widget_variables_counter import *
 import customtkinter as ctk
 
 # funkce na vkládání řádků pro nové místnosti do current framu
-def m_plus(current_frame):
+def PU_m_plus():
     dic_m_rows[current_frame[0]].append(1)
     for i in range(11):
         if i <= 1:
@@ -53,6 +53,12 @@ def m_plus(current_frame):
             l_ps.grid(row=len(dic_m_rows[current_frame[0]]), column=i)
             dic_var_ps_labels[current_frame[0]].append(var_l_psi)
             dic_ps_row_sum_labels[current_frame[0]].append(l_ps)
+
+def m_plus():
+    list_m_rows.append(1)
+    for i in range(11):
+        e_text = ctk.CTkEntry(list_PBR_frames[1], width=30)
+        e_text.grid(row=len(list_m_rows)+2, column=i)
 
 # funkce na odebírání řádků pro místnosti do current framu
 def m_minus(current_frame):

@@ -266,7 +266,7 @@ def add_pu_f_nevyrobni(index, current_frame,list_l_S, list_l_an, list_l_pn,list_
     l_vyska_ot.grid(row=1, column=15)
 
     if len(list_f_PU) >= 1:
-        b_new_row = ctk.CTkButton(list_f_PU[index], text="+", command=lambda:m_plus(current_frame), width=25, height=25)
+        b_new_row = ctk.CTkButton(list_f_PU[index], text="+", command=lambda:PU_m_plus, width=25, height=25)
         b_new_row.grid(row=2, column=11)
         b_remove_row = ctk.CTkButton(list_f_PU[index], text="-", command=lambda:m_minus(current_frame), width=25, height=25)
         b_remove_row.grid(row=3, column=11)
