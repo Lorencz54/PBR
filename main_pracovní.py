@@ -40,20 +40,12 @@ b_remove_f = ctk.CTkButton(f_info_objekt, text="odebrat požární úsek", comma
 b_lift = ctk.CTkButton(f_info_objekt, text="předchozí PÚ", command=lift_frame)
 b_lower = ctk.CTkButton(f_info_objekt, text="další PÚ", command=lower_frame)
 
-var_om_konstrukcni_system = tk.StringVar()
-om_konstrukcni_system = ctk.CTkOptionMenu(f_info_objekt, values=["nehořlavý", "smíšený", "hořlavý"], variable=var_om_konstrukcni_system)
-list_var_om_konstrukcni_system.append(var_om_konstrukcni_system)
-var_om_konstrukcni_system.trace_add("write", lambda name, index, mode, sv=list_var_om_konstrukcni_system: calculate_max_dimensions(current_frame))
-var_om_konstrukcni_system.trace_add("write", lambda name, index, mode, sv=list_var_e_pozarni_vyska: determine_SPB(current_frame))
-
 var_e_pozarni_vyska = tk.StringVar()
 e_pozarni_vyska = EntryWithLimit(f_info_objekt, textvariable=var_e_pozarni_vyska)
 list_e_pozarni_vyska.append(e_pozarni_vyska)
 list_var_e_pozarni_vyska.append(var_e_pozarni_vyska)
 var_e_pozarni_vyska.trace_add("write", lambda name, index, mode, sv=list_var_e_pozarni_vyska: calculate_max_dimensions(current_frame))
 var_e_pozarni_vyska.trace_add("write", lambda name, index, mode, sv=list_var_e_pozarni_vyska: determine_SPB(current_frame))
-
-l_konstrukcni_system = ctk.CTkLabel(f_info_objekt, text="konstrukční systém")
 
 l_pozarni_vyska = ctk.CTkLabel(f_info_objekt, text="požární výška")
 
@@ -64,8 +56,6 @@ b_room_list = ctk.CTkButton(f_info_objekt, text="seznam místností", command=li
 f_info_objekt.place(relwidth=0.3, relheight=0.5)
 
 # umístění tlačítek do panelu pro tlačítka
-om_konstrukcni_system.grid(row=1, column=2)
-l_konstrukcni_system.grid(row=1, column=1)
 e_pozarni_vyska.grid(row=2, column=2)
 l_pozarni_vyska.grid(row=2, column=1)
 

@@ -1,7 +1,7 @@
 from add_frame_nevyrobni import *
 from remove_and_rename_frame import *
 from add_frame_vyrobni import *
-from tkinter import messagebox
+from add_frame_OB1 import *
 
 
 def add_new_pu(window):
@@ -10,15 +10,19 @@ def add_new_pu(window):
 
     # widgety pro požární úsek v rámečku pro celý objekt
     var_om_typ_pu = ctk.StringVar()
-    om_typ_pu = ctk.CTkOptionMenu(list_PBR_frames[0], values=["", "nevýrobní", "výrobní", "OB1", "OB2", "garáž", "sklad"], variable=var_om_typ_pu)
+    om_typ_pu = ctk.CTkOptionMenu(list_PBR_frames[0], values=["", "nevýrobní", "OB1"], variable=var_om_typ_pu)
     om_typ_pu.grid(row=len(list_pu_number), column=0)
     list_om_typ_pu.append(om_typ_pu)
     list_var_om_typ_pu.append(var_om_typ_pu)
-    var_om_typ_pu.trace_add("write", lambda name, mode, index, sv=list_var_om_typ_pu: determine_pu_type(sv.index(var_om_typ_pu), window))
+    var_om_typ_pu.trace_add("write", lambda name, mode, index, sv=list_var_om_typ_pu: determine_pu_type(sv.index(var_om_typ_pu)))
 
-    om_konstrukcni_system_pu = ctk.CTkOptionMenu(list_PBR_frames[0], values=["nehořlavý", "smíšený", "hořlavý"])
+    var_om_konstrukcni_system_pu = tk.StringVar()
+    om_konstrukcni_system_pu = ctk.CTkOptionMenu(list_PBR_frames[0], values=["", "nehořlavý", "smíšený", "hořlavý"], variable=var_om_konstrukcni_system_pu)
     om_konstrukcni_system_pu.grid(row=len(list_pu_number), column=1)
     list_om_konstrukcni_system_pu.append(om_konstrukcni_system_pu)
+    list_var_om_konstrukcni_system.append(var_om_konstrukcni_system_pu)
+    var_om_konstrukcni_system_pu.trace_add("write", lambda name, index, mode, sv=list_var_om_konstrukcni_system: calculate_max_dimensions(current_frame))
+    var_om_konstrukcni_system_pu.trace_add("write", lambda name, index, mode, sv=list_var_e_pozarni_vyska: determine_SPB(current_frame))
 
     e_oznaceni_pu = ctk.CTkEntry(list_PBR_frames[0])
     e_oznaceni_pu.grid(row=len(list_pu_number), column=2)
@@ -52,5 +56,12 @@ def add_new_pu(window):
     # zařazení rámečku požárního úseku do listu a jeho nastavení jako current frame
     current_frame[0] = list_f_PU.index(f_PU)
 
-def determine_pu_type(index, window):
-    add_pu_f_nevyrobni(index, current_frame, list_l_S, list_l_an, list_l_pn, list_l_ps, list_l_p, list_l_a, list_l_hs, list_l_so, list_l_ho, list_mezni_pocty_podlazi, list_f_info_PU, list_f_PU)
+def determine_pu_type(index):
+    if list_var_om_typ_pu[index].get() == "nevýrobní":
+        add_pu_f_nevyrobni(index, current_frame, list_l_S, list_l_an, list_l_pn, list_l_ps, list_l_p, list_l_a, list_l_hs,
+                       list_l_so, list_l_ho, list_mezni_pocty_podlazi, list_f_info_PU, list_f_PU)
+    elif list_var_om_typ_pu[index].get() == "OB1":
+        add_pu_f_OB1(index)
+
+
+

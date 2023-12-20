@@ -44,6 +44,7 @@ list_pocty_podlazi_pu = []
 list_sirky_pu = []
 list_delky_pu = []
 list_vyskove_polohy_pu = []
+list_CSN_pv = []
 
 #list of output variables PU
 list_S = []

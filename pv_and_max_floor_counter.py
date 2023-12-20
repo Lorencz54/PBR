@@ -4,6 +4,16 @@ from determine_SPB import *
 import statistics
 import math
 
+def calculate_short_pv_value():
+    ps_value = list_l_ps[current_frame[0]].get()
+    pv_value = list_CSN_pv[current_frame[0]].get()
+    print(ps_value)
+    print(pv_value)
+    if ps_value > 5:
+        short_pv_value = pv_value*(ps_value-5)*1.15
+        list_var_l_pv[current_frame[0]].set(short_pv_value)
+    else:
+        list_var_l_pv[current_frame[0]].set(pv_value)
 def calculate_pv_value(current_frame):
     # p_value
     p_value = round(list_l_pn[current_frame[0]].get() + list_l_ps[current_frame[0]].get(), 2)

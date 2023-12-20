@@ -1,6 +1,6 @@
-from m_plus_and_minus import *
-from o_plus_and_minus import *
 from pu_rows_manager import *
+from m_plus_and_minus import *
+
 def add_pu_f_nevyrobni(index, current_frame,list_l_S, list_l_an, list_l_pn,list_l_ps, list_l_p, list_l_a,
           list_l_hs, list_l_so, list_l_ho, list_mezni_pocty_podlazi, list_f_info_PU, list_f_PU):
     global om_konstrukcni_system
@@ -71,8 +71,6 @@ def add_pu_f_nevyrobni(index, current_frame,list_l_S, list_l_an, list_l_pn,list_
     list_pv.append(0)
 
 # nadpis požárního úseku a obecné informace o něm
-    print(list_nazvy_pu_default)
-    print(index)
     l_nazev_pu_default = ctk.CTkLabel(list_f_info_PU[index], text="Požární úsek č. ", anchor="center")
     l_nazev_pu_default.grid(row=0, column=0, columnspan=12)
     list_nazvy_pu_default[current_frame[0]] = l_nazev_pu_default
@@ -266,7 +264,7 @@ def add_pu_f_nevyrobni(index, current_frame,list_l_S, list_l_an, list_l_pn,list_
     l_vyska_ot.grid(row=1, column=15)
 
     if len(list_f_PU) >= 1:
-        b_new_row = ctk.CTkButton(list_f_PU[index], text="+", command=lambda:PU_m_plus, width=25, height=25)
+        b_new_row = ctk.CTkButton(list_f_PU[index], text="+", command=lambda:PU_m_plus(current_frame), width=25, height=25)
         b_new_row.grid(row=2, column=11)
         b_remove_row = ctk.CTkButton(list_f_PU[index], text="-", command=lambda:m_minus(current_frame), width=25, height=25)
         b_remove_row.grid(row=3, column=11)

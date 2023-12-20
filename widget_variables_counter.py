@@ -43,48 +43,12 @@ def ps(current_frame, list_l_ps, dic_ps_entries, dic_S_entries):
     for i in range(len(ps_sum_list)):
         ps_row_sum = ps_sum_list[i]
         dic_var_ps_labels[int(current_frame[0])][i].set(ps_row_sum)
-    calculate_pv_value(current_frame)
-    calculate_max_dimensions(current_frame)
+    if list_var_om_typ_pu[current_frame[0]].get() == "nevýrobní":
+        calculate_pv_value(current_frame)
+        calculate_max_dimensions(current_frame)
+    elif list_var_om_typ_pu[current_frame[0]].get() == "OB1":
+        calculate_short_pv_value()
 
-    #labels
-    print(list_l_S)
-    print(list_l_an)
-    print(list_l_pn)
-    print(list_l_ps)
-    print(list_l_p)
-    print(list_l_a)
-    print(list_l_hs)
-    print(list_l_so)
-    print(list_l_ho)
-    print(list_l_b)
-    print(list_l_n)
-    print(list_l_k)
-    print(list_l_pv)
-
-    #lists of entries from individual pu
-    print(list_pocty_podlazi_pu)#
-    print(list_sirky_pu)#
-    print(list_delky_pu)#
-    print(list_vyskove_polohy_pu)#
-
-    #list of output variables PU
-    print(list_S)
-    print(list_pn)
-    print(list_hs)
-    print(list_an)
-    print(list_ps)
-    print(list_a)
-    print(list_ho)
-    print(list_so)
-    print(list_k)
-    print(list_b)
-    print(list_p)
-    print(list_pv)
-    print(list_mezni_pocty_podlazi)#
-    print(list_mezni_delky)#
-    print(list_mezni_sirky)#
-    print(list_var_l_SPB)#
-    print(list_var_l_pv)
 # funkce na výpočet výšky prostoru v požárním úseku
 def hs_so(current_frame):
     pocet_values = [float(entry.get()) if entry.get() != "" else 0.0 for entry in dic_pocet_ot_entries[int(current_frame[0])]]

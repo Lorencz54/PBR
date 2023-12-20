@@ -3,12 +3,12 @@ from lists_and_dictionaries import *
 
 def determine_SPB(current_frame):
     if len(list_f_PU) != 0:
-        if list_var_om_konstrukcni_system[0].get() == "nehořlavý":
+        if list_om_konstrukcni_system_pu[current_frame[0]].get() == "nehořlavý":
             df_pv_values = np.array(df_SPB.iloc[0:7, 0].values)
             pv_higher_than_pvpu_indexes = np.where(df_pv_values >= list_var_l_pv[current_frame[0]].get())[0]
             min_index = pv_higher_than_pvpu_indexes[np.argmin(df_pv_values[pv_higher_than_pvpu_indexes])]
 
-        elif list_var_om_konstrukcni_system[0].get() == "smíšený":
+        elif list_om_konstrukcni_system_pu[current_frame[0]].get() == "smíšený":
             df_pv_values = np.array(df_SPB.iloc[9:16, 0].values)
             pv_higher_than_pvpu_indexes = np.where(df_pv_values >= list_var_l_pv[current_frame[0]].get())[0]
             min_index = pv_higher_than_pvpu_indexes[np.argmin(df_pv_values[pv_higher_than_pvpu_indexes])]
