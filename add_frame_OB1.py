@@ -112,9 +112,9 @@ def add_pu_f_OB1(index):
     e_CSN_pv.insert(0, "0")
     e_CSN_pv.bind("<FocusIn>", lambda event: e_CSN_pv.delete(0, tk.END) if e_CSN_pv.get() == "0" else None)
     e_CSN_pv.bind("<FocusOut>", lambda event: e_CSN_pv.insert(0, "0") if e_CSN_pv.get() == "" else None)
-    var_CSN_pv.trace_add("write", lambda name, index, mode, sv=var_CSN_pv: calculate_short_pv_value)
+    var_CSN_pv.trace_add("write", lambda name, index, mode, sv=var_CSN_pv: calculate_short_pv_value())
 
-    # nadpis sloupců místností
+# nadpis sloupců místností
     l_cm = ctk.CTkLabel(list_f_PU[index], text="č. m.", anchor="center", width=40)
     l_cm.grid(row=1, column=0)
     l_nazev_m = ctk.CTkLabel(list_f_PU[index], text="název místnosti", anchor="center", width=200)

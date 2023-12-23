@@ -74,8 +74,7 @@ def add_pu_f_nevyrobni(index):
     l_nazev_pu_default = ctk.CTkLabel(list_f_info_PU[index], text="Požární úsek č. ", anchor="center")
     l_nazev_pu_default.grid(row=0, column=0, columnspan=12)
     list_nazvy_pu_default[current_frame[0]] = l_nazev_pu_default
-    list_nazvy_pu_default[current_frame[0]].configure(text="požární úsek č. " + str(list_nazvy_pu_default.index(l_nazev_pu_default) + 1))
-    print(list_nazvy_pu_default.index(l_nazev_pu_default))
+    list_nazvy_pu_default[current_frame[0]].configure(text="požární úsek č. " + str(list_nazvy_pu_default.index(l_nazev_pu_default)+1))
 
     l_vyska_pu = ctk.CTkLabel(list_f_info_PU[index], text="výšková poloha PÚ")
     l_vyska_pu.grid(row=1, column=0)

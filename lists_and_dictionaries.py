@@ -41,6 +41,7 @@ list_l_n = []
 list_l_k = []
 list_l_pv = []
 list_l_SPB = []
+
 #lists of entries from individual pu
 list_pocty_podlazi_pu = []
 list_sirky_pu = []

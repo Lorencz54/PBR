@@ -1,6 +1,6 @@
 from pu_plus_and_minus import *
 from list_frames_creator import *
-
+from PDF_generator import *
 # funkce na listování mezi rámečky
 def lift_frame():
     if len(list_f_PU) != 0:
@@ -68,5 +68,7 @@ b_pu_list.grid(row=3, column=3)
 b_room_list = ctk.CTkButton(f_info_objekt, text="seznam místností", command=lift_room_list)
 b_room_list.grid(row=4, column=3)
 
+b_generate_pdf = ctk.CTkButton(f_info_objekt, text="Generate PDF", command=generate_pdf())
+b_generate_pdf.grid(row=8, column=1)
 # spuštění okna
 main_window.mainloop()

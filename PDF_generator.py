@@ -1,12 +1,11 @@
 from reportlab.pdfgen import canvas
-
-def generate_pdf(variable1, variable2, output_pdf):
+from lists_and_dictionaries import *
+def generate_pdf():
     # Create a PDF document
     pdf = canvas.Canvas(output_pdf)
 
     # Add content to the PDF
-    pdf.drawString(100, 800, 'Variable 1: {}'.format(variable1))
-    pdf.drawString(100, 780, 'Variable 2: {}'.format(variable2))
+    pdf.drawString(100, 800, 'Variable 1: {}'.format(dic_m_rows))
     # Add more lines as needed
 
     # Save the PDF
@@ -15,7 +14,7 @@ def generate_pdf(variable1, variable2, output_pdf):
 # Example variables
 variable1 = 10
 variable2 = 'Hello'
-output_pdf = 'outpu1t.pdf'
+output_pdf = 'output.pdf'
 
 # Generate the PDF
-generate_pdf(variable1, variable2, output_pdf)
+generate_pdf()
