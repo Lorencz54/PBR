@@ -1,4 +1,4 @@
-from pu_rows_manager import *
+from pu_plus_and_minus import *
 from lists_and_dictionaries import *
 import tkinter as tk
 import customtkinter as ctk
@@ -66,6 +66,13 @@ def add_pu_f_OB1(index):
     list_k.append(0)
     list_b.append(0)
     list_p.append(0)
+    list_pocty_podlazi_pu.append(0)
+    list_sirky_pu.append(0)
+    list_delky_pu.append(0)
+    list_vyskove_polohy_pu.append(0)
+    list_mezni_pocty_podlazi.append(0)
+    list_mezni_delky.append(0)
+    list_mezni_sirky.append(0)
 
     # vytvoření míst v listech pro jednotlivé parametry PÚ
     list_pv.append(0)

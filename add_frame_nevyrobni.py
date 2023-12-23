@@ -1,5 +1,6 @@
-from pu_rows_manager import *
+from pu_plus_and_minus import *
 from m_plus_and_minus import *
+from o_plus_and_minus import *
 
 def add_pu_f_nevyrobni(index):
     global om_konstrukcni_system
@@ -73,7 +74,8 @@ def add_pu_f_nevyrobni(index):
     l_nazev_pu_default = ctk.CTkLabel(list_f_info_PU[index], text="Požární úsek č. ", anchor="center")
     l_nazev_pu_default.grid(row=0, column=0, columnspan=12)
     list_nazvy_pu_default[current_frame[0]] = l_nazev_pu_default
-    list_nazvy_pu_default[current_frame[0]].configure(text="požární úsek č. " + str(current_frame[0] + 1))
+    list_nazvy_pu_default[current_frame[0]].configure(text="požární úsek č. " + str(list_nazvy_pu_default.index(l_nazev_pu_default) + 1))
+    print(list_nazvy_pu_default.index(l_nazev_pu_default))
 
     l_vyska_pu = ctk.CTkLabel(list_f_info_PU[index], text="výšková poloha PÚ")
     l_vyska_pu.grid(row=1, column=0)
@@ -93,7 +95,6 @@ def add_pu_f_nevyrobni(index):
 
     e_pocet_podlazi_pu = ctk.CTkEntry(list_f_info_PU[index], width=80)
     list_pocty_podlazi_pu.append(e_pocet_podlazi_pu)
-    print(list_pocty_podlazi_pu)
     e_pocet_podlazi_pu.grid(row=2, column=1)
     e_pocet_podlazi_pu.insert(0, "0")
     e_pocet_podlazi_pu.bind("<FocusIn>", lambda event: e_pocet_podlazi_pu.delete(0,tk.END) if e_pocet_podlazi_pu.get() == "0" else None)
@@ -272,6 +273,7 @@ def add_pu_f_nevyrobni(index):
         b_new_hole.grid(row=2, column=16)
         b_remove_hole = ctk.CTkButton(list_f_PU[index], text="-", command=lambda:o_minus(current_frame), width=25, height=25)
         b_remove_hole.grid(row=3, column=16)
+
 
 
 

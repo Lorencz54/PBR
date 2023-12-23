@@ -16,6 +16,7 @@ list_var_e_pozarni_vyska = []
 list_var_om_konstrukcni_system = []
 list_var_om_typ_pu = []
 list_var_e_pocet_NP_objektu = []
+list_e_pocet_NP_objektu = []
 
 #lists of pu entries
 list_om_typ_pu = []

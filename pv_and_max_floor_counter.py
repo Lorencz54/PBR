@@ -12,7 +12,7 @@ def calculate_short_pv_value():
         list_var_l_pv[current_frame[0]].set(short_pv_value)
     else:
         list_var_l_pv[current_frame[0]].set(pv_value)
-
+    determine_SPB()
 def calculate_pv_value(current_frame):
     # p_value
     p_value = round(list_l_pn[current_frame[0]].get() + list_l_ps[current_frame[0]].get(), 2)

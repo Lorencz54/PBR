@@ -50,15 +50,14 @@ def determine_SPB():
                         break
                     pass
         else:
-            if list_var_e_pocet_NP_objektu[0] == 1:
+            if list_e_pocet_NP_objektu[0].get() == 1:
                 list_var_l_SPB[current_frame[0]].set("I.")
-            elif list_var_om_konstrukcni_system[0].get() == "nehořlavý" or list_var_om_konstrukcni_system[
-                0].get() == "smíšený":
-                if list_var_e_pocet_NP_objektu[0] <= 3:
+            elif list_var_om_konstrukcni_system[0].get() == "nehořlavý" or list_var_om_konstrukcni_system[0].get() == "smíšený":
+                if list_e_pocet_NP_objektu[0].get() <= 3:
                     list_var_l_SPB[current_frame[0]].set("II.")
-            elif list_var_om_konstrukcni_system[0].get() == "hořlavý" and list_var_e_pocet_NP_objektu[0] == 2:
+            elif list_var_om_konstrukcni_system[0].get() == "hořlavý" and list_e_pocet_NP_objektu[0].get() == 2:
                 list_var_l_SPB[current_frame[0]].set("II.")
-            elif list_var_om_konstrukcni_system[0].get() == "hořlavý" and list_var_e_pocet_NP_objektu[0] == 3:
+            elif list_var_om_konstrukcni_system[0].get() == "hořlavý" and list_e_pocet_NP_objektu[0].get() == 3:
                 list_var_l_SPB[current_frame[0]].set("III.")
             else:
                 if list_om_konstrukcni_system_pu[current_frame[0]].get() == "nehořlavý":

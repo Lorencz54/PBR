@@ -1,4 +1,4 @@
-from pu_rows_manager import *
+from pu_plus_and_minus import *
 from list_frames_creator import *
 
 # funkce na listování mezi rámečky
@@ -51,17 +51,17 @@ e_pozarni_vyska = EntryWithLimit(f_info_objekt, textvariable=var_e_pozarni_vyska
 list_e_pozarni_vyska.append(e_pozarni_vyska)
 e_pozarni_vyska.grid(row=2, column=2)
 list_var_e_pozarni_vyska.append(var_e_pozarni_vyska)
-var_e_pozarni_vyska.trace_add("write", lambda name, index, mode, sv=list_var_e_pozarni_vyska: calculate_max_dimensions)
-var_e_pozarni_vyska.trace_add("write", lambda name, index, mode, sv=list_var_e_pozarni_vyska: determine_SPB)
+var_e_pozarni_vyska.trace_add("write", lambda name, index, mode, sv=list_var_e_pozarni_vyska: calculate_max_dimensions())
+var_e_pozarni_vyska.trace_add("write", lambda name, index, mode, sv=list_var_e_pozarni_vyska: determine_SPB())
 
 l_pocet_NP_objektu = ctk.CTkLabel(f_info_objekt, text="počet NP objektu")
 l_pocet_NP_objektu.grid(row=3, column=1)
 var_e_pocet_NP_objektu = tk.StringVar()
 e_pocet_NP_objektu = EntryWithLimit(f_info_objekt, textvariable=var_e_pocet_NP_objektu)
-list_e_pozarni_vyska.append(e_pocet_NP_objektu)
+list_e_pocet_NP_objektu.append(e_pocet_NP_objektu)
 e_pocet_NP_objektu.grid(row=3, column=2)
 list_var_e_pocet_NP_objektu.append(var_e_pocet_NP_objektu)
-var_e_pocet_NP_objektu.trace_add("write", lambda name, index, mode, sv=list_var_e_pocet_NP_objektu: determine_SPB)
+var_e_pocet_NP_objektu.trace_add("write", lambda name, index, mode, sv=list_var_e_pocet_NP_objektu: determine_SPB())
 
 b_pu_list = ctk.CTkButton(f_info_objekt, text="požární úseky", command=lift_seznam_PU)
 b_pu_list.grid(row=3, column=3)
