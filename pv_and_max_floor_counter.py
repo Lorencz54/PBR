@@ -5,15 +5,14 @@ import statistics
 import math
 
 def calculate_short_pv_value():
-    ps_value = list_l_ps[current_frame[0]].get()
-    pv_value = list_CSN_pv[current_frame[0]].get()
-    print(ps_value)
-    print(pv_value)
+    ps_value = float(list_l_ps[current_frame[0]].get())
+    pv_value = float(list_CSN_pv[current_frame[0]].get())
     if ps_value > 5:
         short_pv_value = pv_value*(ps_value-5)*1.15
         list_var_l_pv[current_frame[0]].set(short_pv_value)
     else:
         list_var_l_pv[current_frame[0]].set(pv_value)
+
 def calculate_pv_value(current_frame):
     # p_value
     p_value = round(list_l_pn[current_frame[0]].get() + list_l_ps[current_frame[0]].get(), 2)
@@ -71,4 +70,4 @@ def calculate_pv_value(current_frame):
                 list_mezni_pocty_podlazi[current_frame[0]].set(math.floor(140 / list_var_l_pv[current_frame[0]].get()))
             else:
                 list_mezni_pocty_podlazi[current_frame[0]].set(math.floor(100 / list_var_l_pv[current_frame[0]].get()))
-    determine_SPB(current_frame)
+    determine_SPB()

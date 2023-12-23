@@ -70,12 +70,13 @@ def add_pu_f_OB1(index):
     # vytvoření míst v listech pro jednotlivé parametry PÚ
     list_pv.append(0)
 
-    # nadpis požárního úseku
+# nadpis požárního úseku
     l_nazev_pu_default = ctk.CTkLabel(list_f_info_PU[index], text="Požární úsek č. ", anchor="center")
     l_nazev_pu_default.grid(row=0, column=0, columnspan=12)
     list_nazvy_pu_default[current_frame[0]] = l_nazev_pu_default
     list_nazvy_pu_default[current_frame[0]].configure(text="požární úsek č. " + str(current_frame[0] + 1))
-    #výpočtové hodnoty pro celý PÚ
+
+# výpočtové hodnoty pro celý PÚ
     l_factor_a = ctk.CTkLabel(list_f_info_PU[index], text="součinitel a")
     l_factor_a.grid(row=1, column=0)
     l_c_factor = ctk.CTkLabel(list_f_info_PU[index], text="součinitel c")
@@ -84,14 +85,14 @@ def add_pu_f_OB1(index):
     l_CSN_pv.grid(row=3, column=0)
 
     e_factor_a = ctk.CTkEntry(list_f_info_PU[index], width=80)
-    list_vyskove_polohy_pu.append(e_factor_a)
+    list_a.append(e_factor_a)
     e_factor_a.grid(row=1, column=1)
     e_factor_a.insert(0, "0")
     e_factor_a.bind("<FocusIn>", lambda event: e_factor_a.delete(0, tk.END) if e_factor_a.get() == "0" else None)
     e_factor_a.bind("<FocusOut>", lambda event: e_factor_a.insert(0, "0") if e_factor_a.get() == "" else None)
 
     e_factor_c = ctk.CTkEntry(list_f_info_PU[index], width=80)
-    list_pocty_podlazi_pu.append(e_factor_c)
+    list_c.append(e_factor_c)
     e_factor_c.grid(row=2, column=1)
     e_factor_c.insert(0, "0")
     e_factor_c.bind("<FocusIn>", lambda event: e_factor_c.delete(0, tk.END) if e_factor_c.get() == "0" else None)
@@ -144,5 +145,5 @@ def add_pu_f_OB1(index):
     if len(list_f_PU) >= 1:
         b_new_row = ctk.CTkButton(list_f_PU[index], text="+", command=lambda:OB1_m_plus(), width=25, height=25)
         b_new_row.grid(row=2, column=7)
-        b_remove_row = ctk.CTkButton(list_f_PU[index], text="-", command=lambda:m_minus(current_frame), width=25, height=25)
+        b_remove_row = ctk.CTkButton(list_f_PU[index], text="-", command=lambda:OB1_m_minus(), width=25, height=25)
         b_remove_row.grid(row=3, column=7)

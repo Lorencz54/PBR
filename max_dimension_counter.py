@@ -4,7 +4,7 @@ from scipy.interpolate import interp1d
 
 
 # mezní rozměry požárního úseku
-def calculate_max_dimensions(current_frame):
+def calculate_max_dimensions():
     if len(list_l_a) != 0:
         a = list_l_a[int(current_frame[0])].get()
         if a < 0.3:

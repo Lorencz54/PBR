@@ -1,6 +1,6 @@
 from widget_variables_counter import *
 
-def remove_f(current_frame, list_cisla_pu, list_nazvy_pu):
+def remove_f():
     if len(list_pu_number) != 0:
         list_om_typ_pu[current_frame[0]].destroy()
         list_om_typ_pu.pop(current_frame[0])

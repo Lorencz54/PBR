@@ -1,8 +1,7 @@
 from pu_rows_manager import *
 from m_plus_and_minus import *
 
-def add_pu_f_nevyrobni(index, current_frame,list_l_S, list_l_an, list_l_pn,list_l_ps, list_l_p, list_l_a,
-          list_l_hs, list_l_so, list_l_ho, list_mezni_pocty_podlazi, list_f_info_PU, list_f_PU):
+def add_pu_f_nevyrobni(index):
     global om_konstrukcni_system
 # listy pro nový požární úsek
     m_rows = [1]
@@ -94,6 +93,7 @@ def add_pu_f_nevyrobni(index, current_frame,list_l_S, list_l_an, list_l_pn,list_
 
     e_pocet_podlazi_pu = ctk.CTkEntry(list_f_info_PU[index], width=80)
     list_pocty_podlazi_pu.append(e_pocet_podlazi_pu)
+    print(list_pocty_podlazi_pu)
     e_pocet_podlazi_pu.grid(row=2, column=1)
     e_pocet_podlazi_pu.insert(0, "0")
     e_pocet_podlazi_pu.bind("<FocusIn>", lambda event: e_pocet_podlazi_pu.delete(0,tk.END) if e_pocet_podlazi_pu.get() == "0" else None)

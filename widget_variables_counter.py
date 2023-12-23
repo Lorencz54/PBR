@@ -13,7 +13,7 @@ def pn(current_frame, list_l_pn, dic_pni_entries, dic_S_entries):
     else:
         list_l_pn[int(current_frame[0])].set(round(np.dot(pn_values, S_values)/S_suma,2))
     calculate_pv_value(current_frame)
-    calculate_max_dimensions(current_frame)
+    calculate_max_dimensions()
 
 # funkce na výpočet an v current framu
 def an(current_frame, list_l_an, dic_ani_entries, dic_S_entries):
@@ -25,7 +25,7 @@ def an(current_frame, list_l_an, dic_ani_entries, dic_S_entries):
     else:
         list_l_an[int(current_frame[0])].set(round(np.dot(an_values, S_values)/S_suma,2))
     calculate_pv_value(current_frame)
-    calculate_max_dimensions(current_frame)
+    calculate_max_dimensions()
 
 #funkce na výpočet ps v current framu
 def ps(current_frame, list_l_ps, dic_ps_entries, dic_S_entries):
@@ -45,7 +45,7 @@ def ps(current_frame, list_l_ps, dic_ps_entries, dic_S_entries):
         dic_var_ps_labels[int(current_frame[0])][i].set(ps_row_sum)
     if list_var_om_typ_pu[current_frame[0]].get() == "nevýrobní":
         calculate_pv_value(current_frame)
-        calculate_max_dimensions(current_frame)
+        calculate_max_dimensions()
     elif list_var_om_typ_pu[current_frame[0]].get() == "OB1":
         calculate_short_pv_value()
 

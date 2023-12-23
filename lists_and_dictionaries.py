@@ -1,4 +1,4 @@
-
+window = []
 sirka_okna = [1600]
 vyska_okna = [1000]
 m_current_value = []
@@ -15,6 +15,7 @@ list_e_pozarni_vyska = []
 list_var_e_pozarni_vyska = []
 list_var_om_konstrukcni_system = []
 list_var_om_typ_pu = []
+list_var_e_pocet_NP_objektu = []
 
 #lists of pu entries
 list_om_typ_pu = []
@@ -59,6 +60,7 @@ list_k = []
 list_b = []
 list_p = []
 list_pv = []
+list_c = []
 list_mezni_pocty_podlazi = []
 list_mezni_delky = []
 list_mezni_sirky = []
