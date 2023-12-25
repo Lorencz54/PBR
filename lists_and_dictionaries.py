@@ -2,6 +2,7 @@ window = []
 sirka_okna = [1600]
 vyska_okna = [1000]
 m_current_value = []
+
 #list of frames and rows
 list_f_PU = []
 list_f_info_PU = []

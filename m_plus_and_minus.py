@@ -110,7 +110,7 @@ def object_m_plus():
     list_m_rows.append(1)
     for i in range(4):
         e_text = ctk.CTkEntry(list_PBR_frames[1], width=30)
-        e_text.grid(row=len(list_m_rows)+2, column=i)
+        e_text.grid(row=len(list_m_rows)+1, column=i)
         if i == 0:
             e_text.configure(width=40)
         elif i == 1:
@@ -118,6 +118,9 @@ def object_m_plus():
         else:
             e_text.configure(width=80)
 
+def object_m_minus():
+    if len(list_m_rows) != 1:
+        pass
 # funkce na odebírání řádků pro místnosti do current framu
 def m_minus(current_frame):
     if len(dic_m_rows[current_frame[0]]) != 1:

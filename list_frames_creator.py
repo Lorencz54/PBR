@@ -21,7 +21,7 @@ def create_room_list():
     # tlačítko pro přidání a odebrání místnosti
     b_new_room = ctk.CTkButton(f_room_list, text="+", width=25, height=25, command=object_m_plus)
     b_new_room.grid(row=1, column=4)
-    b_remove_room = ctk.CTkButton(f_room_list, text="-", width=25, height=25)
+    b_remove_room = ctk.CTkButton(f_room_list, text="-", width=25, height=25, command=object_m_minus)
     b_remove_room.grid(row=2, column=4)
 def create_seznam_PU():
     # vytvoření framu
