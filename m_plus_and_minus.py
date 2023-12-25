@@ -56,7 +56,7 @@ def OB1_m_minus():
 
 def PU_m_plus(curent_frame):
     dic_m_rows[current_frame[0]].append(1)
-
+    print(dic_m_rows)
     for i in range(11):
         if i <= 1:
             e_text = ctk.CTkEntry(list_f_PU[current_frame[0]])
