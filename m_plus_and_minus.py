@@ -105,6 +105,7 @@ def PU_m_plus(curent_frame):
             l_ps.grid(row=len(dic_m_rows[current_frame[0]]), column=i)
             dic_var_ps_labels[current_frame[0]].append(var_l_psi)
             dic_ps_row_sum_labels[current_frame[0]].append(l_ps)
+            dic_ps_group_sums[current_frame[0]].append(0)
 
 def object_m_plus():
     list_m_rows.append(1)

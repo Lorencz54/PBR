@@ -43,11 +43,13 @@ def ps(current_frame, list_l_ps, dic_ps_entries, dic_S_entries):
     for i in range(len(ps_sum_list)):
         ps_row_sum = ps_sum_list[i]
         dic_var_ps_labels[int(current_frame[0])][i].set(ps_row_sum)
+        dic_ps_group_sums[current_frame[0]][i] = ps_row_sum
     if list_var_om_typ_pu[current_frame[0]].get() == "nevýrobní":
         calculate_pv_value(current_frame)
         calculate_max_dimensions()
     elif list_var_om_typ_pu[current_frame[0]].get() == "OB1":
         calculate_short_pv_value()
+    print(dic_ps_group_sums)
 
 # funkce na výpočet výšky prostoru v požárním úseku
 def hs_so(current_frame):

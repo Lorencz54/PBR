@@ -8,13 +8,34 @@ from lists_and_dictionaries import *
 
 # Avoid using the name 'list' for a variable
 def generate_pdf():
-    my_list = []
-    for i in range(len(dic_mc_text_entries[0])):
-        my_list.append(dic_mc_text_entries[0][i].get())
-
+    psi_okna = []
+    psi_dvere = []
+    psi_podlahy = []
+    for i in range(len(dic_psi_entries[0])):
+        if i % 3 == 0:
+            psi_podlahy.append(dic_psi_entries[0][i])
+        elif i % 3 == 1:
+            psi_dvere.append(dic_psi_entries[0][i])
+        else:
+            psi_okna.append(dic_psi_entries[0][i])
     data = [
-        ["m.č."],
-        my_list,
+        ["m.č.", "Název místnosti/prostoru", "Si", "hsi", "psi okna", "psi dveře", "psi podlaha", "psi", "ČSN 73 0802, tab. A.1", "pni", "ani"],
+        *[
+            [mc_entry.get(), nazvy_m_entry.get(), S_entry.get(), hsi_entry.get(), psi_okna_entry.get(), psi_dvere_entry.get(), psi_podlahy_entry.get(), psi_sum_entry, CSN_entry.get(), pni_entry.get(), ani_entry.get(), ]
+            for mc_entry, nazvy_m_entry, S_entry, hsi_entry, psi_okna_entry, psi_dvere_entry, psi_podlahy_entry, psi_sum_entry, CSN_entry, pni_entry, ani_entry in zip(
+                dic_mc_text_entries[0],
+                dic_nazvy_m_text_entries[0],
+                dic_S_entries[0],
+                dic_hsi_entries[0],
+                psi_okna,
+                psi_dvere,
+                psi_podlahy,
+                dic_ps_group_sums[0],
+                dic_CSNi_entries[0],
+                dic_pni_entries[0],
+                dic_ani_entries[0]
+            )
+        ],
     ]
 
     fileName = 'pdfTable.pdf'
