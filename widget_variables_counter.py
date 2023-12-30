@@ -49,7 +49,6 @@ def ps(current_frame, list_l_ps, dic_ps_entries, dic_S_entries):
         calculate_max_dimensions()
     elif list_var_om_typ_pu[current_frame[0]].get() == "OB1":
         calculate_short_pv_value()
-    print(dic_ps_group_sums)
 
 # funkce na výpočet výšky prostoru v požárním úseku
 def hs_so(current_frame):
