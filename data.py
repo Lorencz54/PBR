@@ -4,7 +4,7 @@ from scipy.interpolate import interp1d
 
 # C:\Users\kevin\PycharmProjects\pythonProject\data.xlsx
 # C:\Users\Lenovo\PycharmProjects\PBR\data.xlsx
-data_path = r"C:\Users\kevin\PycharmProjects\pythonProject\data.xlsx"
+data_path = r"C:\Users\Lenovo\PycharmProjects\PBR\data.xlsx"
 
 
 # sheets

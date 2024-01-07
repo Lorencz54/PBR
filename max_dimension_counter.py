@@ -11,7 +11,7 @@ def calculate_max_dimensions():
             a = 0.3
         elif a > 1.3:
             a = 1.3
-
+        list_konstrukcni_systemy[current_frame[0]] = list_om_konstrukcni_system_pu[current_frame[0]].get()
         if list_om_konstrukcni_system_pu[current_frame[0]].get() == "nehořlavý":
             if list_e_pozarni_vyska[0].get() == 0:
                 mezni_sirka_pu = interp1d(data_nehorlavy_a_values_mr_pu, data_nehorlavy_1_np_mezni_sirky_pu, kind='linear',fill_value='extrapolate')

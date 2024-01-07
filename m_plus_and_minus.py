@@ -54,7 +54,7 @@ def OB1_m_minus():
             dic_psi_entries[current_frame[0]].pop(-1)
 
 
-def PU_m_plus(curent_frame):
+def Nevyrobni_m_plus(curent_frame):
     dic_m_rows[current_frame[0]].append(1)
     print(dic_m_rows)
     for i in range(11):
@@ -123,17 +123,17 @@ def object_m_minus():
     if len(list_m_rows) != 1:
         pass
 # funkce na odebírání řádků pro místnosti do current framu
-def m_minus(current_frame):
+def Nevyrobni_m_minus(current_frame):
     if len(dic_m_rows[current_frame[0]]) != 1:
         dic_m_rows[current_frame[0]].pop(1)
         dic_mc_text_entries[current_frame[0]][-1].destroy()
         dic_mc_text_entries[current_frame[0]].pop(-1)
         dic_nazvy_m_text_entries[current_frame[0]][-1].destroy()
         dic_nazvy_m_text_entries[current_frame[0]].pop(-1)
-        dic_S_entries[current_frame[0]].pop(-1)
         dic_S_entries[current_frame[0]][-1].destroy()
-        dic_CSNi_entries[current_frame[0]].pop(-1)
+        dic_S_entries[current_frame[0]].pop(-1)
         dic_CSNi_entries[current_frame[0]][-1].destroy()
+        dic_CSNi_entries[current_frame[0]].pop(-1)
         dic_ps_row_sum_labels[current_frame[0]][-1].destroy()
         dic_ps_row_sum_labels[current_frame[0]].pop(-1)
         dic_pni_entries[current_frame[0]][-1].destroy()

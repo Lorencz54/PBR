@@ -7,6 +7,7 @@ def add_pu_f_nevyrobni(index):
 # listy pro nový požární úsek
     m_rows = [1]
     o_rows = [1]
+
     m_S_entries = []
     m_CSNi_entries = []
     m_ps_entries = []
@@ -62,13 +63,28 @@ def add_pu_f_nevyrobni(index):
     dic_sirka_ot_entries.append(list_sirka_ot)
     dic_vyska_ot_entries.append(list_vyska_ot)
 
-    list_a.append(0)
-    list_k.append(0)
-    list_b.append(0)
-    list_p.append(0)
-
+    list_a.append(0.0)
+    list_an.append(0.0)
+    list_k.append(0.0)
+    list_b.append(0.0)
+    list_p.append(0.0)
+    list_S.append(0.0)
+    list_hs.append(0.0)
+    list_pn.append(0.0)
+    list_ps.append(0.0)
+    list_so.append(0.0)
+    list_n.append(0.0)
+    list_pomer_S_So.append(0.0)
+    list_pomer_ho_hs.append(0.0)
+    list_ho.append(0.0)
+    list_Sm.append(0.0)
+    list_konstrukcni_systemy.append("")
+    list_pocty_podlazi_PU.append(0)
+    list_max_pocty_podlazi_PU.append(0)
+    list_SPB.append("I.")
+    list_nevyrobni[0] += 1
 # vytvoření míst v listech pro jednotlivé parametry PÚ
-    list_pv.append(0)
+    list_pv.append(0.0)
 
 # nadpis požárního úseku a obecné informace o něm
     l_nazev_pu_default = ctk.CTkLabel(list_f_info_PU[index], text="Požární úsek č. ", anchor="center")
@@ -92,16 +108,18 @@ def add_pu_f_nevyrobni(index):
     e_vyskova_poloha_pu.bind("<FocusIn>", lambda event: e_vyskova_poloha_pu.delete(0,tk.END) if e_vyskova_poloha_pu.get() == "0" else None)
     e_vyskova_poloha_pu.bind("<FocusOut>", lambda event: e_vyskova_poloha_pu.insert(0,"0") if e_vyskova_poloha_pu.get() == "" else None)
 
+    var_e_pocet_podlazi_pu = tk.StringVar()
     e_pocet_podlazi_pu = ctk.CTkEntry(list_f_info_PU[index], width=80)
-    list_pocty_podlazi_pu.append(e_pocet_podlazi_pu)
+    list_e_pocty_podlazi_pu.append(e_pocet_podlazi_pu)
     e_pocet_podlazi_pu.grid(row=2, column=1)
     e_pocet_podlazi_pu.insert(0, "0")
     e_pocet_podlazi_pu.bind("<FocusIn>", lambda event: e_pocet_podlazi_pu.delete(0,tk.END) if e_pocet_podlazi_pu.get() == "0" else None)
     e_pocet_podlazi_pu.bind("<FocusOut>",lambda event: e_pocet_podlazi_pu.insert(0, "0") if e_pocet_podlazi_pu.get() == "" else None)
+    var_e_pocet_podlazi_pu.trace_add("write", lambda name, index, mode, sv=var_e_pocet_podlazi_pu: append_pocet_podlazi_in_list)
 
     var_e_sirka_pu = tk.StringVar()
     e_sirka_pu = ctk.CTkEntry(list_f_info_PU[index], width=80, textvariable=var_e_sirka_pu)
-    list_sirky_pu.append(e_sirka_pu)
+    list_e_sirky_pu.append(e_sirka_pu)
     e_sirka_pu.grid(row=3, column=1)
     e_sirka_pu.insert(0, "0")
     e_sirka_pu.bind("<FocusIn>", lambda event: e_sirka_pu.delete(0, tk.END) if e_sirka_pu.get() == "0" else None)
@@ -110,7 +128,7 @@ def add_pu_f_nevyrobni(index):
 
     var_e_delka_pu = tk.StringVar()
     e_delka_pu = ctk.CTkEntry(list_f_info_PU[index], width=80, textvariable=var_e_delka_pu)
-    list_delky_pu.append(var_e_delka_pu)
+    list_e_delky_pu.append(var_e_delka_pu)
     e_delka_pu.grid(row=4, column=1)
     e_delka_pu.insert(0, "0")
     e_delka_pu.bind("<FocusIn>", lambda event: e_delka_pu.delete(0, tk.END) if e_delka_pu.get() == "0" else None)
@@ -264,9 +282,9 @@ def add_pu_f_nevyrobni(index):
     l_vyska_ot.grid(row=1, column=15)
 
     if len(list_f_PU) >= 1:
-        b_new_row = ctk.CTkButton(list_f_PU[index], text="+", command=lambda:PU_m_plus(current_frame), width=25, height=25)
+        b_new_row = ctk.CTkButton(list_f_PU[index], text="+", command=lambda: Nevyrobni_m_plus(current_frame), width=25, height=25)
         b_new_row.grid(row=2, column=11)
-        b_remove_row = ctk.CTkButton(list_f_PU[index], text="-", command=lambda:m_minus(current_frame), width=25, height=25)
+        b_remove_row = ctk.CTkButton(list_f_PU[index], text="-", command=lambda: Nevyrobni_m_minus(current_frame), width=25, height=25)
         b_remove_row.grid(row=3, column=11)
         b_new_hole = ctk.CTkButton(list_f_PU[index], text="+", command=lambda:o_plus(current_frame), width=25, height=25)
         b_new_hole.grid(row=2, column=16)

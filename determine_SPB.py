@@ -2,6 +2,7 @@ from data import *
 from lists_and_dictionaries import *
 
 def determine_SPB():
+    list_konstrukcni_systemy[current_frame[0]] = list_om_konstrukcni_system_pu[current_frame[0]].get()
     if len(list_f_PU) != 0:
         if list_om_typ_pu[current_frame[0]].get() == "nevýrobní":
             if list_om_konstrukcni_system_pu[current_frame[0]].get() == "nehořlavý":
@@ -83,11 +84,13 @@ def determine_SPB():
                     elif list[i] == "Oa":
                         if list_e_pozarni_vyska[0].get() == 0 and float(list_a[current_frame[0]]) <= 1.1:
                             list_var_l_SPB[current_frame[0]].set(df_SPB.columns[i + 1])
+                            list_SPB[current_frame[0]] = df_SPB.columns[i + 1]
                             break
                         pass
                     elif list[i] == "O":
                         if list_e_pozarni_vyska[0].get() == 0:
                             list_var_l_SPB[current_frame[0]].set(df_SPB.columns[i + 1])
+                            list_SPB[current_frame[0]] = df_SPB.columns[i + 1]
                             break
                         pass
                     elif float(list[i]) < list_e_pozarni_vyska[0].get() or float(list[i]) >= list_e_pozarni_vyska[
@@ -96,14 +99,16 @@ def determine_SPB():
                             pass
                         else:
                             list_var_l_SPB[current_frame[0]].set(df_SPB.columns[i + 1])
+                            list_SPB[current_frame[0]] = df_SPB.columns[i + 1]
                             break
                     elif list[i] == "-":
                         list_var_l_SPB[current_frame[0]].set(df_SPB.columns[i + 1])
+                        list_SPB[current_frame[0]] = df_SPB.columns[i + 1]
                         break
 
                     elif list[i] == "N2":
-                        if list_var_om_konstrukcni_system[0].get() == "nehořlavý" or list_var_om_konstrukcni_system[
-                            0].get() == "smíšený":
+                        if list_var_om_konstrukcni_system[0].get() == "nehořlavý" or list_var_om_konstrukcni_system[0].get() == "smíšený":
                             list_var_l_SPB[current_frame[0]].set(df_SPB.columns[i + 1])
+                            list_SPB[current_frame[0]] = df_SPB.columns[i + 1]
                             break
                         pass

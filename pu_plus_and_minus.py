@@ -97,9 +97,9 @@ def remove_f():
             list_var_l_pv.pop(current_frame[0])
 
             list_pu_number.pop(current_frame[0])
-            list_pocty_podlazi_pu.pop(current_frame[0])
-            list_sirky_pu.pop(current_frame[0])
-            list_delky_pu.pop(current_frame[0])
+            list_e_pocty_podlazi_pu.pop(current_frame[0])
+            list_e_sirky_pu.pop(current_frame[0])
+            list_e_delky_pu.pop(current_frame[0])
             list_vyskove_polohy_pu.pop(current_frame[0])
             list_mezni_pocty_podlazi.pop(current_frame[0])
             list_mezni_delky.pop(current_frame[0])
